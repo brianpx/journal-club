@@ -62,15 +62,24 @@
     .modal-content .border-fracture { border-color: #fda4af; }
     .modal-content .border-elective { border-color: #86efac; }
     .close-modal {
-      position: absolute;
+      position: fixed;
       top: 1rem;
       right: 1rem;
       font-size: 1.5rem;
       cursor: pointer;
-      color: #6b7280;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      transition: background-color 0.3s ease;
     }
     .close-modal:hover {
-      color: #374151;
+      background-color: rgba(0, 0, 0, 0.9);
     }
     .countdown-timer {
       display: flex;
@@ -102,6 +111,21 @@
         font-size: clamp(0.625rem, 2vw, 0.75rem);
       }
     }
+    /* Print styles */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      .modal {
+        display: none !important;
+      }
+      body {
+        background: white;
+      }
+      .bg-white {
+        box-shadow: none !important;
+      }
+    }
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -114,7 +138,7 @@
         <p class="text-base sm:text-lg md:text-xl text-gray-600 mt-3 italic">
           A focused discussion on advancing critical appraisal in medical research
         </p>
-        <div id="countdown" class="mt-4 countdown-timer">
+        <div id="countdown" class="mt-4 countdown-timer no-print">
           <div class="countdown-unit">
             <div id="days" class="countdown-value">0</div>
             <div class="countdown-label">Days</div>
@@ -175,31 +199,31 @@
           <ol class="list-decimal pl-6 space-y-6 text-base sm:text-lg">
             <li>
               <p class="font-semibold text-gray-800">Are the results valid? <span class="font-normal text-gray-600">(Internal Validity)</span></p>
-              <ul class="mt-3 space-y-2 pl-4 text-gray-700">
-                <li><span class="text-sky-600 mr-2">☐</span> Was randomization adequate?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Was allocation concealed?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Who was blinded (if anyone)?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Were baseline characteristics similar?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Was ITT analysis performed?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Were crossovers or missing data significant?</li>
+              <ul class="mt-3 space-y-2 pl-0 text-gray-700">
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Was randomization adequate?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Was allocation concealed?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Who was blinded (if anyone)?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Were baseline characteristics similar?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Was ITT analysis performed?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Were crossovers or missing data significant?</li>
               </ul>
             </li>
             <li>
               <p class="font-semibold text-gray-800">What were the results? <span class="font-normal text-gray-600">(Magnitude & Precision)</span></p>
-              <ul class="mt-3 space-y-2 pl-4 text-gray-700">
-                <li><span class="text-sky-600 mr-2">☐</span> Effect sizes: HR, OR, CI, ARR, NNT/NNH?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Were results clinically meaningful or only statistically significant?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Were harms/adverse effects reported?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Any time-course patterns (early vs late outcomes)?</li>
+              <ul class="mt-3 space-y-2 pl-0 text-gray-700">
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Effect sizes: HR, OR, CI, ARR, NNT/NNH?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Were results clinically meaningful or only statistically significant?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Were harms/adverse effects reported?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Any time-course patterns (early vs late outcomes)?</li>
               </ul>
             </li>
             <li>
               <p class="font-semibold text-gray-800">Will these results help my patients? <span class="font-normal text-gray-600">(Applicability)</span></p>
-              <ul class="mt-3 space-y-2 pl-4 text-gray-700">
-                <li><span class="text-sky-600 mr-2">☐</span> Does the study population match our patients?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Are the outcomes patient-centered (survival, ambulation, pain, satisfaction)?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> Any barriers in our practice (anticoagulation, resources, PACU staffing)?</li>
-                <li><span class="text-sky-600 mr-2">☐</span> How might local ERAS/THA pathways differ?</li>
+              <ul class="mt-3 space-y-2 pl-0 text-gray-700">
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Does the study population match our patients?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Are the outcomes patient-centered (survival, ambulation, pain, satisfaction)?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> Any barriers in our practice (anticoagulation, resources, PACU staffing)?</li>
+                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 mr-3 mt-1 flex-shrink-0"></span> How might local ERAS/THA pathways differ?</li>
               </ul>
             </li>
           </ol>
@@ -212,15 +236,15 @@
           </h2>
           <button
             onclick="openModal()"
-            class="inline-block bg-sky-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-xl hover:bg-sky-700 transition-colors duration-300 shadow-lg hover-scale"
+            class="inline-block bg-sky-600 text-white font-semibold py-3 px-6 sm:px-8 rounded-xl hover:bg-sky-700 transition-colors duration-300 shadow-lg hover-scale no-print"
           >
             View Bottom Line
           </button>
         </section>
         <!-- Modal -->
         <div id="infographicModal" class="modal">
+          <span class="close-modal" onclick="closeModal()">&times;</span>
           <div class="modal-content p-4 sm:p-6 md:p-8 max-w-5xl">
-            <span class="close-modal" onclick="closeModal()">&times;</span>
             <!-- Infographic Content -->
             <header class="text-center mb-6 sm:mb-8 md:mb-12">
               <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Spinal vs. General Anesthesia in Hip Surgery</h1>
@@ -274,7 +298,7 @@
                 </div>
                 <div class="mt-4 sm:mt-6 pt-4 border-t border-gray-200">
                   <p class="text-xs sm:text-sm font-semibold text-gray-700 bg-rose-50 p-3 rounded-lg"><strong>Conclusion:</strong> For emergency hip fracture surgery in elderly patients, both anesthesia types lead to similar major long-term outcomes.</p>
-                </div>
+                  </div>
               </div>
               <!-- Column 2: Elective Hip Replacement -->
               <div class="bg-white rounded-xl card-shadow border-t-4 border-emerald-500 p-4 sm:p-6 flex flex-col">
@@ -401,8 +425,11 @@
       </main>
       <footer class="text-center mt-8 sm:mt-10 pt-6 border-t border-gray-200">
         <p class="text-xs sm:text-sm md:text-base text-gray-500">
-          &copy; Brian Pitts, MD, MS, MEHP — UC Davis Health Department of Anesthesiology and Pain Medicine
+          &copy; Brian Pitts, MD, MS – UC Davis Health Department of Anesthesiology and Pain Medicine
         </p>
+        <button onclick="window.print()" class="mt-4 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition no-print text-sm">
+          🖨️ Print Handout
+        </button>
       </footer>
     </div>
   </div>
@@ -410,16 +437,25 @@
     // Modal functionality
     function openModal() {
       document.getElementById('infographicModal').style.display = 'flex';
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
     }
     function closeModal() {
       document.getElementById('infographicModal').style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
     }
     window.onclick = function(event) {
       const modal = document.getElementById('infographicModal');
       if (event.target === modal) {
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
       }
     };
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
 
     // Countdown timer
     const targetDate = new Date('2025-09-09T15:00:00-08:00').getTime();
@@ -430,7 +466,7 @@
       const timeLeft = targetDate - now;
 
       if (timeLeft <= 0) {
-        countdownElement.style.display = 'none';
+        countdownElement.innerHTML = '<div class="text-lg sm:text-xl text-sky-700 font-semibold">Session Started!</div>';
         return;
       }
 
