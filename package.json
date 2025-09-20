@@ -1,0 +1,15 @@
+{
+  "name": "journal-club",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --watch",
+    "build": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --minify",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "tailwindcss": "^4.1.13",
+    "prettier": "^3.3.3"
+  }
+}

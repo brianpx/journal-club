@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+.package-lock.json
+
+# Development files
+.DS_Store
+.idea/
+
+# Build outputs (keep only final built files)
+css/styles.processed.css
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
