@@ -27,10 +27,10 @@ const printSection = (sectionId) => {
     iframe.setAttribute("aria-hidden", "true");
     document.body.appendChild(iframe);
 
-    const tailwindHref = new URL("css/tailwind-build.css", location.origin + "/journal-club/").href;
+    const tailwindHref = new URL("/css/tailwind-build.css", location.origin).href;
     const customHref = new URL(
-        document.querySelector('link[href$="styles.processed.css"]') ? "css/styles.processed.css" : "css/styles.css",
-        location.origin + "/journal-club/"
+        document.querySelector('link[href$="styles.processed.css"]') ? "/css/styles.processed.css" : "/css/styles.css",
+        location.origin
     ).href;
 
     const safeTitle = (document.title || "Print")
