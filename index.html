@@ -15,7 +15,7 @@
     }
     .section-divider {
       border-top: 1px solid #e5e7eb;
-      margin: 2rem 0;
+      margin: 1rem 0;
     }
     .hover-scale {
       transition: transform 0.3s ease;
@@ -129,7 +129,14 @@
   </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
-  <div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 max-w-5xl">
+  <!-- Brand Logo -->
+  <div class="text-center" style="margin-bottom: 4px;">
+    <a href="http://localhost:63342/Journal-Club/jc_guide.html" class="inline-block">
+      <img src="img/brand-logo.png" alt="The Branch Lab" class="h-20 mx-auto hover:opacity-80 transition-opacity duration-300" />
+    </a>
+  </div>
+
+  <div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 max-w-5xl" style="margin-top: 2px;">
     <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 md:p-10">
       <header class="mb-8 text-center">
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
@@ -371,7 +378,7 @@
           <p class="italic text-gray-600 mb-4 text-sm sm:text-base">
             Please review the following articles prior to the session.
           </p>
-          <div class="space-y-4">
+          <div class="space-y-4 [&>:first-child]:mt-0">
             <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 article-card">
               <p class="font-semibold text-gray-800 text-sm sm:text-base">
                 Article 1: Long-term outcomes with spinal versus general anesthesia for hip fracture surgery: a randomized trial.
