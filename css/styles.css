@@ -55,7 +55,7 @@
     --bg-primary:#000;
     --bg-secondary:#161617;
     --bg-nav:rgba(22,22,23,.95);
-    --bg-card:rgba(255,255,255,.03);
+    --bg-card:#161617;
 
     --text-primary:#f5f5f7;
     --text-secondary:#a1a1a6;
@@ -123,6 +123,17 @@ a:focus-visible{outline:2px solid var(--text-link);outline-offset:2px;border-rad
     display:block;
 }
 @media (max-width:768px){.brand-logo{height:60px;}}
+
+/* Brand logo brightening animation for dark mode only */
+@keyframes brightenLogo {
+    0%   { filter: brightness(1); }       /* default */
+    60%  { filter: brightness(3); }       /* 300% at 0.6s */
+    100% { filter: brightness(2); }       /* settle at 200% */
+}
+
+[data-theme="dark"] .brand-logo {
+    animation: brightenLogo 0.8s ease forwards;
+}
 
 .nav-links{list-style:none;display:flex;gap:1rem;align-items:center;flex-wrap:nowrap;}
 .nav-link{
@@ -287,8 +298,9 @@ svg{max-inline-size:100%;height:auto;}
 
 /* Lists */
 .icon-list{list-style:none;margin:1rem 0;padding:0;}
-.icon-list li{display:flex;align-items:flex-start;gap:.5rem;margin-bottom:.75rem;line-height:1.5;}
+.icon-list li{display:flex;align-items:flex-start;gap:1rem;margin-bottom:.75rem;line-height:1.5;}
 .icon-list li:last-child{margin-bottom:0;}
+.icon-list li > span:last-child{flex:1;min-width:0;}
 
 /* Mobile nav */
 .mobile-nav-controls,.mobile-menu{display:none;}

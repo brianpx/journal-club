@@ -102,10 +102,10 @@ class ThemeManager {
         try {
             pref = localStorage.getItem(this.KEY);
         } catch (_) {
-            // Storage might be disabled; fall through to media query.
+            // Storage might be disabled; fall through to default light mode.
         }
-        const prefersDark = window.matchMedia?.("(prefers-color-scheme: dark)")?.matches;
-        const initial = pref || (prefersDark ? this.DARK : this.LIGHT);
+        // Default to light mode when no preference is stored
+        const initial = pref || this.LIGHT;
         this.set(initial);
     }
 
