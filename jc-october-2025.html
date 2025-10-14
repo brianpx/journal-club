@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arterial Catheterization Sterile Technique</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-sky': '#075985', // sky-800 equivalent for context
+                        'accent-red': '#dc2626',
+                    }
+                }
+            }
+        }
+    </script>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+    />
+    <style>
+        /* Base styles from the template */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-divider {
+            border-top: 1px solid #e5e7eb;
+            margin: 1.5rem 0; /* Adjusted for tighter spacing, closer to sample's feeling */
+        }
+        .dark .section-divider {
+            border-top: 1px solid #374151;
+        }
+        .article-card {
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .article-card:hover {
+            background-color: #f9fafb;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .dark .article-card:hover {
+            background-color: #1f2937;
+        }
+
+        /* Countdown styles */
+        .countdown-timer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        .countdown-unit {
+            text-align: center;
+            min-width: 60px;
+        }
+        .countdown-value {
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            font-weight: 700;
+            color: #1e3a8a;
+        }
+        .dark .countdown-value {
+            color: #93c5fd;
+        }
+        .countdown-label {
+            font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+            color: #4b5563;
+        }
+        .dark .countdown-label {
+            color: #d1d5db;
+        }
+
+        /* Content Specific Styling */
+        .content-list {
+            list-style-type: disc;
+            list-style-position: inside;
+        }
+        .content-list ul {
+            list-style-type: circle;
+            list-style-position: inside;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .study-table table {
+            width: 100%;
+            margin-top: 1rem;
+            border-collapse: collapse;
+        }
+        .study-table th, .study-table td {
+            border: 1px solid #d1d5db;
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .dark .study-table th, .dark .study-table td {
+            border: 1px solid #4b5563;
+        }
+        .study-table th {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+        .dark .study-table th {
+            background-color: #1f2937;
+        }
+
+        /* Minimalist Expandable Outline Styling */
+        details {
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        details > summary {
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            outline: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary {
+            background-color: #eef6fe; /* Light blue tint when open */
+            border-color: #bfdbfe; /* Blue-300 border when open */
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .dark details[open] summary {
+            background-color: #1e3a8a; /* Darker blue when open */
+            border-color: #60a5fa;
+        }
+        .summary-icon {
+            transition: transform 0.2s ease;
+        }
+        details:not([open]) .summary-icon {
+            transform: rotate(-90deg);
+        }
+
+        /* Print styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .modal {
+                display: none !important;
+            }
+            body {
+                background: white;
+            }
+            .bg-white {
+                box-shadow: none !important;
+            }
+            /* Force print to expand details sections */
+            details {
+                display: block !important;
+            }
+            details summary {
+                display: none !important;
+            }
+            details > * {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-200">
+
+<!-- Brand Logo (Branchlab Header) -->
+<div class="flex justify-center pt-6 pb-2" style="margin-bottom: 4px;">
+    <!-- Placeholder image path used as requested -->
+    <img src="img/brand-logo.png" alt="Branchlab Logo" class="h-14 sm:h-16 hover:opacity-80 transition-opacity duration-300" />
+</div>
+
+<!-- Theme Toggle -->
+<div class="fixed top-4 right-4 z-50">
+    <button id="themeToggle" class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 dark:border-gray-600" aria-label="Toggle theme">
+        <svg class="w-5 h-5 sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        </svg>
+        <svg class="w-5 h-5 moon-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        </svg>
+    </button>
+</div>
+
+<div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 max-w-5xl" style="margin-top: 2px;">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 transition-colors duration-200">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 tracking-tight transition-colors duration-200">
+                Reevaluating Sterile Technique in Arterial Catheterization
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 mt-3 italic transition-colors duration-200">
+                A Comprehensive Study Guide and Interactive Learning Resource
+            </p>
+            <div class="mt-3 flex flex-wrap gap-2 justify-center text-sm md:text-base text-gray-700 dark:text-gray-300">
+                <span class="font-semibold">Presented by:</span>
+                <span>Faisal Tan, M.D. | Benjamin Vincent, M.D.</span>
+            </div>
+
+            <!-- Date text is now correctly outside and above the countdown box -->
+            <div class="mt-5 mb-2 text-xs font-semibold text-blue-800 dark:text-blue-300">Journal Club: October 28, 2025 at 3:00 PM</div>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow-md countdown-timer no-print">
+                <div class="countdown-unit">
+                    <div id="days" class="countdown-value">--</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-unit">
+                    <div id="hours" class="countdown-value">--</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-unit">
+                    <div id="minutes" class="countdown-value">--</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-unit">
+                    <div id="seconds" class="countdown-value">--</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="study-content">
+
+            <!-- 1. Topic Overview (Static Intro) -->
+            <section class="mb-8">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
+                    Topic Overview
+                </h2>
+
+                <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-4">Arterial catheters carry a real and clinically significant infection risk, especially when placed at femoral sites or left in place for more than a few days. Although the only randomized trial (Rijnders 2003) found no statistically significant benefit of full sterile barriers, it was **underpowered**.</p>
+
+                <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-6">Modern evidence shows that infection rates for arterial catheters are comparable to central lines, and newer reviews recommend treating them with the same level of sterile precautions.</p>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 dark:border-blue-400 text-blue-800 dark:text-blue-200 p-4 rounded-r-xl shadow-sm">
+                    <p class="text-lg font-bold mb-1 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                        Best Practice Recommendation
+                    </p>
+                    <p class="font-semibold text-gray-800 dark:text-gray-200">Use **maximal sterile barrier technique** (cap, mask, sterile gown, large drape, sterile gloves) for most arterial line insertions—particularly femoral or long-term lines—and maintain strict site care and early removal to minimize infection risk.</p>
+                </div>
+
+                <h3 class="text-xl font-semibold mt-6 mb-3 text-gray-800 dark:text-gray-200">PICO Research Question</h3>
+                <p class="italic text-gray-600 dark:text-gray-400">In adult patients requiring arterial catheter placement, does use of full sterile barrier precautions compared with standard sterile technique reduce the incidence of catheter-associated bloodstream infections or catheter failure?</p>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- 2. Expandable Study Outline (Accordion) -->
+            <section class="mb-8">
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
+                    Core Study Outline
+                </h2>
+
+                <!-- 1. Rationale -->
+                <details class="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                    <summary class="p-4 cursor-pointer font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition duration-150">
+                        <span class="text-gray-900 dark:text-gray-100">1. Rationale for Maximal Sterile Barriers</span>
+                        <span class="summary-icon text-gray-500 dark:text-gray-400">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 dark:text-gray-300">
+                        <h3 class="text-xl font-semibold mb-2 text-primary-sky dark:text-sky-400">A. The Challenge of Arterial Catheter Infection</h3>
+                        <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300 mb-3">Arterial catheters (ACs) have historically been perceived as lower risk than Central Venous Catheters (CVCs), but modern data suggests comparable risk profiles in certain settings.</p>
+
+                        <h4 class="text-lg font-bold text-gray-800 dark:text-gray-200">Consequences of Catheter-Associated Bloodstream Infections (CABSI):</h4>
+                        <ul class="content-list space-y-1 ml-4">
+                            <li>Increased morbidity and mortality.</li>
+                            <li>Prolonged hospital Length of Stay (LOS).</li>
+                            <li>Significantly higher healthcare costs.</li>
+                            <li>Risk of secondary complications (e.g., endocarditis, septic emboli).</li>
+                        </ul>
+
+                        <h4 class="text-lg font-bold mt-4 text-gray-800 dark:text-gray-200">Infection Rates:</h4>
+                        <ul class="content-list space-y-1 ml-4">
+                            <li>CABSI incidence for ACs: $\approx 0.5$ to $3.4$ per $1,000$ catheter-days.</li>
+                            <li>Newer reviews caution that earlier assumptions of "low risk" may underplay real-world burdens.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mt-6 mb-2 text-primary-sky dark:text-sky-400">B. Limitations of Standard Sterile Technique</h3>
+                        <p class="text-base sm:text-lg leading-relaxed mb-3">Standard technique typically involves hand hygiene, sterile gloves, and a small drape. This leaves large portions of the field exposed, increasing the risk of:</p>
+                        <ul class="content-list space-y-1 ml-4">
+                            <li>Contamination from the operator's clothing or hair.</li>
+                            <li>Environmental contamination during the procedure.</li>
+                            <li>Increased risk of device failure due to poor initial placement leading to re-do attempts.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- 2. Evidence -->
+                <details class="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                    <summary class="p-4 cursor-pointer font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition duration-150">
+                        <span class="text-gray-900 dark:text-gray-100">2. Evidence Review</span>
+                        <span class="summary-icon text-gray-500 dark:text-gray-400">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 dark:text-gray-300">
+                        <h3 class="text-xl font-semibold mb-2 text-primary-sky dark:text-sky-400">A. Scarcity of High-Quality Evidence</h3>
+                        <p class="text-base sm:text-lg leading-relaxed mb-4">There is a scarcity of recent Randomized Controlled Trials (RCTs) directly comparing full sterile barrier (maximal) vs. standard sterile technique for arterial catheter insertion.</p>
+
+                        <h3 class="text-xl font-semibold mb-2 text-primary-sky dark:text-sky-400">B. The Rijnders (2003) RCT</h3>
+                        <ul class="content-list space-y-2 ml-4">
+                            <li>**Finding:** Compared full sterile barrier vs. standard technique and found no statistically significant difference in infection rates.</li>
+                            <li>**The Critical Gap:** The study was **underpowered**.
+                                <ul class="list-circle list-inside ml-6 mt-1 text-gray-600 dark:text-gray-400">
+                                    <li>Arterial catheter infections are rare events.</li>
+                                    <li>The study lacked sufficient sample size to detect anything but a very large effect size.</li>
+                                    <li>Result is interpreted as **inconclusive**, not proof of no benefit.</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mt-6 mb-2 text-primary-sky dark:text-sky-400">C. Newer Evidence & Comparative Risk</h3>
+                        <ul class="content-list space-y-2 ml-4">
+                            <li>**Lucet et al. (2010):** Demonstrated that the infectious risk associated with arterial catheters is comparable to that of central venous catheters (CVCs).
+                                <ul class="list-circle list-inside ml-6 mt-1 text-gray-600 dark:text-gray-400">
+                                    <li>**Implication:** ACs should receive the same level of infection control precautions as CVCs.</li>
+                                </ul>
+                            </li>
+                            <li>**Schults et al. (Secondary Analysis):** Provided a modern benchmark, showing catheter failure and CABSI incidence in $2\%$ of patients.</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- 3. Deep Dive -->
+                <details class="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                    <summary class="p-4 cursor-pointer font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition duration-150">
+                        <span class="text-gray-900 dark:text-gray-100">3. Deep Dive: The Underpowered Study</span>
+                        <span class="summary-icon text-gray-500 dark:text-gray-400">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 dark:text-gray-300 study-table">
+                        <p class="text-base sm:text-lg leading-relaxed mb-4">An **underpowered study** is a research study that does not include enough participants or events to reliably detect a true difference or effect between groups—even if one actually exists.</p>
+                        <p class="text-base sm:text-lg leading-relaxed mb-4">In statistical terms, "**power**" is the probability that a study will correctly reject the null hypothesis (i.e., detect a true effect) when that effect is real. Most clinical research aims for $80–90\%$ statistical power. </p>
+
+                        <h3 class="text-xl font-semibold mt-6 mb-2 text-primary-sky dark:text-sky-400">Key Statistical Concepts</h3>
+                        <div class="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 shadow-md">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">Term</th>
+                                    <th class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">Definition</th>
+                                    <th class="bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100">Statistical Context</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>**Power**</td>
+                                    <td>The probability that a study will correctly detect a true effect of a given size.</td>
+                                    <td>Calculated as $1 - \beta$. Most research aims for $80-90\%$ power.</td>
+                                </tr>
+                                <tr>
+                                    <td>**Type II Error ($\beta$)**</td>
+                                    <td>The probability of failing to detect a true difference (a false negative).</td>
+                                    <td>An underpowered study significantly increases this risk.</td>
+                                </tr>
+                                <tr>
+                                    <td>**Underpowered**</td>
+                                    <td>When the sample size or number of outcome events is too small to achieve adequate power.</td>
+                                    <td>Leads to a nonsignificant result that may be misleading.</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3 class="text-xl font-semibold mt-6 mb-2 text-primary-sky dark:text-sky-400">The Rijnders RCT Example (2003)</h3>
+                        <p class="text-base sm:text-lg leading-relaxed mb-2">The Rijnders RCT found no significant difference in infection rates, but the interpretation must acknowledge its lack of power:</p>
+                        <div class="p-3 bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-400 rounded-r-xl text-gray-800 dark:text-gray-200 font-semibold shadow-sm">
+                            <p>Because arterial catheter infections are a rare outcome, the study lacked sufficient power to detect anything but a very large effect. The result is therefore **inconclusive** rather than definitive proof of no benefit.</p>
+                        </div>
+                    </div>
+                </details>
+
+                <!-- 4. Best Practice -->
+                <details class="mb-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/50">
+                    <summary class="p-4 cursor-pointer font-semibold text-lg hover:bg-gray-100 dark:hover:bg-gray-700 rounded-xl transition duration-150">
+                        <span class="text-gray-900 dark:text-gray-100">4. Key Considerations and Best Practice Implementation</span>
+                        <span class="summary-icon text-gray-500 dark:text-gray-400">▼</span>
+                    </summary>
+                    <div class="p-4 pt-0 text-gray-700 dark:text-gray-300">
+                        <h3 class="text-xl font-semibold mb-2 text-primary-sky dark:text-sky-400">A. Key Risk Factors</h3>
+                        <ul class="content-list space-y-2 ml-4">
+                            <li>**Site of Placement:** Femoral sites are associated with higher infection risk than radial sites.</li>
+                            <li>**Duration:** Catheters left in place for more than a few days carry significantly increased risk.</li>
+                            <li>**Operator Experience:** Less experienced operators may have higher complication rates.</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mt-6 mb-2 text-primary-sky dark:text-sky-400">B. Best Practice Protocols</h3>
+
+                        <h4 class="text-lg font-bold text-gray-800 dark:text-gray-200">Insertion Protocol (Maximal Barrier)</h4>
+                        <p class="text-base sm:text-lg leading-relaxed mb-2">Use **Maximal Sterile Barrier Technique** for *most* arterial line insertions, especially:</p>
+                        <ul class="content-list space-y-1 ml-4">
+                            <li>Femoral access.</li>
+                            <li>Lines expected to be in place $>48$ hours.</li>
+                            <li>Placement in patients who are immunocompromised or at high risk for infection.</li>
+                        </ul>
+
+                        <h4 class="text-lg font-bold mt-4 text-gray-800 dark:text-gray-200">Maintenance Protocol</h4>
+                        <ul class="content-list space-y-1 ml-4">
+                            <li>Strict site care (chlorhexidine skin prep).</li>
+                            <li>**Early Removal:** Daily assessment of need is critical. Remove the line the moment it is no longer strictly necessary.</li>
+                        </ul>
+                        <div class="mt-6 p-4 bg-accent-red/10 border-l-4 border-accent-red rounded-r-xl text-accent-red font-semibold shadow-sm">
+                            <p>Remember: Strict sterile technique during insertion must be paired with diligent maintenance and timely removal to effectively minimize CABSI risk.</p>
+                        </div>
+                    </div>
+                </details>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- 3. Articles & Pre-Work (Static Conclusion) -->
+            <section class="mb-8">
+                <!-- Key Articles Section -->
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
+                    Key Articles for Review
+                </h2>
+                <p class="italic text-gray-600 dark:text-gray-400 mb-4 text-sm sm:text-base">
+                    These studies form the foundation for current recommendations on arterial catheter insertion technique.
+                </p>
+                <div class="space-y-4 [&>:first-child]:mt-0">
+
+                    <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 dark:bg-gray-700 article-card">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">
+                            **Rijnders BJA, et al. (2003):** Use of full sterile barrier precautions during insertion of arterial catheters: A randomized trial. *Clinical Infectious Diseases.*
+                        </p>
+                        <p class="text-sm italic text-gray-600 dark:text-gray-400 mt-1">
+                            *Summary:* The underpowered RCT that found no significant difference, highlighting the need to weigh costs/feasibility against the magnitude of additional benefit, given the low baseline infection rate.
+                        </p>
+                    </div>
+
+                    <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 dark:bg-gray-700 article-card">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">
+                            **Lucet JC, et al. (2010):** Infectious risk associated with arterial catheters compared with central venous catheters. *Critical Care Medicine.*
+                        </p>
+                        <p class="text-sm italic text-gray-600 dark:text-gray-400 mt-1">
+                            *Summary:* Demonstrated that ACs should receive the same level of infection control precautions as CVCs due to comparable risk profiles.
+                        </p>
+                    </div>
+
+                </div>
+            </section>
+
+            <div class="section-divider"></div>
+
+            <!-- Pre-Work Instructions Section -->
+            <section>
+                <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-amber-800 dark:text-amber-300 border-b-2 border-amber-300 dark:border-amber-600 pb-3 mb-5">
+                    Pre-Work Instructions
+                </h2>
+                <div
+                        class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-400 text-amber-800 dark:text-amber-200 p-4 sm:p-5 rounded-r-xl shadow-sm"
+                        role="alert"
+                        aria-label="Pre-work instructions"
+                >
+                    <ul class="list-disc list-inside space-y-3 pl-4 text-sm sm:text-base md:text-lg">
+                        <li>Read the assigned articles thoroughly.</li>
+                        <li>Complete the critical appraisal worksheet for each article.</li>
+                        <li>Prepare to discuss your findings and insights during the session.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-8 sm:mt-10 pt-6 border-t border-gray-200 dark:border-gray-600">
+            <p class="text-xs sm:text-sm md:text-base text-gray-500 dark:text-gray-400">
+                Journal Club Preparation Guide
+            </p>
+            <button onclick="window.print()" class="mt-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition no-print text-sm">
+                🖨️ Print Handout
+            </button>
+        </footer>
+    </div>
+</div>
+
+<script>
+    // --- Countdown Timer Logic ---
+    const targetDate = new Date('October 28, 2025 15:00:00').getTime();
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            countdownElement.innerHTML = '<div class="text-lg sm:text-xl text-sky-700 dark:text-sky-300 font-semibold">Journal Club is Live!</div>';
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+
+    if (countdownElement) {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+
+    // --- Theme Manager Logic ---
+    class ThemeManager {
+        constructor() {
+            this.KEY = "theme";
+            this.LIGHT = "light";
+            this.DARK = "dark";
+            this.toggle = document.getElementById('themeToggle');
+            this.sunIcon = document.querySelector('.sun-icon');
+            this.moonIcon = document.querySelector('.moon-icon');
+
+            this.init();
+        }
+
+        init() {
+            this.applyInitial();
+            this.bind();
+        }
+
+        applyInitial() {
+            let pref = null;
+            try {
+                pref = localStorage.getItem(this.KEY);
+            } catch (_) {
+                // Storage might be disabled
+            }
+            const initial = pref || this.LIGHT;
+            this.set(initial);
+        }
+
+        bind() {
+            this.toggle?.addEventListener("click", () => this.toggleTheme());
+        }
+
+        set(theme) {
+            if (theme === this.DARK) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+
+            try {
+                localStorage.setItem(this.KEY, theme);
+            } catch (_) {
+                // ignore
+            }
+
+            if (this.sunIcon && this.moonIcon) {
+                if (theme === this.DARK) {
+                    this.sunIcon.classList.remove('hidden');
+                    this.moonIcon.classList.add('hidden');
+                } else {
+                    this.sunIcon.classList.add('hidden');
+                    this.moonIcon.classList.remove('hidden');
+                }
+            }
+        }
+
+        toggleTheme() {
+            const isDark = document.documentElement.classList.contains('dark');
+            this.set(isDark ? this.LIGHT : this.DARK);
+        }
+    }
+
+    // Initialize theme manager
+    new ThemeManager();
+</script>
+</body>
+</html>

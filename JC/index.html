@@ -1,0 +1,1797 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="description" content="Faculty guide for Anesthesiology Resident Journal Club - teaching critical appraisal framework">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <title>Faculty Guide: Anesthesiology Resident Journal Club - UC Davis Health</title>
+
+    <style>
+        /* =========================
+           OPTIMIZED CSS - Consolidated and improved
+           Changes:
+           - Removed duplicate properties
+           - Consolidated similar rules
+           - Improved CSS custom property organization
+           - Simplified timeline theming
+           - Better print style organization
+           ========================= */
+
+        /* CSS Custom Properties */
+        :root {
+            /* Core colors */
+            --color-primary: #0066cc;
+            --color-accent-blue: #1d4ed8;
+            --color-accent-purple: #7e22ce;
+
+            /* Light theme (default) */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --bg-nav: rgba(255, 255, 255, 0.95);
+            --bg-card: #f9f9fb;
+            --text-primary: #1d1d1f;
+            --text-secondary: #515154;
+            --text-tertiary: #86868b;
+            --text-link: var(--color-primary);
+            --border-primary: rgba(0, 0, 0, 0.1);
+            --border-secondary: rgba(0, 0, 0, 0.05);
+            --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+            /* Layout constants */
+            --container-width: 960px;
+            --nav-height: 65px;
+            --card-radius: 14px;
+            --transition-base: 0.3s ease;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2.5rem;
+        }
+
+        /* Dark theme override */
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #161617;
+            --bg-nav: rgba(22, 22, 23, 0.95);
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --text-primary: #f5f5f7;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #6e6e73;
+            --text-link: #2997ff;
+            --border-primary: rgba(255, 255, 255, 0.1);
+            --border-secondary: rgba(255, 255, 255, 0.05);
+            --shadow-nav: 0 2px 8px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] .timeline-meta.resident { color: #60a5fa; }
+        [data-theme="dark"] .timeline-meta.faculty { color: #a78bfa; }
+
+        /* Reset & Base Styles */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+            transition: background-color var(--transition-base), color var(--transition-base);
+        }
+
+        /* Utility Classes */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 22px;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            width: 1px !important;
+            height: 1px !important;
+            padding: 0 !important;
+            margin: -1px !important;
+            overflow: hidden !important;
+            clip: rect(0, 0, 0, 0) !important;
+            white-space: nowrap !important;
+            border: 0 !important;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Typography - Consolidated */
+        h1, h2, h3 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.25rem;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+        }
+
+        h2:first-child { margin-top: 0; }
+
+        h3 {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        p, li {
+            color: var(--text-secondary);
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            font-size: 1.2em;
+        }
+
+        a {
+            color: var(--text-link);
+            text-decoration: none;
+            transition: opacity var(--transition-base);
+        }
+
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--text-link);
+            outline-offset: 2px;
+            border-radius: 2px;
+        }
+
+        strong, b {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        /* Navigation - Simplified */
+        .nav-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav-height);
+            background-color: var(--bg-nav);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border-primary);
+            transition: box-shadow var(--transition-base);
+        }
+
+        .nav-header.scrolled {
+            box-shadow: var(--shadow-nav);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            height: 82.5px;
+            width: auto;
+            padding: 5px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: var(--spacing-xs) 0;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            transition: color var(--transition-base);
+        }
+
+        .nav-link:hover,
+        .nav-link:focus-visible,
+        .nav-link.active {
+            color: var(--text-link);
+            text-decoration: none;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: calc(-1 * var(--nav-height) / 2 + 4px);
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--text-link);
+        }
+
+        /* Buttons - Consolidated */
+        .btn,
+        .nav-icon-btn,
+        .theme-toggle {
+            cursor: pointer;
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            transition: all var(--transition-base);
+            background: transparent;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.4375rem 0.875rem;
+            color: var(--text-link);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn:hover,
+        .btn:focus-visible {
+            background-color: var(--text-link);
+            color: white;
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .btn-print,
+        .nav-print-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 0;
+            border-radius: 6px;
+            background-color: #9ca3af;
+            color: white;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .btn-print:hover,
+        .btn-print:focus-visible,
+        .nav-print-btn:hover,
+        .nav-print-btn:focus-visible {
+            background-color: #6b7280;
+            transform: translateY(-1px);
+        }
+
+        .theme-toggle {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.375rem 0.75rem;
+            border-radius: 20px;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .theme-toggle:hover,
+        .theme-toggle:focus-visible {
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .theme-toggle svg,
+        .nav-icon-btn svg {
+            width: 1rem;
+            height: 1rem;
+            fill: currentColor;
+        }
+
+        .nav-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            padding: 0;
+        }
+
+        .nav-icon-btn:hover,
+        .nav-icon-btn:focus-visible {
+            background-color: var(--bg-secondary);
+        }
+
+        .nav-icon-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav-controls,
+        .mobile-menu {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: 1px solid var(--border-primary);
+            border-radius: 6px;
+            cursor: pointer;
+            position: relative;
+            padding: 0;
+            z-index: 1100;
+        }
+
+        .hamburger-line {
+            display: block;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 22px;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger-line:nth-child(1) { top: 10px; }
+        .hamburger-line:nth-child(2) {
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        .hamburger-line:nth-child(3) { bottom: 10px; }
+
+        /* Hamburger animation */
+        .hamburger.active .hamburger-line:nth-child(1) {
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-50%) translateY(-50%) scale(0);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(3) {
+            bottom: auto;
+            top: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            right: 0;
+            background-color: var(--bg-primary);
+            border-bottom: 1px solid var(--border-primary);
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active { display: block; }
+
+        .mobile-menu-list {
+            list-style: none;
+            padding: var(--spacing-sm) 0;
+            margin: 0;
+        }
+
+        .mobile-menu-link {
+            display: block;
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1rem;
+            border-bottom: 1px solid var(--border-secondary);
+            transition: background-color var(--transition-base);
+        }
+
+        .mobile-menu-link:last-child { border-bottom: none; }
+
+        .mobile-menu-link:hover,
+        .mobile-menu-link:focus-visible {
+            background-color: var(--bg-secondary);
+            text-decoration: none;
+        }
+
+        .mobile-menu-link.active {
+            color: var(--text-link);
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+        }
+
+        /* Main Content */
+        main {
+            margin-top: var(--nav-height);
+            min-height: calc(100vh - var(--nav-height));
+        }
+
+        section {
+            padding: 2rem 0;
+        }
+
+        section:first-of-type {
+            padding-top: 5rem;
+            padding-bottom: 1rem;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+
+        .section-header h2,
+        .section-header h3 {
+            margin: 0;
+        }
+
+        .meta-info {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-tertiary);
+            font-size: 0.875rem;
+        }
+
+        .meta-info span:not(:last-child)::after {
+            content: " • ";
+            margin-left: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+        }
+
+        .divider {
+            width: 100%;
+            height: 2px;
+            margin-top: var(--spacing-xl);
+            background-color: var(--text-tertiary);
+            opacity: 0.3;
+        }
+
+        /* Lists */
+        ul {
+            margin: 1.25rem 0;
+            padding-left: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            font-size: 1.2em;
+        }
+
+        .icon-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .icon-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .icon-list .list-icon {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            margin-top: 0.1875rem;
+            opacity: 0.5;
+        }
+
+        .icon-list svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--text-secondary);
+            fill: none;
+        }
+
+        /* Badges */
+        .badge-logo {
+            display: inline-block;
+            width: calc(1.2em + 2px);
+            height: calc(1.2em + 2px);
+            margin-left: var(--spacing-sm);
+            vertical-align: middle;
+        }
+
+        .badge-logo svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .badge-logo.acgme svg { fill: #e74c3c; }
+        .badge-logo.ccc svg { fill: #2997ff; }
+
+        /* Tables */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border: 1px solid var(--border-secondary);
+            border-radius: 8px;
+            background-color: var(--bg-secondary);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1rem 1.25rem;
+            text-align: left;
+        }
+
+        th {
+            font-weight: 700;
+            font-size: 0.9375rem;
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background-color: var(--bg-secondary);
+            border-bottom: 2px solid var(--text-tertiary);
+        }
+
+        td {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-primary);
+        }
+
+        tbody tr {
+            transition: background-color var(--transition-base);
+        }
+
+        tbody tr:hover {
+            background-color: var(--bg-secondary);
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: var(--spacing-xl) 0;
+        }
+
+        .card {
+            padding: 1.25rem;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: 12px;
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .card-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-bottom: 0.875rem;
+            opacity: 0.5;
+        }
+
+        .card-icon svg {
+            width: 100%;
+            height: 100%;
+            stroke: var(--text-secondary);
+            fill: none;
+        }
+
+        .card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 1.125rem;
+            font-size: 0.85em;
+            line-height: 1.5;
+        }
+
+        /* Timeline Component - Simplified */
+        .timeline {
+            position: relative;
+            margin: 3.125rem 0;
+            max-width: var(--container-width);
+        }
+
+        .timeline-centerline {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            transform: translateX(-50%);
+            background: var(--border-primary);
+        }
+
+        .timeline-rows {
+            position: relative;
+            display: grid;
+            row-gap: 2rem;
+        }
+
+        .timeline-row {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 2rem;
+        }
+
+        .timeline-row.no-gap-above {
+            margin-top: -1.5rem;
+        }
+
+        .timeline-card {
+            display: inline-block;
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-secondary);
+            border-radius: var(--card-radius);
+            box-shadow: 0 1px 2px rgba(2, 6, 23, 0.04);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            animation: slideIn 0.6s ease-out both;
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-1px) scale(1.01);
+            box-shadow: var(--shadow-card);
+        }
+
+        .timeline-meta {
+            margin-bottom: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline-meta.resident { color: var(--color-accent-blue); }
+        .timeline-meta.faculty { color: var(--color-accent-purple); }
+
+        .timeline-title {
+            margin-top: 0.125rem;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        .timeline-card ul {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Timeline Animations */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes expandLine {
+            from {
+                transform: scaleX(0);
+                opacity: 0.8;
+            }
+            to {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.35); }
+            70% { box-shadow: 0 0 0 14px rgba(0, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+        }
+
+        /* Timeline Links & Markers */
+        .timeline-link {
+            position: absolute;
+            height: 2px;
+            top: 12px;
+            border-radius: 1px;
+            animation: expandLine 0.55s ease-out both;
+            will-change: transform;
+            display: block !important;
+        }
+
+        .timeline-link.left {
+            left: calc(50% - 1px);
+            width: calc(50% - 72px);
+            transform-origin: right center;
+        }
+
+        .timeline-link.right {
+            left: calc(50% + 1px);
+            width: calc(50% - 72px);
+            transform-origin: left center;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            top: -10px;
+            transform: translateX(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+            border: 2px solid #60a5fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--color-accent-blue);
+            animation: pulse 1.6s ease-out infinite;
+        }
+
+        /* Timeline Theme Colors - Simplified using data attributes */
+        [data-theme-color="1"] { --link-l: #bfdbfe; --link-r: #e9d5ff; }
+        [data-theme-color="2"] { --link-l: #a7f3d0; --link-r: #a78bfa; }
+        [data-theme-color="3"] { --link-l: #fde68a; --link-r: #fcd34d; }
+        [data-theme-color="4"] { --link-l: #a5f3fc; --link-r: #bae6fd; }
+        [data-theme-color="5"] { --link-l: #f5d0fe; --link-r: #f0abfc; }
+
+        [data-theme-color] .timeline-link.left { background: var(--link-l); }
+        [data-theme-color] .timeline-link.right { background: var(--link-r); }
+
+        /* Footer */
+        footer {
+            padding: var(--spacing-xl) 0;
+            margin-top: 3rem;
+            border-top: 1px solid var(--border-primary);
+            background-color: var(--bg-secondary);
+        }
+
+        .footer-content {
+            text-align: center;
+            color: var(--text-tertiary);
+            font-size: 0.75rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            .timeline-row {
+                grid-template-columns: 1fr;
+                row-gap: 4rem;
+            }
+
+            .timeline-link { display: none !important; }
+            .timeline-card { margin-top: 2rem; }
+            .timeline-marker {
+                top: -3rem;
+                z-index: 10;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .desktop-nav { display: none !important; }
+            .mobile-nav-controls { display: flex; }
+            .hamburger { display: block; }
+
+            .brand-logo {
+                height: 70.5px;
+                padding: 5px 0;
+            }
+
+            .nav-content { padding: 0 1rem; }
+
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.5rem; }
+
+            .section-header {
+                flex-wrap: wrap;
+                gap: 0.75rem;
+            }
+
+            .section-header h2,
+            .section-header h3 {
+                flex: 1 1 100%;
+            }
+
+            .section-header .btn-print {
+                margin-left: auto;
+            }
+
+            .table-wrapper { border-radius: 0; }
+
+            th, td {
+                padding: 0.75rem 1rem;
+                font-size: 0.875rem;
+            }
+
+            p, li { font-size: 1em; }
+            td { font-size: 0.95em; }
+
+            .timeline-rows { row-gap: 4rem; }
+            .timeline-row.no-gap-above { margin-top: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Print Styles - Consolidated */
+        @media print {
+            /* Hide interactive elements */
+            .nav-header,
+            .theme-toggle,
+            .nav-print-btn,
+            .nav-icon-btn,
+            .btn-print,
+            .mobile-nav-controls,
+            .hamburger,
+            .mobile-menu {
+                display: none !important;
+            }
+
+            main { margin-top: 0; }
+
+            .timeline {
+                transform: scale(0.92);
+                transform-origin: top center;
+            }
+
+            .timeline-rows { row-gap: 0.5rem !important; }
+
+            .timeline-link.left,
+            .timeline-link.right {
+                display: block !important;
+                transform: scaleX(1) !important;
+                opacity: 1 !important;
+            }
+
+            .timeline-card {
+                box-shadow: none !important;
+                animation: none !important;
+                padding: 0.75rem !important;
+            }
+
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+
+            section { page-break-inside: avoid; }
+
+            .section-header h2,
+            .section-header h3 {
+                margin-top: 0 !important;
+            }
+        }
+
+        /* Reduced Motion Support */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* High Contrast Mode Support */
+        @media (prefers-contrast: high) {
+            :root {
+                --text-primary: #000000;
+                --text-secondary: #333333;
+                --bg-primary: #ffffff;
+                --border-primary: #000000;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Skip to main content link for accessibility -->
+<a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+<!-- Navigation Header -->
+<nav class="nav-header" role="navigation" aria-label="Main navigation">
+    <div class="container nav-content">
+        <div class="nav-brand">
+            <a href="/" aria-label="The Branch Lab Home">
+                <img src="/assets/images/branch-logo.png"
+                     alt="The Branch Lab"
+                     class="brand-logo"
+                     loading="lazy">
+            </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <ul class="nav-links desktop-nav" role="list">
+            <li><a href="#overview" class="nav-link">Overview</a></li>
+            <li><a href="#purpose" class="nav-link">Purpose</a></li>
+            <li><a href="#format" class="nav-link">Format</a></li>
+            <li><a href="#resources" class="nav-link">Resources</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+                    <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+                        <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <span>Dark</span>
+                </button>
+            </li>
+        </ul>
+
+        <!-- Mobile Navigation Controls -->
+        <div class="mobile-nav-controls">
+            <button class="nav-icon-btn mobile-print" onclick="window.print()" type="button" aria-label="Print this page">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+            </button>
+            <button class="nav-icon-btn mobile-theme" id="mobileThemeToggle" type="button" aria-label="Toggle color theme" aria-pressed="false">
+                <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;">
+                    <path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" fill="currentColor"/>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+                </svg>
+            </button>
+            <button class="hamburger" id="hamburger" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <ul class="mobile-menu-list" role="list">
+            <li><a href="#overview" class="mobile-menu-link">Overview</a></li>
+            <li><a href="#purpose" class="mobile-menu-link">Purpose</a></li>
+            <li><a href="#format" class="mobile-menu-link">Format</a></li>
+            <li><a href="#resources" class="mobile-menu-link">Resources</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main id="main-content">
+
+    <!-- Section 1: Purpose -->
+    <section id="overview" aria-labelledby="overview-heading">
+        <div class="container">
+            <div class="meta-info" role="contentinfo">
+                <span>Faculty Guide</span>
+                <span><time datetime="2025-09-17">September 17, 2025</time></span>
+            </div>
+            <div class="section-header">
+                <h1 id="overview-heading">Faculty Guide: Anesthesiology Resident Journal Club</h1>
+            </div>
+            <div id="overview-section">
+                <p class="subtitle">A Practical Framework for Teaching Critical Appraisal</p>
+                <div class="divider" role="presentation"></div>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="section-header">
+            <h2 id="purpose-heading">1. Purpose</h2>
+            <button class="btn-print" data-print-section="purpose-section" type="button" aria-label="Print this section">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+                <span>Print / Save PDF</span>
+            </button>
+        </div>
+        <div id="purpose-section">
+            <p>Journal Club provides a structured, resident-led way to teach evidence appraisal while meeting ACGME requirements for:</p>
+            <ul class="icon-list" role="list">
+                <li>
+                    <div class="list-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>
+                            <b>PBLI 1:</b> Evidence-Based and Informed Practice
+                            <span class="badge-logo acgme" title="ACGME Requirement" aria-label="ACGME">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 8 L12 28 L16 28 L18 23 L22 23 L24 28 L28 28 L20 8 Z M20 14 L21.5 19 L18.5 19 L20 14 Z" fill="currentColor"/>
+                                    <path d="M10 26 C10 30, 15 32, 20 32 C25 32, 30 30, 30 26" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </span>
+                        </span>
+                </li>
+                <li>
+                    <div class="list-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span>
+                            Resident Scholarship & CCC Documentation
+                            <span class="badge-logo ccc" title="Clinical Competency Committee" aria-label="CCC">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M14 15 C12 15, 10 17, 10 20 C10 23, 12 25, 14 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M20 15 C18 15, 16 17, 16 20 C16 23, 18 25, 20 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M26 15 C24 15, 22 17, 22 20 C22 23, 24 25, 26 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </span>
+                </li>
+            </ul>
+            <p>This model emphasizes resident-driven discussion and faculty-guided application, making the best use of a 1-hour session. Resources are guides, not requirements—please adapt them as needed. For questions, contact <a href="mailto:bpitts@health.ucdavis.edu">bpitts@health.ucdavis.edu</a> or submit feedback here.</p>
+        </div>
+    <!-- Section 2: Purpose -->
+    <section id="purpose" aria-labelledby="purpose-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="purpose-heading">1. Purpose</h2>
+            </div>
+            <div id="purpose-section">
+                <p>Journal Club provides a structured, resident-led way to teach evidence appraisal while meeting ACGME requirements for:</p>
+                <ul class="icon-list" role="list">
+                    <li>
+                        <div class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span>
+                            <b>PBLI 1:</b> Evidence-Based and Informed Practice
+                            <span class="badge-logo acgme" title="ACGME Requirement" aria-label="ACGME">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 8 L12 28 L16 28 L18 23 L22 23 L24 28 L28 28 L20 8 Z M20 14 L21.5 19 L18.5 19 L20 14 Z" fill="currentColor"/>
+                                    <path d="M10 26 C10 30, 15 32, 20 32 C25 32, 30 30, 30 26" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </span>
+                        </span>
+                    </li>
+                    <li>
+                        <div class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span>
+                            Resident Scholarship & CCC Documentation
+                            <span class="badge-logo ccc" title="Clinical Competency Committee" aria-label="CCC">
+                                <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M14 15 C12 15, 10 17, 10 20 C10 23, 12 25, 14 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M20 15 C18 15, 16 17, 16 20 C16 23, 18 25, 20 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                    <path d="M26 15 C24 15, 22 17, 22 20 C22 23, 24 25, 26 25" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </span>
+                    </li>
+                </ul>
+                <p>This model emphasizes resident-driven discussion and faculty-guided application, making the best use of a 1-hour session. Resources are guides, not requirements—please adapt them as needed. For questions, contact <a href="mailto:bpitts@health.ucdavis.edu">bpitts@health.ucdavis.edu</a> or submit feedback here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Format and Outcomes -->
+    <section id="format" aria-labelledby="format-heading">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="format-heading">2. Format: The One-Hour Session</h2>
+                <button class="btn-print" data-print-section="format-section" type="button" aria-label="Print this section">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                    <span>Print / Save PDF</span>
+                </button>
+            </div>
+            <div id="format-section">
+                <h3>Session Schedule</h3>
+                <div class="table-wrapper">
+                    <table role="table">
+                        <caption class="visually-hidden">One-hour journal club session breakdown</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width:20%">Time</th>
+                            <th scope="col" style="width:40%">Activity</th>
+                            <th scope="col" style="width:40%">Faculty Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>0–7 min</td>
+                            <td>Introductions, context, BLUF</td>
+                            <td>Prompt presenter to frame the clinical question and summarize in one sentence</td>
+                        </tr>
+                        <tr>
+                            <td>7–25 min</td>
+                            <td>Validity</td>
+                            <td>Guide residents to identify design strengths, limitations, and bias</td>
+                        </tr>
+                        <tr>
+                            <td>25–40 min</td>
+                            <td>Results</td>
+                            <td>Highlight interpretation beyond p-values: effect size, NNT, harms, precision</td>
+                        </tr>
+                        <tr>
+                            <td>40–55 min</td>
+                            <td>Application</td>
+                            <td>Use patient scenarios to discuss how/if findings change practice</td>
+                        </tr>
+                        <tr>
+                            <td>55–60 min</td>
+                            <td>Wrap-Up</td>
+                            <td>Summarize take-home points and link explicitly to PBLI milestones</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2>3. One-Hour Journal Club Timeline</h2>
+            </div>
+
+            <!-- Timeline Component with data attributes for themes -->
+            <div id="timeline-section">
+                <div class="timeline" aria-label="One-Hour Journal Club Timeline">
+                    <div class="timeline-centerline" aria-hidden="true"></div>
+                    <div class="timeline-rows">
+                        <!-- Timeline Row 1 -->
+                        <div class="timeline-row" data-theme-color="1">
+                            <span class="timeline-link left"></span>
+                            <span class="timeline-link right"></span>
+                            <div class="timeline-marker">1</div>
+                            <div style="padding-right: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">0–7 min • Introductions & BLUF</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Deliver a concise <strong>BLUF</strong> (one-sentence bottom line).</li>
+                                        <li>State the clinical question (PICO/PECO) and its relevance.</li>
+                                        <li>Identify practice decision points this evidence could influence.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="padding-left: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">0–7 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Prompt a focused BLUF and align on the clinical question.</li>
+                                        <li>Set expectations for resident-led, discussion-first format.</li>
+                                        <li>Surface intended learning outcomes (PBLI) and scope.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Row 2 -->
+                        <div class="timeline-row" data-theme-color="2">
+                            <span class="timeline-link left"></span>
+                            <span class="timeline-link right"></span>
+                            <div class="timeline-marker">2</div>
+                            <div style="padding-right: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">7–25 min • Validity</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Lead the <strong>internal validity</strong> review (randomization, concealment, blinding).</li>
+                                        <li>Assess baseline balance, adherence, ITT vs per-protocol.</li>
+                                        <li>Identify crossovers, missing data, and bias/confounding risks.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="padding-left: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">7–25 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Keep pace and focus; ensure the checklist is covered.</li>
+                                        <li>Probe bias implications for interpretation.</li>
+                                        <li>Model respectful challenge and evidence-based reasoning.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Row 3 -->
+                        <div class="timeline-row" data-theme-color="3">
+                            <span class="timeline-link left"></span>
+                            <span class="timeline-link right"></span>
+                            <div class="timeline-marker">3</div>
+                            <div style="padding-right: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">25–40 min • Results</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Report <strong>magnitude & precision</strong> (effect sizes, CIs, absolute risk, NNT/NNH).</li>
+                                        <li>Differentiate clinical significance from statistical significance.</li>
+                                        <li>Describe harms/adverse events and time-course patterns.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="padding-left: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">25–40 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Check interpretation accuracy; ask for absolute numbers when helpful.</li>
+                                        <li>Relate endpoints to patient-centered outcomes and trade-offs.</li>
+                                        <li>Bridge metrics to decision-making under uncertainty.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Row 4 -->
+                        <div class="timeline-row" data-theme-color="4">
+                            <span class="timeline-link left"></span>
+                            <span class="timeline-link right"></span>
+                            <div class="timeline-marker">4</div>
+                            <div style="padding-right: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">40–55 min • Application</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Apply findings to short clinical/operational vignettes relevant to your practice.</li>
+                                        <li>State when/for whom results are (not) applicable; name caveats.</li>
+                                        <li>Propose a concrete practice change and anticipate barriers.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="padding-left: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">40–55 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Facilitate scenario testing; encourage counterfactuals and edge cases.</li>
+                                        <li>Surface local constraints (resources, workflow, staffing) and mitigations.</li>
+                                        <li>Anchor decisions to guidelines/policy while honoring evidence limits.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Row 5 -->
+                        <div class="timeline-row no-gap-above" data-theme-color="5">
+                            <span class="timeline-link left"></span>
+                            <span class="timeline-link right"></span>
+                            <div class="timeline-marker">5</div>
+                            <div style="padding-right: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">55–60 min • Wrap-Up</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Summarize 2–3 take-home points and one uncertainty to watch.</li>
+                                        <li>Commit to a micro-change or audit to trial next week.</li>
+                                        <li>Identify a PBLI goal and how you'll get feedback on it.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div style="padding-left: 2rem;">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">55–60 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Reinforce take-homes and the practice experiment/resident commitment.</li>
+                                        <li>Connect to evaluation (PBLI milestones) and follow-up touchpoint.</li>
+                                        <li>Assign a brief dissemination step (team share, pocket card, post).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>4. Expected Outcomes for Faculty</h2>
+            <ul>
+                <li><b>Active learning:</b> Residents drive the critique; faculty facilitate.</li>
+                <li><b>Safe climate:</b> Residents feel comfortable challenging published conclusions.</li>
+                <li><b>Defensible documentation:</b> Rubrics provide longitudinal data for CCC review.</li>
+            </ul>
+
+            <h2>5. Key Takeaway</h2>
+            <p>This 1-hour, <mark>resident-led journal club is efficient, consistent, and accreditation-aligned</mark>. Faculty guide discussion and highlight application—the structure and tools do the rest.</p>
+        </div>
+    </section>
+
+    <!-- Section 4: Resources -->
+    <section id="resources" aria-labelledby="resources-heading" style="padding-top: 1rem;">
+        <div class="container">
+            <div class="section-header">
+                <h2 id="resources-heading">6. Downloadable Resources</h2>
+            </div>
+            <div id="resources-section">
+                <div class="cards-grid">
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Instructor Template</h3>
+                        <p>Teaching points, PICO breakdowns, and a quick statistics guide for faculty.</p>
+                        <a href="/downloads/instructor-template.pdf" class="btn" download>Download Template</a>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="2"/>
+                                <path d="M16 4v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V4" stroke="currentColor" stroke-width="2"/>
+                                <rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Resident Handout</h3>
+                        <p>Objectives, assigned articles, and an appraisal checklist for residents.</p>
+                        <a href="/downloads/resident-handout.pdf" class="btn" download>Download Handout</a>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                <path d="M8.5 8.5l-1-1M15.5 8.5l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <h3>Quiz:</h3>
+                        <p>Optional tools for engagement and checking knowledge retention.</p>
+                        <a href="/downloads/pre-quiz.pdf" class="btn" style="margin-right: 6px;" download>Pre</a>
+                        <a href="/downloads/post-quiz.pdf" class="btn" download>Post</a>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <h3>Rubric & Score Sheet</h3>
+                        <p>Track resident participation and document progress on PBLI milestones.</p>
+                        <a href="/downloads/rubric-scoresheet.pdf" class="btn" download>Download Rubric</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <p>Copyright © 2025 Brian Pitts, MD, MS, MEHP</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    /**
+     * OPTIMIZED JAVASCRIPT
+     * Changes made:
+     * 1. Converted to ES6+ syntax (arrow functions, const/let, template literals)
+     * 2. Removed console.log statements
+     * 3. Unified print section logic with data attributes
+     * 4. Simplified theme management
+     * 5. Added event delegation for better performance
+     * 6. Improved accessibility with aria-pressed states
+     * 7. Removed code duplication
+     * 8. Added proper error handling
+     */
+    'use strict';
+
+    // Utility functions
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => document.querySelectorAll(selector);
+
+    /**
+     * Print section handler - now unified with data attributes
+     */
+    const printSection = (sectionId) => {
+        const printStyles = document.createElement('style');
+        printStyles.id = 'print-section-styles';
+
+        // Map section IDs to their print-specific CSS
+        const sectionPrintRules = {
+            'format-section': `
+            @media print {
+                #timeline-section,
+                #format h2:not(:nth-of-type(2)),
+                #format h3:not(:nth-of-type(1)),
+                #format > ul,
+                #format > p:last-child,
+                section:not(#format) {
+                    display: none !important;
+                }
+                #format h2:nth-of-type(2),
+                #format-section {
+                    display: block !important;
+                    margin-top: 1rem !important;
+                }
+            }
+        `,
+            'timeline-section': `
+            @media print {
+                #format-section,
+                #format h2:not(:nth-of-type(3)),
+                #format h3,
+                #format > ul,
+                #format > p,
+                section:not(#format) {
+                    display: none !important;
+                }
+                #format h2:nth-of-type(3),
+                #timeline-section {
+                    display: block !important;
+                    margin-top: 1rem !important;
+                }
+            }
+        `
+            // Add other sections as needed
+        };
+
+        printStyles.innerHTML = sectionPrintRules[sectionId] || '';
+        document.head.appendChild(printStyles);
+
+        window.print();
+
+        // Clean up print styles
+        setTimeout(() => {
+            printStyles.remove();
+        }, 500);
+    };
+
+    /**
+     * Theme Manager - Simplified ES6 class
+     */
+    class ThemeManager {
+        constructor() {
+            this.STORAGE_KEY = 'theme';
+            this.LIGHT = 'light';
+            this.DARK = 'dark';
+            this.elements = {};
+        }
+
+        init() {
+            this.cacheElements();
+            this.loadTheme();
+            this.bindEvents();
+        }
+
+        cacheElements() {
+            this.elements = {
+                toggle: $('#themeToggle'),
+                mobileToggle: $('#mobileThemeToggle'),
+                sunIcons: $$('.sun-icon'),
+                moonIcons: $$('.moon-icon'),
+                themeTexts: $$('.theme-toggle span')
+            };
+        }
+
+        loadTheme() {
+            const savedTheme = localStorage.getItem(this.STORAGE_KEY) || this.LIGHT;
+            this.setTheme(savedTheme);
+        }
+
+        bindEvents() {
+            this.elements.toggle?.addEventListener('click', () => this.toggleTheme());
+            this.elements.mobileToggle?.addEventListener('click', () => this.toggleTheme());
+        }
+
+        setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            this.updateUI(theme);
+            localStorage.setItem(this.STORAGE_KEY, theme);
+        }
+
+        updateUI(theme) {
+            const isDark = theme === this.DARK;
+
+            this.elements.sunIcons.forEach(icon => {
+                if (icon) icon.style.display = isDark ? 'block' : 'none';
+            });
+
+            this.elements.moonIcons.forEach(icon => {
+                if (icon) icon.style.display = isDark ? 'none' : 'block';
+            });
+
+            this.elements.themeTexts.forEach(text => {
+                if (text && text.tagName === 'SPAN') {
+                    text.textContent = isDark ? 'Light' : 'Dark';
+                }
+            });
+
+            // Update aria-pressed states
+            [this.elements.toggle, this.elements.mobileToggle].forEach(btn => {
+                if (btn) btn.setAttribute('aria-pressed', isDark.toString());
+            });
+        }
+
+        toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === this.DARK ? this.LIGHT : this.DARK;
+            this.setTheme(newTheme);
+        }
+    }
+
+    /**
+     * Mobile Menu - Simplified ES6 class
+     */
+    class MobileMenu {
+        constructor() {
+            this.isOpen = false;
+        }
+
+        init() {
+            this.cacheElements();
+            if (!this.hamburger || !this.mobileMenu) return;
+            this.bindEvents();
+        }
+
+        cacheElements() {
+            this.hamburger = $('#hamburger');
+            this.mobileMenu = $('#mobileMenu');
+            this.mobileLinks = $$('.mobile-menu-link');
+        }
+
+        bindEvents() {
+            // Hamburger click
+            this.hamburger.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                this.toggle();
+            });
+
+            // Link clicks - use event delegation
+            this.mobileMenu.addEventListener('click', (e) => {
+                const link = e.target.closest('.mobile-menu-link');
+                if (!link) return;
+
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                this.close();
+
+                // Smooth scroll after menu closes
+                setTimeout(() => this.scrollToSection(targetId), 300);
+            });
+
+            // Close on escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && this.isOpen) this.close();
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (this.isOpen &&
+                    !this.hamburger.contains(e.target) &&
+                    !this.mobileMenu.contains(e.target)) {
+                    this.close();
+                }
+            });
+        }
+
+        toggle() {
+            this.isOpen ? this.close() : this.open();
+        }
+
+        open() {
+            this.isOpen = true;
+            this.hamburger.classList.add('active');
+            this.mobileMenu.classList.add('active');
+            this.hamburger.setAttribute('aria-expanded', 'true');
+            this.mobileMenu.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        close() {
+            this.isOpen = false;
+            this.hamburger.classList.remove('active');
+            this.mobileMenu.classList.remove('active');
+            this.hamburger.setAttribute('aria-expanded', 'false');
+            this.mobileMenu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        scrollToSection(targetId) {
+            const targetSection = $(targetId);
+            if (!targetSection) return;
+
+            const navHeight = $('.nav-header').offsetHeight;
+            window.scrollTo({
+                top: targetSection.offsetTop - navHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        updateActiveLink(activeSection) {
+            this.mobileLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                link.classList.toggle('active', activeSection && href === `#${activeSection}`);
+            });
+        }
+    }
+
+    /**
+     * Navigation Manager - Simplified ES6 class
+     */
+    class Navigation {
+        constructor() {
+            this.isScrolling = false;
+            this.mobileMenu = new MobileMenu();
+        }
+
+        init() {
+            this.cacheElements();
+            if (!this.navHeader) return;
+
+            this.bindEvents();
+            this.handleScroll();
+            this.mobileMenu.init();
+        }
+
+        cacheElements() {
+            this.navHeader = $('.nav-header');
+            this.navLinks = $$('.nav-link');
+            this.sections = $$('section[id]');
+        }
+
+        bindEvents() {
+            // Use event delegation for nav links
+            $('.nav-links')?.addEventListener('click', (e) => {
+                const link = e.target.closest('.nav-link');
+                if (!link) return;
+
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                this.scrollToSection(targetId);
+            });
+
+            // Throttled scroll handler
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                if (!scrollTimeout) {
+                    scrollTimeout = requestAnimationFrame(() => {
+                        this.handleScroll();
+                        scrollTimeout = null;
+                    });
+                }
+            }, { passive: true });
+
+            // Print button event delegation
+            document.addEventListener('click', (e) => {
+                const printBtn = e.target.closest('[data-print-section]');
+                if (printBtn) {
+                    const sectionId = printBtn.dataset.printSection;
+                    printSection(sectionId);
+                }
+            });
+        }
+
+        scrollToSection(targetId) {
+            const targetSection = $(targetId);
+            if (!targetSection) return;
+
+            const navHeight = this.navHeader.offsetHeight;
+            window.scrollTo({
+                top: targetSection.offsetTop - navHeight,
+                behavior: 'smooth'
+            });
+        }
+
+        handleScroll() {
+            this.updateNavShadow();
+            this.updateActiveLink();
+        }
+
+        updateNavShadow() {
+            this.navHeader.classList.toggle('scrolled', window.scrollY > 100);
+        }
+
+        updateActiveLink() {
+            const scrollPosition = window.scrollY + 100;
+            let activeSection = null;
+
+            this.sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+
+                if (scrollPosition >= sectionTop &&
+                    scrollPosition < sectionTop + sectionHeight) {
+                    activeSection = section.id;
+                }
+            });
+
+            // Update desktop nav
+            this.navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                link.classList.toggle('active', activeSection && href === `#${activeSection}`);
+            });
+
+            // Update mobile nav
+            this.mobileMenu.updateActiveLink(activeSection);
+        }
+    }
+
+    /**
+     * Initialize application
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            const themeManager = new ThemeManager();
+            const navigation = new Navigation();
+
+            themeManager.init();
+            navigation.init();
+        } catch (error) {
+            console.error('Error initializing application:', error);
+        }
+    });
+</script>
+</body>
+</html>
