@@ -1,0 +1,55 @@
+{
+  "PAGE_TITLE": "JC-2025-10-14",
+  "LOGO_PATH": "img/brand-logo.png",
+  "BRAND_NAME": "The Branch Lab",
+  "SESSION_TITLE": "Journal Club: Medical Literature Evaluation",
+  "SESSION_SUBTITLE": "A focused discussion on advancing critical appraisal in medical research",
+  "JOURNAL_CLUB_DATE": "October 14, 2025",
+  "COUNTDOWN_DATE": "2025-10-14T15:00:00-08:00",
+  "PRESENTERS": [
+    "Alex Nguyen, MD",
+    "Jamie Rivera, MD"
+  ],
+  "FACULTY": [
+    "Brian Pitts, MD, MS",
+    "Hannah Bechtold, MD"
+  ],
+  "PURPOSE_TEXT": "The Journal Club aims to enhance residents' skills in critically appraising medical literature. By the session's conclusion, participants will be equipped to apply evidence-based insights to clinical practice effectively.",
+  "TOPIC_TEXT": "Spinal versus General Anesthesia in Hip Surgery: Outcomes and Perioperative Care",
+  "OBJECTIVES_LIST": [
+    "Develop critical appraisal skills using a structured checklist (validity, results, applicability).",
+    "Interpret effect sizes and confidence intervals beyond reliance on p-values.",
+    "Apply research findings to clinical vignettes relevant to anesthesia practice."
+  ],
+  "DISCUSSION_LIST": [
+    "Was randomization adequate and allocation concealed?",
+    "Were baseline characteristics similar between groups?",
+    "Are the results clinically meaningful or just statistically significant?"
+  ],
+  "ARTICLE_LIST": [
+    {
+      "title": "Long-term outcomes with spinal versus general anesthesia for hip fracture surgery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37831596/"
+    },
+    {
+      "title": "Pain, analgesic use, and satisfaction with spinal vs. general anesthesia",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35696684/"
+    },
+    {
+      "title": "Perioperative care of patients undergoing total hip arthroplasty",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38764444/"
+    }
+  ],
+  "DOWNLOADS": {
+    "Pre-Session Worksheet (PDF)": "downloads/JC-Worksheet-2025-10-14.pdf",
+    "Critical Appraisal Checklist (DOCX)": "downloads/JC-Checklist-2025-10-14.docx",
+    "Full Handout (PDF)": "downloads/JC-Handout-2025-10-14.pdf"
+  },
+  "PREWORK_LIST": [
+    "Read the assigned articles.",
+    "Complete the critical appraisal worksheet.",
+    "Prepare to discuss findings during the session."
+  ],
+  "AUTHOR": "Brian Pitts, MD, MS",
+  "INSTITUTION": "UC Davis Health — Department of Anesthesiology and Pain Medicine"
+}

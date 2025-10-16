@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="pageTitle"></title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .section-heading { @apply text-lg sm:text-xl md:text-2xl font-semibold text-sky-800 dark:text-sky-300 border-b border-sky-300 dark:border-sky-600 pb-2 mb-3; }
+        .section-divider { @apply border-t border-gray-200 dark:border-gray-700 my-6; }
+        .topic-box { @apply bg-sky-50 dark:bg-sky-900/20 text-sky-800 dark:text-sky-200 p-3 sm:p-4 rounded-xl font-medium; }
+        @media print { .no-print { display: none !important; } body { background: white; } .bg-white { box-shadow: none !important; } }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen transition-colors duration-300">
+
+<!-- Header Logo -->
+<div class="flex justify-center pt-6 pb-2">
+    <img id="logoImage" class="h-14 sm:h-16" alt="Brand Logo" />
+</div>
+
+<!-- Theme Toggle -->
+<div class="fixed top-4 right-4 z-50">
+    <button id="themeToggle" class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 p-2 rounded-full shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-200" aria-label="Toggle theme">
+        <svg class="w-5 h-5 sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+        <svg class="w-5 h-5 moon-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+    </button>
+</div>
+
+<!-- Main Card -->
+<div class="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 sm:p-8 mt-4 mb-10">
+    <header class="text-center mb-8">
+        <h1 id="sessionTitle" class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-gray-900 dark:text-gray-100"></h1>
+        <p id="sessionSubtitle" class="text-base sm:text-lg text-gray-600 dark:text-gray-400 italic mt-2"></p>
+        <p id="countdown" class="text-sky-700 dark:text-sky-400 font-semibold mt-3 no-print"></p>
+    </header>
+
+    <section>
+        <h2 class="section-heading">Purpose</h2>
+        <p id="purposeText" class="text-gray-700 dark:text-gray-300 leading-relaxed"></p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <h2 class="section-heading">Topic</h2>
+        <p id="topicText" class="topic-box"></p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <h2 class="section-heading">Objectives</h2>
+        <ol id="objectivesList" class="list-decimal pl-6 space-y-3 text-gray-700 dark:text-gray-300"></ol>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <h2 class="section-heading">Discussion Highlights</h2>
+        <ul id="discussionList" class="list-disc pl-6 space-y-3 text-gray-700 dark:text-gray-300"></ul>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <h2 class="section-heading">Articles for Review</h2>
+        <div id="articleList" class="space-y-3"></div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section>
+        <h2 class="section-heading text-amber-800 dark:text-amber-300 border-amber-300 dark:border-amber-600">Pre-Work Instructions</h2>
+        <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-400 text-amber-900 dark:text-amber-200 p-4 sm:p-5 rounded-r-xl">
+            <ul id="preworkList" class="list-disc list-inside space-y-2"></ul>
+        </div>
+    </section>
+
+    <footer class="text-center mt-8 pt-4 border-t border-gray-200 dark:border-gray-700">
+        <p id="footerText" class="text-sm text-gray-500 dark:text-gray-400"></p>
+        <button onclick="window.print()" class="mt-3 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 text-sm no-print">
+            🖨️ Print Handout
+        </button>
+    </footer>
+</div>
+
+<script>
+    // Load JSON Config
+    fetch('jason/config.json')
+        .then(res => res.json())
+        .then(data => {
+            document.title = data.PAGE_TITLE;
+            document.getElementById('pageTitle').textContent = data.PAGE_TITLE;
+            document.getElementById('logoImage').src = data.LOGO_PATH;
+            document.getElementById('sessionTitle').textContent = data.SESSION_TITLE;
+            document.getElementById('sessionSubtitle').textContent = data.SESSION_SUBTITLE;
+            document.getElementById('purposeText').textContent = data.PURPOSE_TEXT;
+            document.getElementById('topicText').textContent = data.TOPIC_TEXT;
+
+            const objList = document.getElementById('objectivesList');
+            data.OBJECTIVES_LIST.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                objList.appendChild(li);
+            });
+
+            const discList = document.getElementById('discussionList');
+            data.DISCUSSION_LIST.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                discList.appendChild(li);
+            });
+
+            const artList = document.getElementById('articleList');
+            data.ARTICLE_LIST.forEach(a => {
+                const div = document.createElement('div');
+                div.className = "p-4 border rounded-xl bg-gray-50 dark:bg-gray-800";
+                div.innerHTML = `
+            <p class="font-semibold text-gray-800 dark:text-gray-200">${a.title}</p>
+            <a href="${a.url}" target="_blank" class="text-sky-600 dark:text-sky-400 hover:underline">PubMed Link</a>`;
+                artList.appendChild(div);
+            });
+
+            const preList = document.getElementById('preworkList');
+            data.PREWORK_LIST.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                preList.appendChild(li);
+            });
+
+            document.getElementById('footerText').textContent = `© ${data.AUTHOR} — ${data.INSTITUTION}`;
+            startCountdown(data.COUNTDOWN_DATE);
+        });
+
+    // Countdown
+    function startCountdown(targetDate) {
+        const countdownEl = document.getElementById('countdown');
+        const t = new Date(targetDate).getTime();
+        function update() {
+            const now = new Date().getTime();
+            const diff = t - now;
+            if (diff <= 0) { countdownEl.textContent = 'Session Started!'; return; }
+            const d = Math.floor(diff / (1000*60*60*24));
+            const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+            const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+            const s = Math.floor((diff % (1000*60)) / 1000);
+            countdownEl.textContent = `${d}d ${h}h ${m}m ${s}s`;
+        }
+        update();
+        setInterval(update, 1000);
+    }
+
+    // Dark Mode Toggle
+    class ThemeManager {
+        constructor() {
+            this.KEY = "theme";
+            this.LIGHT = "light";
+            this.DARK = "dark";
+            this.toggle = document.getElementById("themeToggle");
+            this.sun = document.querySelector(".sun-icon");
+            this.moon = document.querySelector(".moon-icon");
+            this.init();
+        }
+        init() {
+            const pref = localStorage.getItem(this.KEY) || this.LIGHT;
+            this.set(pref);
+            this.toggle.addEventListener("click", () => this.toggleTheme());
+        }
+        set(theme) {
+            document.documentElement.classList.toggle("dark", theme === this.DARK);
+            localStorage.setItem(this.KEY, theme);
+            this.sun.classList.toggle("hidden", theme !== this.DARK);
+            this.moon.classList.toggle("hidden", theme === this.DARK);
+        }
+        toggleTheme() {
+            const current = document.documentElement.classList.contains("dark") ? this.DARK : this.LIGHT;
+            this.set(current === this.DARK ? this.LIGHT : this.DARK);
+        }
+    }
+    new ThemeManager();
+</script>
+</body>
+</html>
