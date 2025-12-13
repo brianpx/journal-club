@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journal Club Summary — September 2025</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    :root {
+      --primary: #0f172a;
+      --secondary: #1e3a5f;
+      --accent-1: #0ea5e9;
+      --accent-2: #14b8a6;
+      --accent-3: #f59e0b;
+      --accent-4: #ec4899;
+      --bg: #f1f5f9;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --gradient-1: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+      --gradient-2: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+      --gradient-3: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--gradient-2);
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(14,165,233,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(20,184,166,0.15) 0%, transparent 50%);
+      animation: pulse 8s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .hero-badge {
+      background: var(--gradient-1);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 3rem;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      color: white;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero h1 span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.8);
+      font-size: 1.125rem;
+      max-width: 600px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0 1rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      min-width: 160px;
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover { transform: translateY(-4px); }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin: 0 auto 0.75rem;
+    }
+
+    .stat-card:nth-child(1) .stat-icon { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); }
+    .stat-card:nth-child(2) .stat-icon { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); }
+    .stat-card:nth-child(3) .stat-icon { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+    .stat-card:nth-child(4) .stat-icon { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+
+    .stat-value {
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-number {
+      display: inline-block;
+      background: var(--gradient-1);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-weight: 700;
+      line-height: 40px;
+      margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .team-card {
+      background: var(--card);
+      border-radius: 1.5rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--gradient-1);
+    }
+
+    .team-role {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-1);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .team-names {
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 1rem;
+    }
+
+    /* Article Cards */
+    .articles-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-bottom: 5rem;
+    }
+
+    .article-card {
+      background: var(--card);
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 8px 1fr;
+    }
+
+    .article-accent {
+      background: var(--gradient-1);
+    }
+
+    .article-card:nth-child(2) .article-accent { background: var(--gradient-3); }
+    .article-card:nth-child(3) .article-accent { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
+
+    .article-content {
+      padding: 2rem;
+    }
+
+    .article-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .article-number {
+      width: 48px;
+      height: 48px;
+      background: var(--bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent-1);
+      flex-shrink: 0;
+    }
+
+    .article-card:nth-child(2) .article-number { color: var(--accent-3); }
+    .article-card:nth-child(3) .article-number { color: #8b5cf6; }
+
+    .article-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .article-source {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .article-meta {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-pill {
+      background: var(--bg);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .findings-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .finding-item {
+      background: var(--bg);
+      border-radius: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .finding-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .finding-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .teaching-box {
+      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .teaching-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .teaching-text {
+      font-size: 0.95rem;
+      color: #065f46;
+      font-weight: 500;
+    }
+
+    /* Discussion Timeline */
+    .timeline {
+      position: relative;
+      margin-bottom: 5rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--accent-1) 0%, var(--accent-2) 50%, var(--accent-3) 100%);
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 70px;
+      padding-bottom: 2.5rem;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-marker {
+      position: absolute;
+      left: 8px;
+      width: 36px;
+      height: 36px;
+      background: var(--card);
+      border: 4px solid var(--accent-1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.875rem;
+      color: var(--accent-1);
+    }
+
+    .timeline-item:nth-child(2) .timeline-marker { border-color: var(--accent-2); color: var(--accent-2); }
+    .timeline-item:nth-child(3) .timeline-marker { border-color: var(--accent-3); color: var(--accent-3); }
+    .timeline-item:nth-child(4) .timeline-marker { border-color: var(--accent-4); color: var(--accent-4); }
+
+    .timeline-card {
+      background: var(--card);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .timeline-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .timeline-points {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .timeline-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+
+    .point-bullet {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-1);
+      border-radius: 50%;
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .timeline-item:nth-child(2) .point-bullet { background: var(--accent-2); }
+    .timeline-item:nth-child(3) .point-bullet { background: var(--accent-3); }
+    .timeline-item:nth-child(4) .point-bullet { background: var(--accent-4); }
+
+    .highlight-badge {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.25rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+    }
+
+    /* Bottom Line */
+    .bottom-line {
+      background: var(--gradient-2);
+      border-radius: 2rem;
+      padding: 3rem 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bottom-line::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -20%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,233,0.2) 0%, transparent 70%);
+    }
+
+    .bottom-line-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .bottom-line-header h2 {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .takeaway-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      position: relative;
+    }
+
+    .takeaway-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+
+    .takeaway-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .takeaway-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--gradient-1);
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .takeaway-card:nth-child(2) .takeaway-icon { background: var(--gradient-3); }
+    .takeaway-card:nth-child(3) .takeaway-icon { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); }
+
+    .takeaway-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .takeaway-text {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      background: var(--card);
+      margin-top: 4rem;
+    }
+
+    .footer-logo {
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .stats-bar { margin-top: -2rem; }
+      .stat-card { min-width: 140px; padding: 1rem 1.25rem; }
+      .timeline::before { left: 20px; }
+      .timeline-item { padding-left: 56px; }
+      .timeline-marker { left: 4px; width: 32px; height: 32px; font-size: 0.75rem; }
+      .article-card { grid-template-columns: 6px 1fr; }
+      .bottom-line { padding: 2rem 1.5rem; border-radius: 1.5rem; }
+    }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="hero-badge">📅 September 2025</span>
+    <h1>Journal Club <span>Summary</span></h1>
+    <p class="hero-subtitle">Spinal vs General Anesthesia in Hip Arthroplasty — Comparing Hip Fracture and Elective THA Evidence</p>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="stat-card fade-up">
+      <div class="stat-icon">📄</div>
+      <div class="stat-value">3</div>
+      <div class="stat-label">Articles Reviewed</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-icon">👥</div>
+      <div class="stat-value">1,600</div>
+      <div class="stat-label">REGAIN Patients</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-icon">📊</div>
+      <div class="stat-value">1.08</div>
+      <div class="stat-label">Mortality HR</div>
+    </div>
+    <div class="stat-card fade-up">
+      <div class="stat-icon">✓</div>
+      <div class="stat-value">0</div>
+      <div class="stat-label">Long-term Difference</div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Team Section -->
+    <section class="fade-up">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <h2>Session Leaders</h2>
+        <p>Faculty and residents leading this month's evidence review</p>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-role">Resident Leads</div>
+          <div class="team-names">Derron Yu, MD<br>David Lester, MD</div>
+        </div>
+        <div class="team-card">
+          <div class="team-role">Faculty Leads</div>
+          <div class="team-names">Brian Pitts, MD, MS, MEHP<br>Ken Furukawa, MD</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Articles Section -->
+    <section class="fade-up">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <h2>Evidence Reviewed</h2>
+        <p>Three key studies examining anesthesia approaches for hip procedures</p>
+      </div>
+      <div class="articles-container">
+        
+        <!-- Article 1 -->
+        <div class="article-card">
+          <div class="article-accent"></div>
+          <div class="article-content">
+            <div class="article-header">
+              <div class="article-number">01</div>
+              <div>
+                <div class="article-title">REGAIN Long-Term Outcomes</div>
+                <div class="article-source">Vail et al. • Anesthesiology 2024</div>
+              </div>
+            </div>
+            <div class="article-meta">
+              <span class="meta-pill">👤 ≥50 years, ambulatory</span>
+              <span class="meta-pill">🏥 Hip fracture repair</span>
+              <span class="meta-pill">⚖️ Spinal vs GA</span>
+            </div>
+            <div class="findings-grid">
+              <div class="finding-item">
+                <div class="finding-value">1.08</div>
+                <div class="finding-label">Mortality HR (CI: 0.81–1.44)</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">0.87</div>
+                <div class="finding-label">Ambulation OR (CI: 0.67–1.14)</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">No Δ</div>
+                <div class="finding-label">1-Year Survival</div>
+              </div>
+            </div>
+            <div class="teaching-box">
+              <div class="teaching-icon">💡</div>
+              <div class="teaching-text">Either technique is reasonable for hip fracture patients — choice should depend on context, comorbidities, and patient preference.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 2 -->
+        <div class="article-card">
+          <div class="article-accent"></div>
+          <div class="article-content">
+            <div class="article-header">
+              <div class="article-number">02</div>
+              <div>
+                <div class="article-title">Pain, Analgesic Use, and Satisfaction</div>
+                <div class="article-source">Ritz et al. • Ann Intern Med 2022</div>
+              </div>
+            </div>
+            <div class="article-meta">
+              <span class="meta-pill">📊 Same REGAIN cohort</span>
+              <span class="meta-pill">💊 Opioid outcomes</span>
+              <span class="meta-pill">😊 Satisfaction</span>
+            </div>
+            <div class="findings-grid">
+              <div class="finding-item">
+                <div class="finding-value">↑ Pain</div>
+                <div class="finding-label">POD1 with Spinal</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">↑ Opioids</div>
+                <div class="finding-label">Day 60 with Spinal</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">No Δ</div>
+                <div class="finding-label">Satisfaction</div>
+              </div>
+            </div>
+            <div class="teaching-box">
+              <div class="teaching-icon">⚠️</div>
+              <div class="teaching-text">Spinal ≠ guaranteed better pain control — must combine with multimodal strategies (nerve blocks, acetaminophen, NSAIDs, local infiltration).</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Article 3 -->
+        <div class="article-card">
+          <div class="article-accent"></div>
+          <div class="article-content">
+            <div class="article-header">
+              <div class="article-number">03</div>
+              <div>
+                <div class="article-title">Best Practice in Elective THA</div>
+                <div class="article-source">Haslam et al. • BJA Education 2024</div>
+              </div>
+            </div>
+            <div class="article-meta">
+              <span class="meta-pill">📖 Evidence synthesis</span>
+              <span class="meta-pill">🔄 ERAS protocols</span>
+              <span class="meta-pill">🎯 Best practice</span>
+            </div>
+            <div class="findings-grid">
+              <div class="finding-item">
+                <div class="finding-value">❌</div>
+                <div class="finding-label">GA-only NOT Best Practice</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">✓</div>
+                <div class="finding-label">Neuraxial + ERAS Optimal</div>
+              </div>
+              <div class="finding-item">
+                <div class="finding-value">↓ LOS</div>
+                <div class="finding-label">Shorter Hospital Stay</div>
+              </div>
+            </div>
+            <div class="teaching-box">
+              <div class="teaching-icon">🏆</div>
+              <div class="teaching-text">For elective THA, ERAS-driven neuraxial or regional approaches with multimodal analgesia remain the evidence-based standard.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Discussion Timeline -->
+    <section class="fade-up">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <h2>Key Discussion Themes</h2>
+        <p>Critical appraisal and clinical application insights</p>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">1</div>
+          <div class="timeline-card">
+            <div class="timeline-title">Validity & Study Design</div>
+            <div class="timeline-points">
+              <div class="timeline-point"><div class="point-bullet"></div><span>Robust randomization and allocation concealment in REGAIN</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span>Outcome assessors/statisticians blinded; treating teams unblinded</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span>~15% crossovers and 11% loss to follow-up were acceptable</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span><span class="highlight-badge">Key:</span> Well-designed pragmatic RCT, not generalizable to elective THA</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">2</div>
+          <div class="timeline-card">
+            <div class="timeline-title">Magnitude & Clinical Meaning</div>
+            <div class="timeline-points">
+              <div class="timeline-point"><div class="point-bullet"></div><span>No clinically important long-term differences in survival or function</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span>Pain/opioid differences limited to POD1–60 days only</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span><span class="highlight-badge">Stats taught:</span> Cox regression, mixed-effects models, forest plots</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">3</div>
+          <div class="timeline-card">
+            <div class="timeline-title">Applicability to Practice</div>
+            <div class="timeline-points">
+              <div class="timeline-point"><div class="point-bullet"></div><span>REGAIN = frail, older, urgent hip fracture patients</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span>Elective THA = younger, optimized, ERAS protocol patients</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span><span class="highlight-badge">Critical:</span> Do NOT extrapolate REGAIN to elective cases</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">4</div>
+          <div class="timeline-card">
+            <div class="timeline-title">Local Context (UC Davis)</div>
+            <div class="timeline-points">
+              <div class="timeline-point"><div class="point-bullet"></div><span>ERAS THA pathways already use neuraxial + multimodal analgesia</span></div>
+              <div class="timeline-point"><div class="point-bullet"></div><span>Barriers: Spinal feasibility in anticoagulated patients, PACU staffing</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Line -->
+    <section class="bottom-line fade-up">
+      <div class="bottom-line-header">
+        <h2>🎯 The Bottom Line</h2>
+      </div>
+      <div class="takeaway-grid">
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🦴</div>
+          <div class="takeaway-title">Hip Fracture (Spinal vs GA)</div>
+          <div class="takeaway-text">No difference in 1-year mortality or function. Spinal may increase early pain and opioid use in the first 60 days.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">🏥</div>
+          <div class="takeaway-title">Elective THA</div>
+          <div class="takeaway-text">ERAS-driven neuraxial or regional approaches remain the standard. GA-only practice is suboptimal based on current evidence.</div>
+        </div>
+        <div class="takeaway-card">
+          <div class="takeaway-icon">⚕️</div>
+          <div class="takeaway-title">Clinical Practice</div>
+          <div class="takeaway-text">Choose anesthesia based on patient characteristics, comorbidities, and multimodal support — not assumptions of superiority.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">UC Davis Health • <span>Department of Anesthesiology</span></div>
+    <p>Journal Club Summary — September 2025</p>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Stagger stat cards
+    document.querySelectorAll('.stat-card').forEach((card, i) => {
+      card.style.transitionDelay = `${i * 0.1}s`;
+    });
+  </script>
+</body>
+</html>
