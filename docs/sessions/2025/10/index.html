@@ -123,8 +123,7 @@
 </div>
 
 <script>
-    const htmlFile = window.location.pathname.split('/').pop();
-    const jsonPath = `jason/${htmlFile.replace('.html', '.json')}`;
+    const jsonPath = '/journal-club/jason/JC-2025-10-14.json';
 
     fetch(jsonPath)
         .then(res => res.json())

@@ -1,0 +1,37 @@
+{
+  "PAGE_TITLE": "JC-2025-10-14",
+  "LOGO_PATH": "img/brand-logo.png",
+  "BRAND_NAME": "The Branch Lab",
+  "SESSION_TITLE": "Journal Club: Medical Literature Evaluation",
+  "SESSION_SUBTITLE": "A focused discussion on advancing critical appraisal in medical research",
+  "COUNTDOWN_DATE": "2025-11-20T15:00:00-08:00",
+  "PURPOSE_TEXT": "The Journal Club aims to enhance residents' skills in critically appraising medical literature. By the session's conclusion, participants will be equipped to apply evidence-based insights to clinical practice effectively.",
+  "TOPIC_TEXT": "Spinal versus General Anesthesia in Hip Surgery: Outcomes and Perioperative Care",
+  "OBJECTIVES_LIST": [
+    "Develop critical appraisal skills using a structured checklist (validity, results, applicability).",
+    "Interpret effect sizes and confidence intervals beyond reliance on p-values.",
+    "Apply research findings to clinical vignettes relevant to anesthesia practice."
+  ],
+  "DISCUSSION_LIST": [
+    "Was randomization adequate and allocation concealed?",
+    "Were baseline characteristics similar between groups?",
+    "Are the results clinically meaningful or just statistically significant?"
+  ],
+  "ARTICLE_LIST": [
+    {
+      "title": "Long-term outcomes with spinal versus general anesthesia for hip fracture surgery",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37831596/"
+    },
+    {
+      "title": "Pain, analgesic use, and satisfaction with spinal vs. general anesthesia",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35696684/"
+    }
+  ],
+  "PREWORK_LIST": [
+    "Read the assigned articles.",
+    "Complete the critical appraisal worksheet.",
+    "Prepare to discuss findings during the session."
+  ],
+  "AUTHOR": "Brian Pitts, MD, MS",
+  "INSTITUTION": "UC Davis Health — Department of Anesthesiology and Pain Medicine"
+}

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+            name="description"
+            content="Anesthesiology Resident Journal Club - Anesthesia During Pregnancy & Child Neurodevelopment"
+    />
+    <!-- Icons / Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/journal-club/assets/img/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/journal-club/assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/journal-club/assets/img/icons/favicon-16x16.png" />
+    <link rel="manifest" href="/journal-club/assets/img/site.webmanifest" />
+
+    <title>Journal Club: Anesthesia in Pregnancy & Child Development - UC Davis Health</title>
+
+    <!-- CSS (Tailwind first, then custom) -->
+    <link rel="stylesheet" href="/journal-club/assets/css/tailwind-build.css" />
+    <link rel="stylesheet" href="/journal-club/assets/css/styles.css" />
+    <style>
+        .countdown-timer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem auto 0 auto;
+            padding: 1rem;
+            max-width: 600px;
+            text-align: center;
+        }
+        .countdown-unit {
+            text-align: center;
+            min-width: 70px;
+            flex: 1;
+            max-width: 120px;
+        }
+        .countdown-value {
+            font-size: clamp(1.5rem, 6vw, 2.5rem);
+            font-weight: 700;
+            color: #1e3a8a;
+            line-height: 1.1;
+            display: block;
+        }
+        .countdown-label {
+            font-size: clamp(0.75rem, 3vw, 1rem);
+            color: #4b5563;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.25rem;
+            font-weight: 500;
+        }
+        @media (max-width: 640px) {
+            .countdown-timer {
+                gap: 0.5rem;
+                padding: 0.75rem;
+                margin: 0.75rem auto;
+            }
+            .countdown-unit {
+                min-width: 60px;
+                flex: 1;
+            }
+            .countdown-value {
+                font-size: clamp(1.25rem, 5vw, 1.75rem);
+            }
+            .countdown-label {
+                font-size: clamp(0.65rem, 2.5vw, 0.85rem);
+            }
+        }
+        @media (max-width: 480px) {
+            .countdown-timer {
+                gap: 0.25rem;
+                padding: 0.5rem;
+            }
+            .countdown-unit {
+                min-width: 50px;
+            }
+        }
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<!-- Skip link -->
+<a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+<!-- Header -->
+<header class="nav-header" role="banner">
+    <div class="app-container flex items-center justify-between">
+        <a class="nav-brand flex items-center" href="https://brianpx.github.io/journal-club/jc_guide.html" aria-label="The Branch Lab Home">
+            <img
+                    src="/journal-club/assets/img/brand-logo.png"
+                    alt="The Branch Lab"
+                    class="brand-logo"
+                    loading="lazy"
+                    decoding="async"
+            />
+        </a>
+
+        <!-- Desktop navigation landmark -->
+        <nav class="desktop-nav hidden md:block" aria-label="Primary">
+            <ul class="nav-links" role="list">
+                <li><a class="nav-link" href="#meta">Session Details</a></li>
+                <li><a class="nav-link" href="#objectives">Learning Objectives</a></li>
+                <li><a class="nav-link" href="#papers">Core Papers</a></li>
+                <li><a class="nav-link" href="#discussion">Teaching & Discussion</a></li>
+                <li>
+                    <button
+                            class="btn btn--muted btn-print-page"
+                            type="button"
+                            aria-label="Print entire page"
+                            onclick="window.print()"
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        <span class="print-label">Print Page</span>
+                    </button>
+                </li>
+                <li>
+                    <button
+                            class="theme-toggle"
+                            id="themeToggle"
+                            type="button"
+                            aria-label="Toggle color theme"
+                            aria-pressed="false"
+                    >
+                        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                            ></path>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span class="theme-label">Dark</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile controls -->
+        <div class="mobile-nav-controls gap-2 md:hidden">
+            <button
+                    class="nav-icon-btn mobile-print"
+                    type="button"
+                    aria-label="Print this page"
+                    onclick="window.print()"
+            >
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+            </button>
+            <button
+                    class="nav-icon-btn mobile-theme"
+                    id="mobileThemeToggle"
+                    type="button"
+                    aria-label="Toggle color theme"
+                    aria-pressed="false"
+            >
+                <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                            fill="currentColor"
+                    ></path>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <button
+                    class="hamburger"
+                    id="hamburger"
+                    type="button"
+                    aria-label="Toggle menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+            >
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile nav landmark -->
+    <nav class="mobile-menu" id="mobileMenu" aria-hidden="true" aria-label="Mobile">
+        <ul class="mobile-menu-list" role="list">
+            <li><a href="#meta" class="mobile-menu-link">Session Details</a></li>
+            <li><a href="#objectives" class="mobile-menu-link">Learning Objectives</a></li>
+            <li><a href="#papers" class="mobile-menu-link">Core Papers</a></li>
+            <li><a href="#discussion" class="mobile-menu-link">Teaching & Discussion</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main -->
+<main id="main-content" class="mt-nav">
+    <!-- Countdown Timer -->
+    <div class="app-container">
+        <div style="text-align: center; color: #dc2626; font-size: 16px; font-weight: bold; padding-top: 15px; padding-bottom: 2px;" class="no-print">
+            Next Session in:
+        </div>
+        <div id="countdown" class="countdown-timer no-print">
+            <div class="countdown-unit">
+                <div id="days" class="countdown-value">0</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="countdown-unit">
+                <div id="hours" class="countdown-value">0</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="countdown-unit">
+                <div id="minutes" class="countdown-value">0</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="countdown-unit">
+                <div id="seconds" class="countdown-value">0</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overview -->
+    <section id="overview" aria-labelledby="overview-heading" style="margin-top: 4px; padding: 0;">
+        <div class="app-container">
+            <div class="meta-info" role="contentinfo">
+                <span>Journal Club Session: <span style="color: #dc2626;">Possible Topic</span></span>
+                <span><time datetime="2025-09-23">September 23, 2025</time></span>
+            </div>
+            <div class="section-header">
+                <h1 id="overview-heading">Anesthesia During Pregnancy & Child Neurodevelopment</h1>
+            </div>
+            <p class="subtitle">A curated, resident-focused review of recent evidence (last 10 years)</p>
+            <div class="divider" aria-hidden="true"></div>
+        </div>
+    </section>
+
+    <!-- Session Meta -->
+    <section id="meta" aria-labelledby="meta-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="meta-heading">Session Details</h2>
+            </div>
+            <div id="meta-section" class="pb-4">
+                <div class="cards-grid">
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <h3>Topic</h3>
+                        <p>Anesthesia in Pregnancy & Child Development</p>
+                    </article>
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"></path>
+                                <circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="2"></circle>
+                            </svg>
+                        </div>
+                        <h3>Audience</h3>
+                        <p>Anesthesiology Residents</p>
+                    </article>
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Format</h3>
+                        <p>Comparative appraisal of cohorts, meta-analyses & reviews</p>
+                    </article>
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"></path>
+                                <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Faculty Leads</h3>
+                        <p>TBA</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Learning Objectives -->
+    <section id="objectives" aria-labelledby="objectives-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="objectives-heading">Learning Objectives</h2>
+            </div>
+            <div id="objectives-section" class="pb-4">
+                <ul class="icon-list" role="list">
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>Critically appraise evidence linking prenatal anesthesia/analgesia exposure to child neurodevelopment.</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>Distinguish association vs causation in observational designs.</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>Contrast registry outcomes with prospective neuropsychological testing.</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>Apply findings to counseling and perioperative decision-making.</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span>Identify and discuss confounding by indication and familial factors.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Papers -->
+    <section id="papers" aria-labelledby="papers-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="papers-heading">Core Papers (Last 10 Years)</h2>
+                <button
+                        class="btn-print-section"
+                        data-print-section="papers-section"
+                        type="button"
+                        aria-label="Print the Core Papers section"
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </button>
+            </div>
+            <div id="papers-section" class="pb-4">
+                <div class="cards-grid" style="align-items: stretch;">
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Bleeser et al., 2022</h3>
+                        <p><em>Eur J Anaesthesiol & Intensive Care</em> - Review: General anaesthesia for nonobstetric surgery during pregnancy. Maternal & fetal risks, physiologic changes and practical management.</p>
+                        <div style="margin-top: auto;">
+                            <div style="font-size: 0.75rem; color: #64748b; margin: 0.5rem 0;">
+                                DOI: 10.1097/EA9.0000000000000003
+                            </div>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/39916685/" class="btn" target="_blank" rel="noopener noreferrer">View Paper</a>
+                        </div>
+                    </article>
+
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Ing et al., 2024</h3>
+                        <p><em>Br J Anaesth</em> - Cohort: Prenatal GA & behavioral diagnoses. Large US claims cohort with modest increase in diagnoses.</p>
+                        <div style="margin-top: auto;">
+                            <div style="font-size: 0.75rem; color: #64748b; margin: 0.5rem 0;">
+                                DOI: 10.1016/j.bja.2024.01.02
+                            </div>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/38423824/" class="btn" target="_blank" rel="noopener noreferrer">View Paper</a>
+                        </div>
+                    </article>
+
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Ing et al., 2021</h3>
+                        <p><em>Anesth Analg</em> - Cohort: Direct neuropsych testing. No global IQ/language deficits; subtle behavioral signals.</p>
+                        <div style="margin-top: auto;">
+                            <div style="font-size: 0.75rem; color: #64748b; margin: 0.5rem 0;">
+                                DOI: 10.1213/ANE.0000000000005389
+                            </div>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/33497062/" class="btn" target="_blank" rel="noopener noreferrer">View Paper</a>
+                        </div>
+                    </article>
+
+                    <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2"></path>
+                                <path d="M16 13H8M16 17H8M10 9H8" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </div>
+                        <h3>Qiu et al., 2023</h3>
+                        <p><em>JAMA Netw Open</em> - Cohort: LEA ± oxytocin & ASD. Association with ASD risk; confounding-by-indication discussion.</p>
+                        <div style="margin-top: auto;">
+                            <div style="font-size: 0.75rem; color: #64748b; margin: 0.5rem 0;">
+                                DOI: 10.1001/jamanetworkopen.2023.24630
+                            </div>
+                            <a href="https://pubmed.ncbi.nlm.nih.gov/37477919/" class="btn" target="_blank" rel="noopener noreferrer">View Paper</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching & Discussion -->
+    <section id="discussion" aria-labelledby="discussion-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="discussion-heading">Teaching & Discussion</h2>
+            </div>
+            <div id="discussion-section" class="pb-4">
+                <ul class="icon-list" role="list">
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </span>
+                        <span>How do we attribute risk among anesthesia vs surgery vs maternal condition?</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </span>
+                        <span>When do sibling-matched designs change our interpretation of risk?</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </span>
+                        <span>Counseling pearls for emergent surgery in pregnancy.</span>
+                    </li>
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" stroke="currentColor" stroke-width="2"></path>
+                            </svg>
+                        </span>
+                        <span>Reconciling registry-based diagnoses with direct neuropsych testing.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <div class="app-container">
+        <p class="footer-content">Copyright © 2025 Brian Pitts, MD, MS, MEHP   |   v1.0 </p>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/journal-club/assets/js/app.js" defer></script>
+<script>
+    // Countdown timer
+    const targetDate = new Date('2025-10-15T15:00:00-08:00').getTime();
+    const countdownElement = document.getElementById('countdown');
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const timeLeft = targetDate - now;
+
+        if (timeLeft <= 0) {
+            countdownElement.innerHTML = '<div class="text-lg sm:text-xl text-sky-700 font-semibold">Session Started!</div>';
+            return;
+        }
+
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = days;
+        document.getElementById('hours').textContent = hours;
+        document.getElementById('minutes').textContent = minutes;
+        document.getElementById('seconds').textContent = seconds;
+    }
+
+    if (countdownElement) {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+</script>
+</body>
+</html>
