@@ -2,11 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Journal Club – January 2026</title>
-  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <!-- Tailwind CDN (consistent with site landing page) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' }
+  </script>
+
+  <!-- Fonts -->
+  <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+  />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://brianpx.github.io/journal-club/sessions/2026/01/" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .section-divider { border-top: 1px solid #e5e7eb; margin: 1.5rem 0; }
+  </style>
 </head>
-<body>
-  <h1>Journal Club – January 2026</h1>
-  <p>Content coming soon.</p>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors">
+
+<!-- Header -->
+<header class="max-w-4xl mx-auto px-6 pt-8 text-center">
+  <a href="/" class="inline-block mb-4">
+    <img
+            src="/assets/img/brand-logo.png"
+            alt="Journal Club"
+            class="h-16 mx-auto hover:opacity-80 transition"
+    />
+  </a>
+
+  <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-gray-100">
+    Journal Club – January 2026
+  </h1>
+
+  <p class="mt-3 text-lg text-gray-600 dark:text-gray-400 italic">
+    Critical appraisal and application of perioperative evidence
+  </p>
+</header>
+
+<!-- Main content -->
+<main class="max-w-4xl mx-auto px-6 py-10">
+
+  <!-- Session Overview -->
+  <section>
+    <h2 class="text-2xl font-semibold text-sky-800 dark:text-sky-300">
+      Session Overview
+    </h2>
+    <p class="mt-3 text-lg text-gray-700 dark:text-gray-300">
+      This Journal Club session focuses on evaluating contemporary evidence
+      relevant to anesthesia and perioperative care. Emphasis will be placed on
+      study design, effect sizes, applicability, and clinical translation.
+    </p>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Objectives -->
+  <section>
+    <h2 class="text-2xl font-semibold text-sky-800 dark:text-sky-300">
+      Learning Objectives
+    </h2>
+    <ol class="mt-4 list-decimal pl-6 space-y-3 text-lg text-gray-700 dark:text-gray-300">
+      <li>Critically assess internal validity and sources of bias.</li>
+      <li>Interpret effect sizes and confidence intervals.</li>
+      <li>Distinguish statistical significance from clinical relevance.</li>
+      <li>Apply evidence to real-world perioperative decision-making.</li>
+    </ol>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Articles -->
+  <section>
+    <h2 class="text-2xl font-semibold text-sky-800 dark:text-sky-300">
+      Articles for Review
+    </h2>
+
+    <p class="mt-2 italic text-gray-600 dark:text-gray-400">
+      Please review the following prior to the session.
+    </p>
+
+    <ul class="mt-4 space-y-4">
+      <li class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow">
+        <p class="font-semibold">
+          Article 1 – To be announced
+        </p>
+      </li>
+      <li class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow">
+        <p class="font-semibold">
+          Article 2 – To be announced
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- Materials -->
+  <section>
+    <h2 class="text-2xl font-semibold text-sky-800 dark:text-sky-300">
+      Session Materials
+    </h2>
+
+    <div class="mt-4 flex flex-col sm:flex-row gap-4">
+      <a
+              href="/downloads/JC-Pre-session-Sept-2025.pdf"
+              target="_blank"
+              class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-xl transition"
+      >
+        Download Worksheet
+      </a>
+
+      <a
+              href="/guide/"
+              class="inline-block bg-sky-600 hover:bg-sky-700 text-white font-semibold px-6 py-3 rounded-xl transition"
+      >
+        Journal Club Guide
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="text-center py-8 border-t border-gray-200 dark:border-gray-700">
+  <p class="text-sm text-gray-500 dark:text-gray-400">
+    © Brian Pitts, MD, MS – UC Davis Health Department of Anesthesiology and Pain Medicine
+  </p>
+</footer>
+
 </body>
 </html>
