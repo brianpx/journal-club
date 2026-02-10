@@ -14,3 +14,6 @@ css/styles.processed.css
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Local migration backups
+backup_before_reorg_*.tar.gz
