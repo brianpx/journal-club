@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+            name="description"
+            content="Faculty guide for Anesthesiology Resident Journal Club - teaching critical appraisal framework"
+    />
+    <!-- Icons / Manifest -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/icons/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/img/site.webmanifest" />
+
+    <title>Faculty Guide: Anesthesiology Resident Journal Club - UC Davis Health</title>
+
+    <!-- CSS (Tailwind first, then custom) -->
+    <link rel="stylesheet" href="/assets/css/tailwind-build.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+</head>
+
+<body>
+<!-- Skip link -->
+<a href="#main-content" class="visually-hidden">Skip to main content</a>
+
+<!-- Header -->
+<header class="nav-header" role="banner">
+    <div class="app-container flex items-center justify-between">
+        <a class="nav-brand flex items-center" href="https://brianpx.github.io/journal-club/jc_guide.html" aria-label="The Branch Lab Home">
+            <img
+                    src="/assets/img/brand-logo.png"
+                    alt="The Branch Lab"
+                    class="brand-logo"
+                    loading="lazy"
+                    decoding="async"
+            />
+        </a>
+
+        <!-- Desktop navigation landmark -->
+        <nav class="desktop-nav hidden md:block" aria-label="Primary">
+            <ul class="nav-links" role="list">
+                <li><a class="nav-link" href="#overview">Overview</a></li>
+                <li><a class="nav-link" href="#purpose">Purpose</a></li>
+                <li><a class="nav-link" href="#format">Format</a></li>
+                <li><a class="nav-link" href="#timeline">Timeline</a></li>
+                <li><a class="nav-link" href="#resources">Resources</a></li>
+                <li><a class="nav-link" href="#topics">Possible Topics</a></li>
+                <li>
+                    <button
+                            class="btn btn--muted btn-print-page"
+                            type="button"
+                            aria-label="Print entire page"
+                            onclick="window.print()"
+                    >
+                        <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                            <rect x="6" y="14" width="12" height="8"></rect>
+                        </svg>
+                        <span class="print-label">Print Page</span>
+                    </button>
+                </li>
+                <li>
+                    <button
+                            class="theme-toggle"
+                            id="themeToggle"
+                            type="button"
+                            aria-label="Toggle color theme"
+                            aria-pressed="false"
+                    >
+                        <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                            ></path>
+                        </svg>
+                        <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                        </svg>
+                        <span class="theme-label">Dark</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile controls -->
+        <div class="mobile-nav-controls gap-2 md:hidden">
+            <button
+                    class="nav-icon-btn mobile-print"
+                    type="button"
+                    aria-label="Print this page"
+                    onclick="window.print()"
+            >
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+            </button>
+            <button
+                    class="nav-icon-btn mobile-theme"
+                    id="mobileThemeToggle"
+                    type="button"
+                    aria-label="Toggle color theme"
+                    aria-pressed="false"
+            >
+                <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+                            fill="currentColor"
+                    ></path>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"></path>
+                </svg>
+            </button>
+            <button
+                    class="hamburger"
+                    id="hamburger"
+                    type="button"
+                    aria-label="Toggle menu"
+                    aria-expanded="false"
+                    aria-controls="mobileMenu"
+            >
+                <span class="hamburger-line"></span><span class="hamburger-line"></span><span class="hamburger-line"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Mobile nav landmark -->
+    <nav class="mobile-menu" id="mobileMenu" aria-hidden="true" aria-label="Mobile">
+        <ul class="mobile-menu-list" role="list">
+            <li><a href="#overview" class="mobile-menu-link">Overview</a></li>
+            <li><a href="#purpose" class="mobile-menu-link">Purpose</a></li>
+            <li><a href="#format" class="mobile-menu-link">Format</a></li>
+            <li><a href="#timeline" class="mobile-menu-link">Timeline</a></li>
+            <li><a href="#resources" class="mobile-menu-link">Resources</a></li>
+            <li><a href="#topics" class="mobile-menu-link">Possible Topics</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Main -->
+<main id="main-content" class="mt-nav">
+    <!-- Overview -->
+    <section id="overview" aria-labelledby="overview-heading">
+        <div class="app-container">
+            <div class="meta-info" role="contentinfo">
+                <span>Faculty Guide</span>
+                <span><time datetime="2025-09-17">September 17, 2025</time></span>
+            </div>
+            <div class="section-header">
+                <h1 id="overview-heading">Faculty Guide: Anesthesiology Resident Journal Club</h1>
+            </div>
+            <p class="subtitle">A Practical Framework for Teaching Critical Appraisal</p>
+            <div class="divider" aria-hidden="true"></div>
+        </div>
+    </section>
+
+    <!-- Purpose -->
+    <section id="purpose" aria-labelledby="purpose-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="purpose-heading">1. Purpose</h2>
+            </div>
+
+            <div id="purpose-section" class="pb-4">
+                <p>
+                    Journal Club provides a structured, resident-led way to teach evidence appraisal while meeting ACGME
+                    requirements for:
+                </p>
+                <ul class="icon-list" role="list">
+                    <li>
+              <span class="list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                  <path
+                          d="M9 12l2 2 4-4"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </span>
+                        <span>
+                <b>PBLI 1:</b> Evidence-Based and Informed Practice
+                <span class="badge-logo acgme" title="ACGME Requirement" aria-label="ACGME">
+                  <svg viewBox="0 0 40 40" aria-hidden="true">
+                    <path
+                            d="M20 8 L12 28 L16 28 L18 23 L22 23 L24 28 L28 28 L20 8 Z M20 14 L21.5 19 L18.5 19 L20 14 Z"
+                            fill="currentColor"
+                    ></path>
+                    <path
+                            d="M10 26 C10 30, 15 32, 20 32 C25 32, 30 30, 30 26"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"
+                    ></path>
+                  </svg>
+                </span>
+              </span>
+                    </li>
+                    <li>
+              <span class="list-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                  <path
+                          d="M9 12l2 2 4-4"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                  ></path>
+                </svg>
+              </span>
+                        <span>
+                Resident Scholarship &amp; CCC Documentation
+                <span class="badge-logo ccc inline-icon" title="Clinical Competency Committee" aria-label="CCC">
+                  <svg viewBox="0 0 40 40" aria-hidden="true">
+                    <circle cx="20" cy="20" r="14" fill="none" stroke="currentColor" stroke-width="2"></circle>
+                    <path
+                            d="M14 15 C12 15, 10 17, 10 20 C10 23, 12 25, 14 25"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke-linecap="round"
+                    ></path>
+                    <path
+                            d="M20 15 C18 15, 16 17, 16 20 C16 23, 18 25, 20 25"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke-linecap="round"
+                    ></path>
+                    <path
+                            d="M26 15 C24 15, 22 17, 22 20 C22 23, 24 25, 26 25"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            fill="none"
+                            stroke-linecap="round"
+                    ></path>
+                  </svg>
+                </span>
+              </span>
+                    </li>
+                </ul>
+
+                <p>
+                    This model emphasizes resident-driven discussion and faculty-guided application, making the best use of a
+                    1-hour session. Resources are guides, not requirements—please adapt them as needed. For questions, contact
+                    <a href="mailto:bpitts@health.ucdavis.edu">bpitts@health.ucdavis.edu</a> or <a href="https://brianpx.github.io/journal-club/">an example </a>of resident journal club session.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Format -->
+    <section id="format" aria-labelledby="format-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="format-heading">2. Format: The One-Hour Session</h2>
+                <button
+                        class="btn-print-section"
+                        data-print-section="format-section"
+                        type="button"
+                        aria-label="Print the Format section"
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="format-section">
+                <h3>Session Schedule</h3>
+                <div class="table-wrapper">
+                    <table role="table">
+                        <caption class="visually-hidden">One-hour journal club session breakdown</caption>
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 20%">Time</th>
+                            <th scope="col" style="width: 40%">Activity</th>
+                            <th scope="col" style="width: 40%">Faculty Role</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>0–7 min</td>
+                            <td>Introductions, context, BLUF</td>
+                            <td>Prompt presenter to frame the clinical question and summarize in one sentence</td>
+                        </tr>
+                        <tr>
+                            <td>7–25 min</td>
+                            <td>Validity</td>
+                            <td>Guide residents to identify design strengths, limitations, and bias</td>
+                        </tr>
+                        <tr>
+                            <td>25–40 min</td>
+                            <td>Results</td>
+                            <td>Highlight interpretation beyond p-values: effect size, NNT, harms, precision</td>
+                        </tr>
+                        <tr>
+                            <td>40–55 min</td>
+                            <td>Application</td>
+                            <td>Use patient scenarios to discuss how/if findings change practice</td>
+                        </tr>
+                        <tr>
+                            <td>55–60 min</td>
+                            <td>Wrap-Up</td>
+                            <td>Summarize take-home points and link explicitly to PBLI milestones</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Timeline (separate section so #format doesn’t include it) -->
+    <section id="timeline" aria-labelledby="timeline-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="timeline-heading">3. One-Hour Journal Club Timeline</h2>
+                <button
+                        class="btn-print-section"
+                        data-print-section="timeline-section"
+                        type="button"
+                        aria-label="Print the Timeline section"
+                >
+                    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect x="6" y="14" width="12" height="8"></rect>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="timeline-section">
+                <div class="timeline" aria-label="One-Hour Journal Club Timeline">
+                    <div class="timeline-centerline" aria-hidden="true"></div>
+                    <div class="timeline-rows">
+                        <!-- Row 1 -->
+                        <div class="timeline-row" data-theme-color="1">
+                            <div class="timeline-marker" aria-hidden="true">1</div>
+                            <div class="side-pad-right">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">0–7 min • Introductions &amp; BLUF</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Deliver a concise <strong>BLUF</strong> (one-sentence bottom line).</li>
+                                        <li>State the clinical question (PICO/PECO) and its relevance.</li>
+                                        <li>Identify practice decision points this evidence could influence.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="side-pad-left">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">0–7 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Prompt a focused BLUF and align on the clinical question.</li>
+                                        <li>Set expectations for resident-led, discussion-first format.</li>
+                                        <li>Surface intended learning outcomes (PBLI) and scope.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="timeline-row" data-theme-color="2">
+                            <div class="timeline-marker" aria-hidden="true">2</div>
+                            <div class="side-pad-right">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">7–25 min • Validity</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Lead the <strong>internal validity</strong> review.</li>
+                                        <li>Assess baseline balance, adherence, ITT vs per-protocol.</li>
+                                        <li>Identify crossovers, missing data, and bias/confounding risks.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="side-pad-left">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">7–25 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Keep pace and focus; ensure the checklist is covered.</li>
+                                        <li>Probe bias implications for interpretation.</li>
+                                        <li>Model respectful challenge and evidence-based reasoning.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="timeline-row" data-theme-color="3">
+                            <div class="timeline-marker" aria-hidden="true">3</div>
+                            <div class="side-pad-right">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">25–40 min • Results</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Report <strong>magnitude &amp; precision</strong> (effect sizes, CIs, NNT/NNH).</li>
+                                        <li>Differentiate clinical significance from statistical significance.</li>
+                                        <li>Describe harms/adverse events and time-course patterns.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="side-pad-left">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">25–40 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Check interpretation accuracy; use absolute numbers as needed.</li>
+                                        <li>Relate endpoints to patient-centered outcomes and trade-offs.</li>
+                                        <li>Bridge metrics to decision-making under uncertainty.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 4 -->
+                        <div class="timeline-row" data-theme-color="4">
+                            <div class="timeline-marker" aria-hidden="true">4</div>
+                            <div class="side-pad-right">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">40–55 min • Application</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Apply findings to relevant vignettes.</li>
+                                        <li>State when/for whom results are (not) applicable; name caveats.</li>
+                                        <li>Propose a concrete practice change and anticipate barriers.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="side-pad-left">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">40–55 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Facilitate scenario testing; encourage counterfactuals and edge cases.</li>
+                                        <li>Surface local constraints and mitigations.</li>
+                                        <li>Anchor decisions to guidelines/policy while honoring evidence limits.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 5 -->
+                        <div class="timeline-row no-gap-above" data-theme-color="5">
+                            <div class="timeline-marker" aria-hidden="true">5</div>
+                            <div class="side-pad-right">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta resident">55–60 min • Wrap-Up</p>
+                                    <h3 class="timeline-title">Resident — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Summarize 2–3 take-home points and one uncertainty.</li>
+                                        <li>Commit to a micro-change or audit next week.</li>
+                                        <li>Identify a PBLI goal and how you'll get feedback on it.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="side-pad-left">
+                                <div class="timeline-card">
+                                    <p class="timeline-meta faculty">55–60 min</p>
+                                    <h3 class="timeline-title">Faculty — Responsibilities / Objectives</h3>
+                                    <ul>
+                                        <li>Reinforce take-homes and the practice experiment.</li>
+                                        <li>Connect to evaluation (PBLI milestones) and follow-up.</li>
+                                        <li>Assign a brief dissemination step (team share, pocket card, post).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End rows -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" aria-labelledby="resources-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="resources-heading">4. Downloadable Resources</h2>
+            </div>
+
+            <div id="resources-section" class="pb-4">
+                <div class="cards-grid">
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                        d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                ></path>
+                                <path d="M14 2v6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <path
+                                        d="M16 13H8M16 17H8M10 9H8"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Instructor Template</h3>
+                        <p>Teaching points, PICO breakdowns, and a quick statistics guide for faculty.</p>
+                        </br></br>
+                        <a href="https://brianpx.github.io/journal-club/downloads/jc-faculty-teaching-template.docx" class="btn" download>Download Template</a>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <rect x="8" y="2" width="8" height="4" rx="1" stroke="currentColor" stroke-width="2"></rect>
+                                <path d="M16 4v2a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2V4" stroke="currentColor" stroke-width="2"></path>
+                                <rect x="5" y="4" width="14" height="16" rx="2" stroke="currentColor" stroke-width="2"></rect>
+                                <path d="M9 12h6M9 16h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <h3>Resident Handout (Template)</h3>
+                        <p>Objectives, assigned articles, and an appraisal checklist for residents that you can modify.</p> <br/>
+                        <a href="https://brianpx.github.io/journal-club/downloads/Journal_Club_Template.docx" class="btn" download>Download Handout</a>
+                    </article>
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                <path d="M8.5 8.5l-1-1M15.5 8.5l1-1" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                        </div>
+                        <h3>Quiz:</h3>
+                        <p>Optional tools for engagement and checking knowledge retention.</p>
+                        </br></br>
+                        <div class="button-row">
+                            <a href="https://brianpx.github.io/journal-club/downloads/example-pre-quiz.docx" class="btn" download>Pre</a>
+                            <a href="https://brianpx.github.io/journal-club/downloads/example-post-quiz.docx" class="btn" download>Post</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <path
+                                        d="M9 11l3 3L22 4"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                ></path>
+                                <path
+                                        d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                ></path>
+                            </svg>
+                        </div>
+                        <h3>Rubric &amp; Score Sheet</h3>
+                        <p>Track resident participation and document progress on PBLI milestones.</p>
+                        </br></br>
+                        <a href="https://brianpx.github.io/journal-club/downloads/Resident_Journal_Club_Rubric.docx" class="btn" download>Download Rubric</a>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Possible Topics -->
+    <section id="topics" aria-labelledby="topics-heading">
+        <div class="app-container">
+            <div class="section-header">
+                <h2 id="topics-heading">5. Possible Topics</h2>
+            </div>
+
+            <div id="topics-section" class="pb-4">
+                <ul class="icon-list" role="list">
+                    <li>
+                        <span class="list-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"></circle>
+                                <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+                        <span><strong>Maternal effects of anesthesia</strong> - <a href="jc_topic_idea1.html">View topic guide</a></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <div class="app-container">
+        <p class="footer-content">Copyright © 2025 Brian Pitts, MD, MS, MEHP   |   v1.0 </p>
+    </div>
+</footer>
+
+<!-- JS -->
+<script src="/assets/js/app.js" defer></script>
+</body>
+</html>
