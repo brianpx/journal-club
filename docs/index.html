@@ -3,590 +3,385 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Journal Club Handout</title>
+  <title>Journal Club – UC Davis Anesthesiology</title>
+  <meta name="description" content="Anesthesiology Resident Journal Club – critical appraisal of medical literature at UC Davis Health" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/journal-club/assets/img/icons/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/journal-club/assets/img/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/journal-club/assets/img/icons/favicon-16x16.png" />
+  <link rel="canonical" href="https://brianpx.github.io/journal-club/" />
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class'
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'] },
+        }
+      }
     }
   </script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-    .section-divider {
-      border-top: 1px solid #e5e7eb;
-      margin: 1rem 0;
-    }
-    .hover-scale {
-      transition: transform 0.3s ease;
-    }
-    .hover-scale:hover {
-      transform: scale(1.02);
-    }
-    .article-card {
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .article-card:hover {
-      background-color: #f9fafb;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+    body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
-    /* Brand logo brightening animation for dark mode only */
-    @keyframes brightenLogo {
-      0%   { filter: brightness(1); }       /* default */
-      60%  { filter: brightness(3); }       /* 300% at 0.6s */
-      100% { filter: brightness(2); }       /* settle at 200% */
-    }
-
-    .dark .brand-logo {
-      animation: brightenLogo 0.8s ease forwards;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 50;
-      align-items: center;
-      justify-content: center;
-    }
-    .modal-content {
-      background-color: #f0f4f8;
-      background-image: linear-gradient(135deg, #eef2f5 0%, #ffffff 100%);
-      border-radius: 1rem;
-      max-width: 90%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Hero gradient */
+    .hero-bg {
+      background: linear-gradient(135deg, #0c4a6e 0%, #075985 40%, #0369a1 100%);
       position: relative;
+      overflow: hidden;
     }
-    .modal-content .card-shadow {
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     }
-    .modal-content .icon-bg-fracture { background-color: #fff1f2; }
-    .modal-content .icon-bg-elective { background-color: #f0fdf4; }
-    .modal-content .text-fracture { color: #be123c; }
-    .modal-content .text-elective { color: #166534; }
-    .modal-content .border-fracture { border-color: #fda4af; }
-    .modal-content .border-elective { border-color: #86efac; }
-    .close-modal {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.7);
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      transition: background-color 0.3s ease;
+    .dark .hero-bg {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
     }
-    .close-modal:hover {
-      background-color: rgba(0, 0, 0, 0.9);
+
+    /* Session card hover */
+    .session-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .countdown-timer {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
+    .session-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     }
-    .countdown-unit {
-      text-align: center;
-      min-width: 60px;
+    .dark .session-card:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
     }
-    .countdown-value {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-      font-weight: 700;
-      color: #1e3a8a;
+
+    /* Resource card hover */
+    .resource-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-    .countdown-label {
-      font-size: clamp(0.75rem, 2.5vw, 0.875rem);
-      color: #4b5563;
+    .resource-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
-    @media (max-width: 640px) {
-      .countdown-unit {
-        min-width: 50px;
-      }
-      .countdown-value {
-        font-size: clamp(1.25rem, 4vw, 1.5rem);
-      }
-      .countdown-label {
-        font-size: clamp(0.625rem, 2vw, 0.75rem);
-      }
+    .dark .resource-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
-    /* Print styles */
+
+    /* Status badges */
+    .badge-completed {
+      background: rgba(34, 197, 94, 0.1);
+      color: #16a34a;
+      border: 1px solid rgba(34, 197, 94, 0.2);
+    }
+    .dark .badge-completed {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+    .badge-upcoming {
+      background: rgba(59, 130, 246, 0.1);
+      color: #2563eb;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+    .dark .badge-upcoming {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    .badge-new {
+      background: rgba(168, 85, 247, 0.1);
+      color: #7c3aed;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+    .dark .badge-new {
+      background: rgba(168, 85, 247, 0.15);
+      color: #c084fc;
+      border-color: rgba(168, 85, 247, 0.3);
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up {
+      animation: fadeUp 0.5s ease both;
+    }
+    .fade-up-1 { animation-delay: 0.1s; }
+    .fade-up-2 { animation-delay: 0.2s; }
+    .fade-up-3 { animation-delay: 0.3s; }
+    .fade-up-4 { animation-delay: 0.4s; }
+
+    /* Print */
     @media print {
-      .no-print {
-        display: none !important;
-      }
-      .modal {
-        display: none !important;
-      }
-      body {
-        background: white;
-      }
-      .bg-white {
-        box-shadow: none !important;
-      }
+      .no-print { display: none !important; }
+      body { background: white !important; }
+      .hero-bg { background: #0c4a6e !important; }
+      .session-card, .resource-card { break-inside: avoid; }
     }
   </style>
 </head>
-<body class="bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-gray-200 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200">
-  <!-- Brand Logo -->
-  <div class="text-center" style="margin-bottom: 4px;">
-    <a href="https://brianpx.github.io/journal-club/jc_guide.html" class="inline-block">
-      <img src="/assets/img/brand-logo.png" alt="The Branch Lab" class="brand-logo h-20 mx-auto hover:opacity-80 transition-opacity duration-300" />
-    </a>
-  </div>
+
+<body class="bg-gray-50 dark:bg-gray-950 text-gray-800 dark:text-gray-200 transition-colors duration-200">
 
   <!-- Theme Toggle -->
-  <div class="fixed top-4 right-4 z-50">
-    <button id="themeToggle" class="bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 dark:text-white p-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 dark:border-gray-600 dark:border-gray-600" aria-label="Toggle theme">
+  <div class="fixed top-4 right-4 z-50 no-print">
+    <button
+      id="themeToggle"
+      class="bg-white/90 dark:bg-gray-800/90 backdrop-blur text-gray-700 dark:text-gray-200 p-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-200 border border-gray-200 dark:border-gray-700"
+      aria-label="Toggle theme"
+    >
       <svg class="w-5 h-5 sun-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>
       <svg class="w-5 h-5 moon-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
       </svg>
     </button>
   </div>
 
-  <div class="container mx-auto p-4 sm:p-6 md:p-8 lg:p-10 max-w-5xl" style="margin-top: 2px;">
-    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-6 sm:p-8 md:p-10 transition-colors duration-200">
-      <header class="mb-8 text-center">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 tracking-tight transition-colors duration-200">
-          Journal Club: Medical Literature Evaluation
+  <!-- Hero -->
+  <header class="hero-bg text-white">
+    <div class="max-w-5xl mx-auto px-6 py-16 sm:py-20 relative z-10">
+      <div class="flex flex-col items-center text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight fade-up">
+          Journal Club
         </h1>
-        <p class="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-300 mt-3 italic transition-colors duration-200">
-          A focused discussion on advancing critical appraisal in medical research
+        <p class="mt-4 text-lg sm:text-xl text-sky-100 max-w-2xl leading-relaxed fade-up fade-up-1">
+          Critical appraisal of medical literature for anesthesiology residents at UC Davis Health
         </p>
-        <div id="countdown" class="mt-4 countdown-timer no-print">
-          <div class="countdown-unit">
-            <div id="days" class="countdown-value">0</div>
-            <div class="countdown-label">Days</div>
-          </div>
-          <div class="countdown-unit">
-            <div id="hours" class="countdown-value">0</div>
-            <div class="countdown-label">Hours</div>
-          </div>
-          <div class="countdown-unit">
-            <div id="minutes" class="countdown-value">0</div>
-            <div class="countdown-label">Minutes</div>
-          </div>
-          <div class="countdown-unit">
-            <div id="seconds" class="countdown-value">0</div>
-            <div class="countdown-label">Seconds</div>
-          </div>
-        </div>
-      </header>
-      <main>
-        <!-- Purpose Section -->
-        <section class="mb-8">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Purpose
-          </h2>
-          <p class="text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
-            The Journal Club aims to enhance residents' skills in critically appraising medical literature. By the session's conclusion, participants will be equipped to apply evidence-based insights to clinical practice effectively.
-          </p>
-        </section>
-        <div class="section-divider"></div>
-        <!-- Topic Section -->
-        <section class="mb-8">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Topic
-          </h2>
-          <p class="text-base sm:text-lg font-medium bg-sky-100 dark:bg-sky-900/30 dark:text-sky-200 p-4 sm:p-5 rounded-xl shadow-sm">
-            Spinal versus General Anesthesia in Hip Surgery: Outcomes and Perioperative Care
-          </p>
-        </section>
-        <div class="section-divider"></div>
-        <!-- Objectives Section -->
-        <section class="mb-8">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Objectives
-          </h2>
-          <ol class="list-decimal pl-6 space-y-4 text-base sm:text-lg text-gray-700 dark:text-gray-300">
-            <li>Develop critical appraisal skills using a structured checklist (validity, results, applicability).</li>
-            <li>Interpret effect sizes and confidence intervals, moving beyond reliance on p-values.</li>
-            <li>Apply research findings to clinical vignettes relevant to anesthesia practice.</li>
-            <li>Understand limitations of generalizing fracture trial data to elective THA, where ERAS pathways and regional techniques are standard.</li>
-          </ol>
-        </section>
-        <div class="section-divider"></div>
-        <!-- Critical Appraisal Checklist -->
-        <section class="mb-8">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Critical Appraisal Checklist
-          </h2>
-          <ol class="list-decimal pl-6 space-y-6 text-base sm:text-lg">
-            <li>
-              <p class="font-semibold text-gray-800 dark:text-gray-200">Are the results valid? <span class="font-normal text-gray-600 dark:text-gray-400">(Internal Validity)</span></p>
-              <ul class="mt-3 space-y-2 pl-0 text-gray-700 dark:text-gray-300">
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Was randomization adequate?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Was allocation concealed?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Who was blinded (if anyone)?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Were baseline characteristics similar?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Was ITT analysis performed?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Were crossovers or missing data significant?</li>
-              </ul>
-            </li>
-            <li>
-              <p class="font-semibold text-gray-800 dark:text-gray-200">What were the results? <span class="font-normal text-gray-600 dark:text-gray-400">(Magnitude & Precision)</span></p>
-              <ul class="mt-3 space-y-2 pl-0 text-gray-700 dark:text-gray-300">
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Effect sizes: HR, OR, CI, ARR, NNT/NNH?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Were results clinically meaningful or only statistically significant?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Were harms/adverse effects reported?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Any time-course patterns (early vs late outcomes)?</li>
-              </ul>
-            </li>
-            <li>
-              <p class="font-semibold text-gray-800 dark:text-gray-200">Will these results help my patients? <span class="font-normal text-gray-600 dark:text-gray-400">(Applicability)</span></p>
-              <ul class="mt-3 space-y-2 pl-0 text-gray-700 dark:text-gray-300">
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Does the study population match our patients?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Are the outcomes patient-centered (survival, ambulation, pain, satisfaction)?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> Any barriers in our practice (anticoagulation, resources, PACU staffing)?</li>
-                <li class="flex items-start"><span class="inline-block w-4 h-4 bg-sky-600 dark:bg-sky-400 mr-3 mt-1 flex-shrink-0"></span> How might local ERAS/THA pathways differ?</li>
-              </ul>
-            </li>
-          </ol>
-        </section>
-        <div class="section-divider"></div>
-        <!-- Supplemental Materials Section -->
-        <section class="mb-8 text-center">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Supplemental Materials
-          </h2>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              onclick="openModal()"
-              class="bg-sky-600 dark:bg-sky-500 text-white font-semibold py-3 px-6 sm:px-8 rounded-xl hover:bg-sky-700 dark:hover:bg-sky-400 transition-colors duration-300 shadow-lg hover-scale no-print"
-            >
-              View the Bottom Line
-            </button>
-            <a
-              href="JC-Pre-session-Sept-2025.pdf"
-              target="_blank"
-              class="bg-emerald-600 dark:bg-emerald-500 text-white font-semibold py-3 px-6 sm:px-8 rounded-xl hover:bg-emerald-700 dark:hover:bg-emerald-400 transition-colors duration-300 shadow-lg hover-scale no-print"
-            >
-              Download Session Handout
-            </a>
-          </div>
-        </section>
-        <!-- Modal -->
-        <div id="infographicModal" class="modal">
-          <span class="close-modal" onclick="closeModal()">&times;</span>
-          <div class="modal-content p-4 sm:p-6 md:p-8 max-w-5xl">
-            <!-- Infographic Content -->
-            <header class="text-center mb-6 sm:mb-8 md:mb-12">
-              <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Spinal vs. General Anesthesia in Hip Surgery</h1>
-              <p class="mt-2 text-base sm:text-lg text-gray-600 dark:text-gray-400">A Tale of Two Patient Groups: Emergency Fracture vs. Elective Replacement</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Based on the REGAIN Trials and ERAS Best Practices</p>
-            </header>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-              <!-- Column 1: Hip Fracture Surgery -->
-              <div class="bg-white rounded-xl card-shadow border-t-4 border-rose-500 dark:border-rose-400 p-4 sm:p-6 flex flex-col">
-                <div class="flex items-center mb-4">
-                  <div class="icon-bg-fracture p-3 rounded-full mr-4">
-                    <svg class="h-6 sm:h-8 w-6 sm:w-8 text-rose-600 dark:text-rose-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M9.913 7.848a3.75 3.75 0 100 5.304M12 21a9 9 0 100-18 9 9 0 000 18zm.015-11.25H12v.008h.015V9.75z" />
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348a4.125 4.125 0 00-5.676 0M17.477 7.902a6.375 6.375 0 00-8.954 0" transform="rotate(45 12 12)"/>
-                    </svg>
-                  </div>
-                  <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200">Hip Fracture Surgery</h2>
-                    <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Key Findings from the REGAIN Trials</p>
-                  </div>
-                </div>
-                <div class="space-y-4 flex-grow">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center"><span class="text-xl sm:text-2xl font-bold text-gray-500 dark:text-gray-400">=</span></div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base"><strong>No difference</strong> in 1-year survival or ability to walk between Spinal and General Anesthesia.</p>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-rose-500 dark:text-rose-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base">Spinal Anesthesia was associated with slightly <strong>more pain</strong> on the first day after surgery.</p>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-rose-500 dark:text-rose-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base">Spinal Anesthesia led to <strong>higher prescription analgesic use</strong> at 60 days post-op.</p>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-gray-500 dark:text-gray-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base">Patient <strong>satisfaction was similar</strong> between both anesthesia types.</p>
-                  </div>
-                </div>
-                <div class="mt-4 sm:mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
-                  <p class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 bg-rose-50 dark:bg-rose-900/20 p-3 rounded-lg"><strong>Conclusion:</strong> For emergency hip fracture surgery in elderly patients, both anesthesia types lead to similar major long-term outcomes.</p>
-                  </div>
-              </div>
-              <!-- Column 2: Elective Hip Replacement -->
-              <div class="bg-white rounded-xl card-shadow border-t-4 border-emerald-500 dark:border-emerald-400 p-4 sm:p-6 flex flex-col">
-                <div class="flex items-center mb-4">
-                  <div class="icon-bg-elective p-3 rounded-full mr-4">
-                    <svg class="h-6 sm:h-8 w-6 sm:w-8 text-emerald-600 dark:text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h2 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200">Elective Hip Replacement</h2>
-                    <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">ERAS Best Practice Recommendations</p>
-                  </div>
-                </div>
-                <div class="space-y-4 flex-grow">
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-emerald-600 dark:text-emerald-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base"><strong>Neuraxial Anesthesia</strong> (e.g., Spinal) is the recommended <strong>standard of care</strong> as part of an Enhanced Recovery After Surgery (ERAS) pathway.</p>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-rose-600 dark:text-rose-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:h-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base"><strong>General Anesthesia alone</strong> is explicitly <strong>NOT considered best practice</strong> for planned replacements.</p>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex-shrink-0 w-8 text-center text-emerald-600 dark:text-emerald-400">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 sm:h-6 w-5 sm:w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <p class="ml-3 text-gray-700 dark:text-gray-300 text-sm sm:text-base">Anesthesia is combined with <strong>multimodal analgesia</strong> to optimize pain control and speed up recovery.</p>
-                  </div>
-                </div>
-                <div class="mt-4 sm:mt-6 pt-4 border-t border-gray-200 dark:border-gray-600">
-                  <p class="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 bg-emerald-50 dark:bg-emerald-900/20 p-3 rounded-lg"><strong>Conclusion:</strong> For planned hip replacements, neuraxial anesthesia is preferred to improve recovery and patient outcomes.</p>
-                </div>
-              </div>
-            </div>
-            <!-- Bottom Line Up Front (BLUF) -->
-            <div class="mt-6 sm:mt-8 md:mt-12 bg-white rounded-xl card-shadow border-t-4 border-blue-500 dark:border-blue-400 p-4 sm:p-6">
-              <h3 class="text-lg sm:text-xl md:text-2xl font-bold text-center text-gray-800 dark:text-gray-200 mb-4">The Bottom Line: Different Patients, Different Strategies</h3>
-              <p class="text-sm sm:text-base md:text-lg text-center text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-                The key takeaway is that evidence from emergency hip fracture trials <strong class="text-rose-600 dark:text-rose-400">should not be generalized</strong> to elective hip replacement patients. While major outcomes are similar for fracture surgery regardless of anesthesia type, <strong class="text-emerald-600 dark:text-emerald-400">neuraxial anesthesia remains the best practice</strong> for planned procedures to enhance recovery and align with modern care pathways.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="section-divider"></div>
-        <!-- Articles for Review Section -->
-        <section class="mb-8">
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-sky-800 dark:text-sky-300 border-b-2 border-sky-300 dark:border-sky-600 pb-3 mb-5">
-            Articles for Review
-          </h2>
-          <p class="italic text-gray-600 dark:text-gray-400 mb-4 text-sm sm:text-base">
-            Please review the following articles prior to the session.
-          </p>
-          <div class="space-y-4 [&>:first-child]:mt-0">
-            <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 dark:bg-gray-800 article-card">
-              <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">
-                Article 1: Long-term outcomes with spinal versus general anesthesia for hip fracture surgery: a randomized trial.
-              </p>
-              <a
-                href="https://pubmed.ncbi.nlm.nih.gov/37831596/"
-                target="_blank"
-                rel="noopener"
-                class="text-sky-600 dark:text-sky-400 font-medium hover:text-sky-800 dark:hover:text-sky-300 transition-colors duration-300 text-sm sm:text-base"
-              >
-                PubMed Link
-              </a>
-            </div>
-            <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 dark:bg-gray-800 article-card">
-              <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">
-                Article 2: Pain, analgesic use, and patient satisfaction with spinal versus general anesthesia for hip fracture surgery: a randomized clinical trial.
-              </p>
-              <a
-                href="https://pubmed.ncbi.nlm.nih.gov/35696684/"
-                target="_blank"
-                rel="noopener"
-                class="text-sky-600 dark:text-sky-400 font-medium hover:text-sky-800 dark:hover:text-sky-300 transition-colors duration-300 text-sm sm:text-base"
-              >
-                PubMed Link
-              </a>
-            </div>
-            <div class="p-4 sm:p-5 border rounded-xl bg-gray-50 dark:bg-gray-800 article-card">
-              <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm sm:text-base">
-                Article 3: Perioperative care of patients undergoing total hip arthroplasty.
-              </p>
-              <a
-                href="https://pubmed.ncbi.nlm.nih.gov/38764444/"
-                target="_blank"
-                rel="noopener"
-                class="text-sky-600 dark:text-sky-400 font-medium hover:text-sky-800 dark:hover:text-sky-300 transition-colors duration-300 text-sm sm:text-base"
-              >
-                PubMed Link
-              </a>
-            </div>
-          </div>
-        </section>
-        <div class="section-divider"></div>
-        <!-- Pre-Work Instructions Section -->
-        <section>
-          <h2 class="text-xl sm:text-2xl md:text-3xl font-semibold text-amber-800 dark:text-amber-300 border-b-2 border-amber-300 dark:border-amber-600 pb-3 mb-5">
-            Pre-Work Instructions
-          </h2>
-          <div
-            class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 dark:border-amber-400 text-amber-800 dark:text-amber-200 p-4 sm:p-5 rounded-r-xl shadow-sm"
-            role="alert"
-            aria-label="Pre-work instructions"
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 fade-up fade-up-2 no-print">
+          <a
+            href="#sessions"
+            class="inline-flex items-center gap-2 bg-white text-sky-900 font-semibold px-6 py-3 rounded-xl hover:bg-sky-50 transition-colors shadow-lg"
           >
-            <ul class="list-disc list-inside space-y-3 pl-4 text-sm sm:text-base md:text-lg">
-              <li>Read the assigned articles thoroughly.</li>
-              <li>Complete the critical appraisal worksheet for each article.</li>
-              <li>Prepare to discuss your findings and insights during the session.</li>
-            </ul>
-          </div>
-        </section>
-      </main>
-      <footer class="text-center mt-8 sm:mt-10 pt-6 border-t border-gray-200 dark:border-gray-600">
-        <p class="text-xs sm:text-sm md:text-base text-gray-500 dark:text-gray-400">
-          &copy; Brian Pitts, MD, MS – UC Davis Health Department of Anesthesiology and Pain Medicine
-        </p>
-        <button onclick="window.print()" class="mt-4 px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition no-print text-sm">
-          🖨️ Print Handout
-        </button>
-      </footer>
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+            </svg>
+            View Sessions
+          </a>
+          <a
+            href="/journal-club/guide/"
+            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-colors border border-white/20"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+            Faculty Guide
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
+  </header>
+
+  <main>
+    <!-- Sessions -->
+    <section id="sessions" class="max-w-5xl mx-auto px-6 py-16">
+      <div class="mb-10 fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+          Sessions
+        </h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-400 text-lg">
+          Browse past and upcoming journal club sessions
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+        <!-- February 2026 -->
+        <a href="/journal-club/sessions/2026/02/" class="session-card block bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden fade-up fade-up-1">
+          <div class="h-2 bg-gradient-to-r from-teal-500 to-cyan-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">February 2026</span>
+              <span class="badge-new text-xs font-semibold px-2.5 py-1 rounded-full">New</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug">
+              PONV Prophylaxis &amp; Multimodal Prevention
+            </h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+              Examining additive antiemetic effects and extrapolation to newer agents like palonosetron and aprepitant.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-sm text-sky-600 dark:text-sky-400 font-medium">
+              <span>View session</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- January 2026 -->
+        <a href="/journal-club/sessions/2026/01/" class="session-card block bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden fade-up fade-up-2">
+          <div class="h-2 bg-gradient-to-r from-sky-500 to-blue-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">January 2026</span>
+              <span class="badge-upcoming text-xs font-semibold px-2.5 py-1 rounded-full">Upcoming</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug">
+              Perioperative Evidence &amp; Critical Appraisal
+            </h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+              Evaluating contemporary evidence relevant to anesthesia with emphasis on study design and clinical translation.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-sm text-sky-600 dark:text-sky-400 font-medium">
+              <span>View session</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- October 2025 -->
+        <a href="/journal-club/sessions/2025/10/" class="session-card block bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 overflow-hidden fade-up fade-up-3">
+          <div class="h-2 bg-gradient-to-r from-amber-500 to-orange-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm font-medium text-gray-500 dark:text-gray-400">October 2025</span>
+              <span class="badge-completed text-xs font-semibold px-2.5 py-1 rounded-full">Completed</span>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100 leading-snug">
+              Spinal vs. General Anesthesia in Hip Surgery
+            </h3>
+            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400 line-clamp-2">
+              Outcomes and perioperative care based on the REGAIN trials and ERAS best practices.
+            </p>
+            <div class="mt-4 flex items-center gap-2 text-sm text-sky-600 dark:text-sky-400 font-medium">
+              <span>View session</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="max-w-5xl mx-auto px-6">
+      <hr class="border-gray-200 dark:border-gray-800" />
+    </div>
+
+    <!-- Resources -->
+    <section class="max-w-5xl mx-auto px-6 py-16">
+      <div class="mb-10 fade-up">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-gray-100">
+          Resources
+        </h2>
+        <p class="mt-2 text-gray-600 dark:text-gray-400 text-lg">
+          Tools and guides for faculty and residents
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2">
+
+        <!-- Faculty Guide -->
+        <a href="/journal-club/guide/" class="resource-card flex gap-5 items-start bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 fade-up fade-up-1">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-sky-100 dark:bg-sky-900/40 flex items-center justify-center">
+            <svg class="w-6 h-6 text-sky-600 dark:text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">Faculty Guide</h3>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              Comprehensive guide for running journal club sessions, including format, timeline, and teaching framework.
+            </p>
+          </div>
+        </a>
+
+        <!-- Evaluation -->
+        <a href="/journal-club/guide/evaluation.html" class="resource-card flex gap-5 items-start bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 fade-up fade-up-2">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex items-center justify-center">
+            <svg class="w-6 h-6 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">Evaluation Resources</h3>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              Critical appraisal worksheets, scoring rubrics, and evaluation tools for assessing presentations.
+            </p>
+          </div>
+        </a>
+
+        <!-- Downloads -->
+        <a href="/journal-club/downloads/" class="resource-card flex gap-5 items-start bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 fade-up fade-up-3">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/40 flex items-center justify-center">
+            <svg class="w-6 h-6 text-amber-600 dark:text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">Downloads</h3>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              Handouts, pre-session worksheets, and supplemental materials for each journal club session.
+            </p>
+          </div>
+        </a>
+
+        <!-- Session Summaries -->
+        <a href="/journal-club/summaries/2025/" class="resource-card flex gap-5 items-start bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-6 fade-up fade-up-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-purple-100 dark:bg-purple-900/40 flex items-center justify-center">
+            <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-gray-900 dark:text-gray-100">Session Summaries</h3>
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+              Post-session summaries with key takeaways, discussion highlights, and clinical pearls.
+            </p>
+          </div>
+        </a>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
+    <div class="max-w-5xl mx-auto px-6 py-10 text-center">
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        &copy; Brian Pitts, MD, MS &ndash; UC Davis Health Department of Anesthesiology and Pain Medicine
+      </p>
+      <p class="mt-2 text-xs text-gray-400 dark:text-gray-500">
+        Advancing evidence-based practice through structured critical appraisal
+      </p>
+    </div>
+  </footer>
+
   <script>
-    // Modal functionality
-    function openModal() {
-      document.getElementById('infographicModal').style.display = 'flex';
-      document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-    function closeModal() {
-      document.getElementById('infographicModal').style.display = 'none';
-      document.body.style.overflow = 'auto'; // Restore scrolling
-    }
-    window.onclick = function(event) {
-      const modal = document.getElementById('infographicModal');
-      if (event.target === modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-    };
-    // Close modal on Escape key
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeModal();
-      }
-    });
-
-    // Countdown timer
-    const targetDate = new Date('2025-09-09T15:00:00-08:00').getTime();
-    const countdownElement = document.getElementById('countdown');
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const timeLeft = targetDate - now;
-
-      if (timeLeft <= 0) {
-        countdownElement.innerHTML = '<div class="text-lg sm:text-xl text-sky-700 dark:text-sky-300 font-semibold">Session Started!</div>';
-        return;
-      }
-
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      document.getElementById('days').textContent = days;
-      document.getElementById('hours').textContent = hours;
-      document.getElementById('minutes').textContent = minutes;
-      document.getElementById('seconds').textContent = seconds;
-    }
-
-    if (countdownElement) {
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-    }
-
-    // Theme persistence functionality
+    // Theme Manager
     class ThemeManager {
       constructor() {
-        this.KEY = "theme";
-        this.LIGHT = "light";
-        this.DARK = "dark";
+        this.KEY = 'theme';
+        this.LIGHT = 'light';
+        this.DARK = 'dark';
         this.toggle = document.getElementById('themeToggle');
-        this.sunIcon = document.querySelector('.sun-icon');
-        this.moonIcon = document.querySelector('.moon-icon');
-
+        this.sun = document.querySelector('.sun-icon');
+        this.moon = document.querySelector('.moon-icon');
         this.init();
       }
 
       init() {
-        this.applyInitial();
-        this.bind();
-      }
-
-      applyInitial() {
         let pref = null;
-        try {
-          pref = localStorage.getItem(this.KEY);
-        } catch (_) {
-          // Storage might be disabled
-        }
-        // Default to light mode when no preference is stored
-        const initial = pref || this.LIGHT;
-        this.set(initial);
-      }
-
-      bind() {
-        this.toggle?.addEventListener("click", () => this.toggleTheme());
+        try { pref = localStorage.getItem(this.KEY); } catch (_) {}
+        this.set(pref || this.LIGHT);
+        this.toggle?.addEventListener('click', () => this.toggleTheme());
       }
 
       set(theme) {
-        if (theme === this.DARK) {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-
-        try {
-          localStorage.setItem(this.KEY, theme);
-        } catch (_) {
-          // ignore
-        }
-
-        // Update icons
-        if (this.sunIcon && this.moonIcon) {
-          if (theme === this.DARK) {
-            this.sunIcon.classList.remove('hidden');
-            this.moonIcon.classList.add('hidden');
-          } else {
-            this.sunIcon.classList.add('hidden');
-            this.moonIcon.classList.remove('hidden');
-          }
+        document.documentElement.classList.toggle('dark', theme === this.DARK);
+        try { localStorage.setItem(this.KEY, theme); } catch (_) {}
+        if (this.sun && this.moon) {
+          this.sun.classList.toggle('hidden', theme !== this.DARK);
+          this.moon.classList.toggle('hidden', theme === this.DARK);
         }
       }
 
@@ -596,8 +391,18 @@
       }
     }
 
-    // Initialize theme manager
     new ThemeManager();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const target = document.querySelector(link.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
   </script>
 </body>
 </html>
