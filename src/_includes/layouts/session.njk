@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en">
+{% include "partials/head.njk" %}
+
+<body class="bg-white dark:bg-gray-950 text-slate-900 dark:text-gray-100 antialiased font-sans">
+
+{% include "partials/header.njk" %}
+
+<main id="main-content" class="mx-auto max-w-4xl px-6 py-12">
+
+    {# ===== BREADCRUMB ===== #}
+    <nav aria-label="Breadcrumb" class="mb-5 text-sm text-slate-500 dark:text-gray-400">
+        <ol class="flex flex-wrap items-center gap-2">
+            <li class="font-medium text-slate-700 dark:text-gray-300">{{ breadcrumb }}</li>
+            <li aria-hidden="true" class="text-slate-300 dark:text-gray-600">|</li>
+            <li>{{ session_date }}</li>
+        </ol>
+    </nav>
+
+    {# ===== CATEGORY TAGS ===== #}
+    {% if categories %}
+    <div class="mb-4 flex flex-wrap gap-x-2 gap-y-1 text-sm">
+        {% for cat in categories %}
+        <a href="#" class="text-blue-500 dark:text-blue-400 hover:underline">{{ cat }}</a>{% if not loop.last %}<span class="text-slate-300 dark:text-gray-600">,</span>{% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {# ===== ARTICLE HEADER ===== #}
+    <header class="mb-8">
+        <h1 class="font-display text-3xl sm:text-4xl font-semibold leading-tight tracking-tight">
+            {{ title }}
+        </h1>
+        {% if subtitle %}
+        <p class="mt-3 text-lg text-slate-600 dark:text-gray-400">
+            {{ subtitle }}
+        </p>
+        {% endif %}
+
+        {% if faculty or resident_presenters %}
+        <div class="mt-4 text-sm text-slate-600 dark:text-gray-400 space-y-1">
+            {% if faculty %}
+            <p><span class="font-semibold text-slate-700 dark:text-gray-300">Faculty:</span> {{ faculty | join(", ") }}</p>
+            {% endif %}
+            {% if resident_presenters %}
+            <p><span class="font-semibold text-slate-700 dark:text-gray-300">Resident Presenters:</span> {{ resident_presenters | join(", ") }}</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+    </header>
+
+    {# ===== ARTICLE BODY ===== #}
+    <article class="prose prose-slate dark:prose-invert max-w-none text-[16px] leading-relaxed">
+
+        {# --- Central Question --- #}
+        {% if central_question %}
+        <div class="not-prose bg-gray-50 dark:bg-gray-800/50 border border-blue-200 dark:border-blue-800 rounded-xl p-6 mb-10">
+            <h2 class="text-lg font-semibold mb-2">The Central Question</h2>
+            <p class="text-slate-700 dark:text-gray-300 text-sm">
+                {{ central_question.text | safe }}
+            </p>
+            {% if central_question.consideration %}
+            <p class="mt-3 text-slate-500 dark:text-gray-400 text-sm italic">
+                Consider: {{ central_question.consideration | safe }}
+            </p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {# --- Why This Matters --- #}
+        {% if importance_heading %}
+        <h2>{{ importance_heading }}</h2>
+        {% endif %}
+
+        {% if stats %}
+        <div class="not-prose grid grid-cols-1 sm:grid-cols-3 gap-4 my-6">
+            {% for stat in stats %}
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center border border-gray-200 dark:border-gray-700">
+                <p class="text-2xl font-bold text-blue-600 dark:text-blue-300">{{ stat.value | safe }}</p>
+                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">{{ stat.label }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if modifiable_factors %}
+        <p>As the anesthesiologist, you control key modifiable factors:</p>
+        <div class="not-prose flex flex-wrap gap-2 my-4">
+            {% for factor in modifiable_factors %}
+            <span class="inline-flex items-center gap-1.5 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-sm">
+                <svg class="w-4 h-4 text-blue-500 flex-none" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                {{ factor }}
+            </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {# --- Study Comparison Cards --- #}
+        {% if studies %}
+        <h2>Study Comparison</h2>
+
+        {% for study in studies %}
+        <div class="not-prose bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-xl p-6 mb-6">
+            <div class="flex items-start justify-between flex-wrap gap-2">
+                <div>
+                    <h3 class="text-lg font-semibold">{{ study.title }}</h3>
+                    <p class="text-sm text-slate-500 dark:text-gray-400 mt-1">{{ study.design | safe }}</p>
+                </div>
+                {% if study.badge %}
+                {% if study.badge_color == "blue" %}
+                <span class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 text-xs font-semibold rounded-full">{{ study.badge }}</span>
+                {% elif study.badge_color == "green" %}
+                <span class="inline-block px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-300 text-xs font-semibold rounded-full">{{ study.badge }}</span>
+                {% elif study.badge_color == "amber" %}
+                <span class="inline-block px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-300 text-xs font-semibold rounded-full">{{ study.badge }}</span>
+                {% else %}
+                <span class="inline-block px-3 py-1 bg-gray-200 dark:bg-gray-700 text-slate-600 dark:text-gray-300 text-xs font-semibold rounded-full">{{ study.badge }}</span>
+                {% endif %}
+                {% endif %}
+            </div>
+
+            {% if study.results %}
+            <div class="mt-4 grid grid-cols-2 sm:grid-cols-{{ study.results | length }} gap-4 text-center">
+                {% for result in study.results %}
+                <div>
+                    <p class="text-xs text-slate-500 dark:text-gray-400 font-medium">{{ result.label }}</p>
+                    <p class="text-2xl font-bold text-blue-600 dark:text-blue-300">{{ result.value }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if study.population %}
+            <p class="mt-4 text-xs text-slate-500 dark:text-gray-400">
+                <span class="font-semibold">Population:</span> {{ study.population | safe }}
+            </p>
+            {% endif %}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {# --- Comparison Table --- #}
+        {% if comparison_table %}
+        <h2>{{ comparison_table.heading | default("Comparison") }}</h2>
+
+        <div class="not-prose overflow-x-auto my-6">
+            <table class="w-full border-collapse text-sm">
+                <thead>
+                <tr class="border-b-2 border-slate-200 dark:border-gray-700">
+                    {% for col in comparison_table.columns %}
+                    <th class="py-3 {% if loop.first %}pr-4 text-left{% elif loop.last %}pl-4 text-left{% else %}px-4 text-left{% endif %} font-semibold">{{ col }}</th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-gray-800">
+                {% for row in comparison_table.rows %}
+                <tr>
+                    {% for cell in row %}
+                    <td class="py-3 {% if loop.first %}pr-4 font-medium{% elif loop.last %}pl-4 text-slate-600 dark:text-gray-400{% else %}px-4 text-slate-600 dark:text-gray-400{% endif %}">{{ cell | safe }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {# --- Reconciliation --- #}
+        {% if reconciliation %}
+        <h2>{{ reconciliation.heading | default("Reconciling the Results") }}</h2>
+
+        {% for section in reconciliation.sections %}
+        <div class="not-prose step-heading">
+            <span class="step-number">{{ loop.index }}</span>
+            <h3 class="text-base font-semibold">{{ section.title }}</h3>
+        </div>
+
+        {% if section.text %}
+        <p>{{ section.text | safe }}</p>
+        {% endif %}
+
+        {% if section.bullets %}
+        <ul class="list-disc pl-5 space-y-1 text-[16px]">
+            {% for bullet in section.bullets %}
+            <li>{{ bullet | safe }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if section.cards %}
+        <div class="not-prose grid md:grid-cols-2 gap-4 my-4">
+            {% for card in section.cards %}
+            <div class="bg-gray-50 dark:bg-gray-800 {% if card.border %}border-l-4 border-blue-500 dark:border-blue-400{% endif %} border border-gray-200 dark:border-gray-700 rounded-xl p-4">
+                <p class="font-semibold text-sm">{{ card.label }}</p>
+                <p class="text-sm text-slate-600 dark:text-gray-400 mt-1">{{ card.text | safe }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {# --- Study Deep Dives --- #}
+        {% for dive in deep_dives %}
+        <h2>{{ dive.title | safe }}</h2>
+
+        <div class="not-prose space-y-4 my-6">
+            {# Population #}
+            {% if dive.population %}
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                <h4 class="font-semibold mb-3">Population</h4>
+                <ul class="space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                    {% for item in dive.population %}
+                    <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+            {# Intervention / Comparator #}
+            {% if dive.intervention or dive.comparator %}
+            <div class="grid md:grid-cols-2 gap-4">
+                {% if dive.intervention %}
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5 border-l-4 border-blue-500 dark:border-blue-400">
+                    <h4 class="font-semibold mb-2">Intervention</h4>
+                    <p class="text-sm text-slate-600 dark:text-gray-400">{{ dive.intervention | safe }}</p>
+                </div>
+                {% endif %}
+                {% if dive.comparator %}
+                <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-5">
+                    <h4 class="font-semibold mb-2">Comparator</h4>
+                    <p class="text-sm text-slate-600 dark:text-gray-400">{{ dive.comparator | safe }}</p>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            {# Outcomes #}
+            {% if dive.outcomes %}
+            <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                <h4 class="font-semibold mb-3">Outcomes</h4>
+                <ul class="space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                    {% for item in dive.outcomes %}
+                    <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+
+        {# Key Results #}
+        {% if dive.key_results %}
+        <h3>Key Results</h3>
+        <div class="not-prose grid grid-cols-3 gap-4 my-4">
+            {% for result in dive.key_results %}
+            <div class="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-center border border-gray-200 dark:border-gray-700">
+                <p class="text-2xl font-bold text-blue-600 dark:text-blue-300">{{ result.value }}</p>
+                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">{{ result.label }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {# Null Result #}
+        {% if dive.null_result %}
+        <h3>The Null Result</h3>
+        <p>{{ dive.null_result.text | safe }}</p>
+
+        {% if dive.null_result.callout %}
+        <div class="not-prose bg-gray-50 dark:bg-gray-800/50 border-l-4 border-blue-500 dark:border-blue-400 rounded-lg p-4 my-6">
+            <p class="text-sm font-semibold">{{ dive.null_result.callout.label }}</p>
+            <p class="text-sm text-slate-600 dark:text-gray-400 mt-1">{{ dive.null_result.callout.text | safe }}</p>
+        </div>
+        {% endif %}
+        {% endif %}
+
+        {# Strengths & Limitations #}
+        {% if dive.strengths or dive.limitations %}
+        <div class="not-prose grid md:grid-cols-2 gap-4 my-6">
+            {% if dive.strengths %}
+            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+                <h4 class="font-semibold mb-3">Strengths</h4>
+                <ul class="space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                    {% for item in dive.strengths %}
+                    <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if dive.limitations %}
+            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
+                <h4 class="font-semibold mb-3">Limitations</h4>
+                <ul class="space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                    {% for item in dive.limitations %}
+                    <li>{{ item | safe }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        {# --- Knowledge Check --- #}
+        {% if knowledge_check %}
+        <h2>Knowledge Check</h2>
+    </article>
+
+    <div class="mt-8 space-y-3" id="knowledge-check">
+        {% for item in knowledge_check %}
+        <details class="group bg-gray-50 dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-800 transition-shadow hover:shadow-sm">
+            <summary class="cursor-pointer px-5 py-4 text-sm flex items-start justify-between gap-3">
+                <span class="flex-1 flex items-start gap-3 min-w-0">
+                    <span class="flex-none w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-xs font-bold inline-flex items-center justify-center mt-px">{{ loop.index }}</span>
+                    <span class="font-semibold">{{ item.q }}</span>
+                </span>
+                <svg class="h-4 w-4 flex-none text-gray-400 mt-1 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </summary>
+            <div class="px-5 pb-4 pl-14 text-sm text-slate-600 dark:text-gray-400">{{ item.a | safe }}</div>
+        </details>
+        {% endfor %}
+    </div>
+    {% else %}
+    </article>
+    {% endif %}
+
+</main>
+
+{% include "partials/footer.njk" %}
+
+<script src="{{ '/assets/js/theme-toggle.js' | url }}"></script>
+<script src="{{ '/assets/js/mobile-menu.js' | url }}"></script>
+<script src="{{ '/assets/js/share.js' | url }}"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+[
+  {
+    "id": 1,
+    "title": "Perioperative Dexmedetomidine and Postoperative Delirium",
+    "article": "Su X, et al. Dexmedetomidine for Prevention of Delirium in Elderly Patients After Non-cardiac Surgery. Lancet 2016;388:1893-1902",
+    "presenter": "Dr. Sarah Chen, CA-2",
+    "location": "Conference Room 3B",
+    "date": "2026-02-13",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "rct",
+    "description": "Critical appraisal of this landmark RCT examining prophylactic low-dose dexmedetomidine infusion in elderly surgical patients. We'll focus on the study design, primary endpoints, and clinical applicability to our practice."
+  },
+  {
+    "id": 2,
+    "title": "Regional Anesthesia in Anticoagulated Patients",
+    "article": "Horlocker TT, et al. Regional Anesthesia in the Patient Receiving Antithrombotic or Thrombolytic Therapy. ASRA Guidelines 2018",
+    "presenter": "Dr. Michael Torres, CA-3",
+    "location": "Main Auditorium",
+    "date": "2026-02-20",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "review",
+    "description": "Review of the current ASRA guidelines with case-based discussion on timing of neuraxial procedures in patients on various anticoagulants including DOACs."
+  },
+  {
+    "id": 3,
+    "title": "POISE-3: Tranexamic Acid in Noncardiac Surgery",
+    "article": "Devereaux PJ, et al. Tranexamic Acid in Patients Undergoing Noncardiac Surgery. NEJM 2022;386:1986-1997",
+    "presenter": "Dr. Emily Watson, Attending",
+    "location": "Conference Room 3B",
+    "date": "2026-02-27",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "rct",
+    "description": "Analysis of this large multicenter RCT examining TXA's effect on bleeding and cardiovascular outcomes. Discussion of implications for our perioperative blood management protocols."
+  },
+  {
+    "id": 4,
+    "title": "Machine Learning for Hypotension Prediction",
+    "article": "Hatib F, et al. Machine-learning Algorithm to Predict Hypotension Based on High-fidelity Arterial Pressure Waveform. Anesthesiology 2018;129:663-674",
+    "presenter": "Dr. James Park, CA-2",
+    "location": "Simulation Center",
+    "date": "2026-03-06",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "meta",
+    "description": "Exploration of AI/ML applications in anesthesiology, focusing on the Hypotension Prediction Index. We'll discuss validation studies and practical implementation considerations."
+  },
+  {
+    "id": 5,
+    "title": "Sugammadex vs Neostigmine: A Meta-Analysis",
+    "article": "Hristovska AM, et al. Efficacy and Safety of Sugammadex vs Neostigmine for Neuromuscular Blockade Reversal. Anesthesiology 2017;127:302-315",
+    "presenter": "Dr. Lisa Huang, CA-1",
+    "location": "Conference Room 3B",
+    "date": "2026-03-13",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "meta",
+    "description": "Systematic review of evidence comparing reversal agents. Focus on residual paralysis rates, respiratory complications, and cost-effectiveness analysis."
+  },
+  {
+    "id": 6,
+    "title": "Goal-Directed Fluid Therapy in Major Surgery",
+    "article": "Pearse RM, et al. Effect of a Perioperative, Cardiac Output-Guided Hemodynamic Therapy Algorithm on Outcomes. JAMA 2014;311:2181-2190",
+    "presenter": "Dr. Robert Kim, Attending",
+    "location": "Main Auditorium",
+    "date": "2026-03-20",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "rct",
+    "description": "Critical evaluation of the OPTIMISE trial and its implications for intraoperative hemodynamic management. Discussion of current GDFT protocols and monitoring technologies."
+  },
+  {
+    "id": 7,
+    "title": "Opioid-Free Anesthesia: Evidence and Practice",
+    "article": "Lavand'homme P, Estebe JP. Opioid-free Anesthesia: A Different Regard to Anesthesia Practice. Curr Opin Anaesthesiol 2018;31:556-561",
+    "presenter": "Dr. Amanda Foster, CA-3",
+    "location": "Conference Room 3B",
+    "date": "2026-03-27",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "review",
+    "description": "Comprehensive review of OFA techniques, multimodal analgesia protocols, and the evidence base for reducing perioperative opioid use."
+  },
+  {
+    "id": 8,
+    "title": "Postoperative Cognitive Dysfunction: Current Understanding",
+    "article": "Evered L, et al. Recommendations for the Nomenclature of Cognitive Change. Anesthesiology 2018;129:872-879",
+    "presenter": "Dr. David Nguyen, CA-2",
+    "location": "Conference Room 3B",
+    "date": "2026-04-03",
+    "time": "7:00 AM – 8:00 AM",
+    "type": "review",
+    "description": "Discussion of the updated nomenclature for perioperative neurocognitive disorders, risk factors, and potential preventive strategies."
+  }
+]

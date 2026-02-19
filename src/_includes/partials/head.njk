@@ -1,0 +1,17 @@
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title }} – {{ site.title }}</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{{ '/assets/js/tailwind-config.js' | url }}"></script>
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        try{if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}
+    </script>
+
+    <!-- Shared base styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/base.css' | url }}" />
+</head>

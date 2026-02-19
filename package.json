@@ -5,11 +5,14 @@
   "scripts": {
     "dev": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --watch",
     "build": "tailwindcss -i ./css/tailwind.css -o ./css/tailwind-build.css --minify",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "11ty:serve": "eleventy --serve",
+    "11ty:build": "eleventy"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
     "@tailwindcss/cli": "^4.1.13",
-    "tailwindcss": "^4.1.13",
-    "prettier": "^3.3.3"
+    "prettier": "^3.3.3",
+    "tailwindcss": "^4.1.13"
   }
 }

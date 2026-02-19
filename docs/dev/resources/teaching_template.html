@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Faculty Teaching Template – Anesthesiology Journal Club</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        try{if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}
+    </script>
+
+    <!-- Shared base styles -->
+    <link rel="stylesheet" href="../assets/css/base.css" />
+</head>
+
+<body class="bg-white dark:bg-gray-950 text-slate-900 dark:text-gray-100 antialiased font-sans">
+
+<!-- Skip link -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 rounded bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow">
+    Skip to main content
+</a>
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 bg-black/95 backdrop-blur text-white">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+         aria-label="Primary navigation">
+        <div class="flex h-12 items-center justify-between">
+            <div class="flex items-center gap-1.5">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <a href="../" class="text-sm font-medium tracking-tight hover:text-gray-300 transition-colors">
+                    Anesthesiology Journal Club
+                </a>
+            </div>
+
+            <!-- Desktop nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <ul class="flex items-center gap-7 text-xs">
+                    <li><a href="../#overview" class="text-gray-300 hover:text-white transition-colors">Overview</a></li>
+                    <li><a href="../#featured" class="text-gray-300 hover:text-white transition-colors">Featured Sessions</a></li>
+                    <li><a href="../#schedule" class="text-gray-300 hover:text-white transition-colors">Schedule</a></li>
+                    <li><a href="../#archive" class="text-gray-300 hover:text-white transition-colors">Archive</a></li>
+                    <li><a href="./" class="text-white font-medium transition-colors">Resources</a></li>
+                </ul>
+
+                <!-- Theme toggle (desktop) -->
+                <button data-theme-toggle
+                        class="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Toggle dark mode">
+                    <svg class="h-4 w-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                    <svg class="h-4 w-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile: theme toggle + menu button -->
+            <div class="flex md:hidden items-center gap-1">
+                <button data-theme-toggle
+                        class="inline-flex h-10 w-10 items-center justify-center rounded text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Toggle dark mode">
+                    <svg class="h-5 w-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                    <svg class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                    </svg>
+                </button>
+
+                <button id="menuButton"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                        aria-controls="mobile-menu">
+                    <svg width="24" height="24" fill="none" aria-hidden="true">
+                        <path d="M4 6h16M4 12h16M4 18h16"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile menu dialog -->
+<div id="mobile-menu"
+     class="fixed inset-0 z-[100] hidden"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="mobile-menu-title">
+    <div class="absolute inset-0 bg-black/60" id="menuBackdrop" aria-hidden="true"></div>
+    <div class="absolute right-0 top-0 h-full w-80 bg-white dark:bg-gray-900 text-slate-900 dark:text-gray-100 shadow-xl">
+        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-4">
+            <h2 id="mobile-menu-title" class="text-sm font-semibold">
+                Navigation
+            </h2>
+            <button id="closeMenu"
+                    class="h-10 w-10 rounded focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
+                    aria-label="Close menu">
+                <svg width="24" height="24" fill="none" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="px-4 py-6 space-y-4 text-sm">
+            <li><a href="../#overview" class="block hover:text-blue-500 dark:hover:text-blue-400">Overview</a></li>
+            <li><a href="../#featured" class="block hover:text-blue-500 dark:hover:text-blue-400">Featured Sessions</a></li>
+            <li><a href="../#schedule" class="block hover:text-blue-500 dark:hover:text-blue-400">Schedule</a></li>
+            <li><a href="../#archive" class="block hover:text-blue-500 dark:hover:text-blue-400">Archive</a></li>
+            <li><a href="./" class="block font-medium">Resources</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main id="main-content" class="mx-auto max-w-4xl px-6 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-5 text-sm text-slate-500 dark:text-gray-400">
+        <ol class="flex flex-wrap items-center gap-2">
+            <li><a href="../" class="hover:text-blue-500 dark:hover:text-blue-400">Home</a></li>
+            <li aria-hidden="true" class="text-slate-300 dark:text-gray-600">/</li>
+            <li class="font-medium text-slate-700 dark:text-gray-300">Resources</li>
+        </ol>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="mb-10">
+        <h1 class="font-display text-3xl sm:text-4xl font-semibold leading-tight tracking-tight">
+            Faculty Teaching Template
+        </h1>
+        <p class="mt-3 text-lg text-slate-600 dark:text-gray-400">
+            Journal Club Faculty Teaching Template
+        </p>
+    </header>
+
+    <!-- ================= CONTENT ================= -->
+    <div class="space-y-16">
+
+        <!-- ===== INSTRUCTOR NOTES ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Instructor Notes
+            </h2>
+
+            <!-- PICO Summaries -->
+            <div class="mt-6">
+                <h3 class="text-lg font-semibold">PICO Summaries</h3>
+
+                <div class="mt-4 space-y-6">
+                    <!-- Article 1 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                        <h4 class="font-semibold">Article 1: <span class="font-normal text-slate-600 dark:text-gray-400">[Citation]</span></h4>
+                        <ul class="mt-3 space-y-2 text-sm">
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">P</span> (Population): <span class="text-slate-600 dark:text-gray-400">[Describe study population, sample size, key inclusion criteria]</span></li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">I</span> (Intervention): <span class="text-slate-600 dark:text-gray-400">[Primary intervention being studied]</span></li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">C</span> (Comparison): <span class="text-slate-600 dark:text-gray-400">[Control or comparison group]</span></li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">O</span> (Outcomes): <span class="text-slate-600 dark:text-gray-400">[Primary and secondary outcomes measured]</span></li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">T</span> (Time): <span class="text-slate-600 dark:text-gray-400">[Follow-up periods/measurement timepoints]</span></li>
+                        </ul>
+                        <p class="mt-3 text-sm"><span class="font-semibold">Bottom line:</span> <span class="text-slate-600 dark:text-gray-400">[1-2 sentence summary of main finding]</span></p>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                        <h4 class="font-semibold">Article 2: <span class="font-normal text-slate-600 dark:text-gray-400">[Citation]</span></h4>
+                        <ul class="mt-3 space-y-2 text-sm">
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">P</span> (Population): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">I</span> (Intervention): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">C</span> (Comparison): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">O</span> (Outcomes): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">T</span> (Time): </li>
+                        </ul>
+                        <p class="mt-3 text-sm"><span class="font-semibold">Bottom line:</span></p>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                        <h4 class="font-semibold">Article 3: <span class="font-normal text-slate-600 dark:text-gray-400">[Citation]</span></h4>
+                        <ul class="mt-3 space-y-2 text-sm">
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">P</span> (Population): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">I</span> (Intervention): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">C</span> (Comparison): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">O</span> (Outcomes): </li>
+                            <li><span class="font-semibold text-blue-500 dark:text-blue-400">T</span> (Time): </li>
+                        </ul>
+                        <p class="mt-3 text-sm"><span class="font-semibold">Bottom line:</span></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CRITICAL APPRAISAL ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Essential Questions for Critical Appraisal
+            </h2>
+
+            <div class="mt-6 space-y-8">
+                <!-- Question 1 -->
+                <div>
+                    <h3 class="text-lg font-semibold">1. Are the results valid? <span class="font-normal text-slate-500 dark:text-gray-400">(Internal Validity)</span></h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Randomization adequate:</span> <span class="text-slate-600 dark:text-gray-400">[Yes/No &mdash; explain method]</span></li>
+                        <li><span class="font-semibold">Allocation concealed:</span> <span class="text-slate-600 dark:text-gray-400">[Yes/No &mdash; how was it done?]</span></li>
+                        <li><span class="font-semibold">Blinding:</span> <span class="text-slate-600 dark:text-gray-400">[Who was blinded? Who wasn't? Why?]</span></li>
+                        <li><span class="font-semibold">Baseline characteristics:</span> <span class="text-slate-600 dark:text-gray-400">[Were groups balanced?]</span></li>
+                        <li><span class="font-semibold">ITT analysis:</span> <span class="text-slate-600 dark:text-gray-400">[Was intention-to-treat used?]</span></li>
+                        <li><span class="font-semibold">Crossovers/missing data:</span> <span class="text-slate-600 dark:text-gray-400">[% crossover, loss to follow-up, sensitivity analyses]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Question 2 -->
+                <div>
+                    <h3 class="text-lg font-semibold">2. What were the results? <span class="font-normal text-slate-500 dark:text-gray-400">(Magnitude &amp; Precision)</span></h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Primary outcome:</span> <span class="text-slate-600 dark:text-gray-400">[Effect size with 95% CI]</span></li>
+                        <li><span class="font-semibold">Secondary outcomes:</span> <span class="text-slate-600 dark:text-gray-400">[Key secondary findings]</span></li>
+                        <li><span class="font-semibold">Clinical significance:</span> <span class="text-slate-600 dark:text-gray-400">[Are differences clinically meaningful?]</span></li>
+                        <li><span class="font-semibold">Harms/adverse events:</span> <span class="text-slate-600 dark:text-gray-400">[Safety profile comparison]</span></li>
+                        <li><span class="font-semibold">Time-course:</span> <span class="text-slate-600 dark:text-gray-400">[When do effects appear/disappear?]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Question 3 -->
+                <div>
+                    <h3 class="text-lg font-semibold">3. Will these results help my patients? <span class="font-normal text-slate-500 dark:text-gray-400">(Applicability)</span></h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Population match:</span> <span class="text-slate-600 dark:text-gray-400">[How similar is study population to your patients?]</span></li>
+                        <li><span class="font-semibold">Patient-centered outcomes:</span> <span class="text-slate-600 dark:text-gray-400">[Are outcomes meaningful to patients?]</span></li>
+                        <li><span class="font-semibold">Practice barriers:</span> <span class="text-slate-600 dark:text-gray-400">[What might prevent implementation?]</span></li>
+                        <li><span class="font-semibold">Local context:</span> <span class="text-slate-600 dark:text-gray-400">[How does this fit with local protocols/resources?]</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TEACHING TAKE-HOMES ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Teaching Take-Homes for Residents
+            </h2>
+            <ol class="mt-6 space-y-3 text-sm list-decimal list-inside">
+                <li><span class="font-semibold">Key finding #1:</span> <span class="text-slate-600 dark:text-gray-400">[Main clinical message]</span></li>
+                <li><span class="font-semibold">Key finding #2:</span> <span class="text-slate-600 dark:text-gray-400">[Secondary important point]</span></li>
+                <li><span class="font-semibold">Key finding #3:</span> <span class="text-slate-600 dark:text-gray-400">[Practice-changing aspect or limitation]</span></li>
+                <li><span class="font-semibold">Critical appraisal skill:</span> <span class="text-slate-600 dark:text-gray-400">[Statistical/methodological concept to emphasize]</span></li>
+            </ol>
+        </section>
+
+        <!-- ===== DETAILED FINDINGS ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Detailed Findings
+            </h2>
+
+            <div class="mt-6 space-y-8">
+                <!-- Topic Area 1 -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                    <h3 class="text-lg font-semibold">[Topic Area 1 &mdash; e.g., Primary Outcome]</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Main finding:</span> <span class="text-slate-600 dark:text-gray-400">[Detailed description]</span></li>
+                        <li><span class="font-semibold">Effect size:</span> <span class="text-slate-600 dark:text-gray-400">[Include actual numbers, percentages, ratios]</span></li>
+                        <li><span class="font-semibold">Statistical significance:</span> <span class="text-slate-600 dark:text-gray-400">[p-values, CIs]</span></li>
+                        <li><span class="font-semibold">Clinical interpretation:</span> <span class="text-slate-600 dark:text-gray-400">[What this means for practice]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Topic Area 2 -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                    <h3 class="text-lg font-semibold">[Topic Area 2 &mdash; e.g., Unexpected Finding]</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">What was found:</span></li>
+                        <li>
+                            <span class="font-semibold">Possible explanations:</span>
+                            <ol class="mt-1 ml-4 space-y-1 list-decimal list-inside text-slate-600 dark:text-gray-400">
+                                <li>[Mechanism/reason #1]</li>
+                                <li>[Mechanism/reason #2]</li>
+                                <li>[Mechanism/reason #3]</li>
+                            </ol>
+                        </li>
+                        <li><span class="font-semibold">Authors' interpretation:</span> <span class="text-slate-600 dark:text-gray-400">[Quote or paraphrase]</span></li>
+                        <li><span class="font-semibold">Your assessment:</span> <span class="text-slate-600 dark:text-gray-400">[Agreement/disagreement with authors]</span></li>
+                    </ul>
+                    <blockquote class="mt-4 border-l-4 border-blue-500 dark:border-blue-400 pl-4 italic text-sm text-slate-600 dark:text-gray-400">
+                        Key Quote: "[Important quote from paper that captures main message]"
+                    </blockquote>
+                    <p class="mt-3 text-sm bg-gray-100 dark:bg-gray-800 rounded-lg px-4 py-2">
+                        <span class="font-semibold text-blue-600 dark:text-blue-300">Teaching pearl:</span>
+                        <span class="text-slate-600 dark:text-gray-400">[Concise take-home message about this finding for residents]</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STUDY COMPARISON TABLE ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Study Comparison Table
+            </h2>
+            <div class="mt-6 overflow-x-auto">
+                <table class="w-full border-collapse text-sm">
+                    <thead>
+                    <tr class="border-b-2 border-slate-200 dark:border-gray-700">
+                        <th class="py-3 pr-4 text-left font-semibold">Study</th>
+                        <th class="py-3 px-4 text-left font-semibold">Clinical Question</th>
+                        <th class="py-3 px-4 text-left font-semibold">Methods</th>
+                        <th class="py-3 px-4 text-left font-semibold">Population</th>
+                        <th class="py-3 px-4 text-left font-semibold">Results</th>
+                        <th class="py-3 px-4 text-left font-semibold">Conclusions</th>
+                        <th class="py-3 pl-4 text-left font-semibold">Key Stat Method</th>
+                    </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 dark:divide-gray-800 text-slate-600 dark:text-gray-400">
+                    <tr>
+                        <td class="py-3 pr-4 font-medium text-slate-900 dark:text-gray-100">[Study 1]</td>
+                        <td class="py-3 px-4">[What question?]</td>
+                        <td class="py-3 px-4">[Design, randomization, blinding]</td>
+                        <td class="py-3 px-4">[n=, key characteristics]</td>
+                        <td class="py-3 px-4">[Main findings with statistics]</td>
+                        <td class="py-3 px-4">[Clinical bottom line]</td>
+                        <td class="py-3 pl-4">[e.g., Cox regression]</td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 pr-4 font-medium text-slate-900 dark:text-gray-100">[Study 2]</td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 pl-4"></td>
+                    </tr>
+                    <tr>
+                        <td class="py-3 pr-4 font-medium text-slate-900 dark:text-gray-100">[Study 3]</td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 px-4"></td>
+                        <td class="py-3 pl-4"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== STATISTICAL CONCEPTS ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Statistical Concepts Teaching Section
+            </h2>
+
+            <div class="mt-6 space-y-8">
+                <!-- Stat Method 1 -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                    <h3 class="text-lg font-semibold">[Statistical Method 1 &mdash; e.g., Hazard Ratio]</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Definition:</span> <span class="text-slate-600 dark:text-gray-400">[Plain language explanation]</span></li>
+                        <li><span class="font-semibold">When used:</span> <span class="text-slate-600 dark:text-gray-400">[Clinical scenarios]</span></li>
+                        <li>
+                            <span class="font-semibold">Interpretation:</span>
+                            <ul class="mt-1 ml-4 space-y-1 text-slate-600 dark:text-gray-400">
+                                <li>Value = 1 &rarr; [meaning]</li>
+                                <li>Value &lt; 1 &rarr; [meaning]</li>
+                                <li>Value &gt; 1 &rarr; [meaning]</li>
+                            </ul>
+                        </li>
+                        <li><span class="font-semibold">Analogy:</span> <span class="text-slate-600 dark:text-gray-400">[Relatable comparison for residents]</span></li>
+                        <li><span class="font-semibold">Clinical example:</span> <span class="text-slate-600 dark:text-gray-400">[How it applies to reviewed papers]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Stat Method 2 -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                    <h3 class="text-lg font-semibold">[Statistical Method 2 &mdash; e.g., Forest Plot]</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">What it shows:</span> <span class="text-slate-600 dark:text-gray-400">[Visual representation of...]</span></li>
+                        <li>
+                            <span class="font-semibold">Components:</span>
+                            <ul class="mt-1 ml-4 space-y-1 text-slate-600 dark:text-gray-400">
+                                <li>Dot/box = [meaning]</li>
+                                <li>Horizontal line = [meaning]</li>
+                                <li>Vertical reference line = [meaning]</li>
+                            </ul>
+                        </li>
+                        <li><span class="font-semibold">How to read it:</span> <span class="text-slate-600 dark:text-gray-400">[Step-by-step interpretation]</span></li>
+                        <li><span class="font-semibold">Clinical significance:</span> <span class="text-slate-600 dark:text-gray-400">[What patterns tell us about treatment effects]</span></li>
+                        <li><span class="font-semibold">Teaching analogy:</span> <span class="text-slate-600 dark:text-gray-400">[Memory aid for residents]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Stat Method 3 -->
+                <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                    <h3 class="text-lg font-semibold">[Statistical Method 3]</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Definition:</span></li>
+                        <li><span class="font-semibold">Clinical use:</span></li>
+                        <li><span class="font-semibold">Interpretation guide:</span></li>
+                        <li><span class="font-semibold">Common pitfalls:</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== VISUAL TEACHING AIDS ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Visual Teaching Aids
+            </h2>
+
+            <div class="mt-6 space-y-8">
+                <!-- Forest Plot Guide -->
+                <div>
+                    <h3 class="text-lg font-semibold">Forest Plot Interpretation Guide</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-gray-400">Include if relevant to papers:</p>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Overall effect estimate:</span> <span class="text-slate-600 dark:text-gray-400">[HR/OR/RR with CI]</span></li>
+                        <li><span class="font-semibold">Subgroup analyses findings:</span> <span class="text-slate-600 dark:text-gray-400">[Any differential effects?]</span></li>
+                        <li><span class="font-semibold">Key message:</span> <span class="text-slate-600 dark:text-gray-400">[What the visual tells us]</span></li>
+                    </ul>
+                </div>
+
+                <!-- Key Ratios Comparison -->
+                <div>
+                    <h3 class="text-lg font-semibold">Key Ratios Comparison</h3>
+                    <div class="mt-4 overflow-x-auto">
+                        <table class="w-full border-collapse text-sm">
+                            <thead>
+                            <tr class="border-b-2 border-slate-200 dark:border-gray-700">
+                                <th class="py-3 pr-4 text-left font-semibold">Metric</th>
+                                <th class="py-3 px-4 text-left font-semibold">What it Compares</th>
+                                <th class="py-3 px-4 text-left font-semibold">When Used</th>
+                                <th class="py-3 px-4 text-left font-semibold">Interpretation</th>
+                                <th class="py-3 pl-4 text-left font-semibold">Clinical Example</th>
+                            </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100 dark:divide-gray-800 text-slate-600 dark:text-gray-400">
+                            <tr>
+                                <td class="py-3 pr-4 font-medium text-slate-900 dark:text-gray-100">[Ratio type]</td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4">= 1 means...</td>
+                                <td class="py-3 pl-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4"></td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4">&lt; 1 means...</td>
+                                <td class="py-3 pl-4"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 pr-4"></td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4"></td>
+                                <td class="py-3 px-4">&gt; 1 means...</td>
+                                <td class="py-3 pl-4"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STUDY POPULATION DETAILS ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Study Population Details
+            </h2>
+
+            <div class="mt-6 space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold">Setting &amp; Design</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Study type:</span> <span class="text-slate-600 dark:text-gray-400">[RCT, cohort, case-control, etc.]</span></li>
+                        <li><span class="font-semibold">Centers:</span> <span class="text-slate-600 dark:text-gray-400">[Single/multicenter, locations]</span></li>
+                        <li><span class="font-semibold">Timeframe:</span> <span class="text-slate-600 dark:text-gray-400">[Study period]</span></li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                        <h4 class="font-semibold">Inclusion Criteria</h4>
+                        <ul class="mt-3 space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                            <li>[Criterion 1]</li>
+                            <li>[Criterion 2]</li>
+                            <li>[Criterion 3]</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-900 rounded-xl p-5">
+                        <h4 class="font-semibold">Exclusion Criteria</h4>
+                        <ul class="mt-3 space-y-1.5 text-sm text-slate-600 dark:text-gray-400 list-disc list-inside">
+                            <li>[Criterion 1]</li>
+                            <li>[Criterion 2]</li>
+                            <li>[Criterion 3]</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold">Baseline Characteristics</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Sample size:</span> <span class="text-slate-600 dark:text-gray-400">[n= for each arm]</span></li>
+                        <li><span class="font-semibold">Demographics:</span> <span class="text-slate-600 dark:text-gray-400">[Age, sex, relevant characteristics]</span></li>
+                        <li><span class="font-semibold">Key clinical features:</span> <span class="text-slate-600 dark:text-gray-400">[Disease severity, comorbidities]</span></li>
+                        <li><span class="font-semibold">Follow-up:</span> <span class="text-slate-600 dark:text-gray-400">[Duration, completion rate]</span></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DISCUSSION POINTS ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Discussion Points for Residents
+            </h2>
+
+            <div class="mt-6 space-y-6">
+                <div>
+                    <h3 class="text-lg font-semibold">Critical Thinking Questions</h3>
+                    <ol class="mt-3 space-y-2 text-sm list-decimal list-inside text-slate-600 dark:text-gray-400">
+                        <li>How would you apply these findings to [specific clinical scenario]?</li>
+                        <li>What are the limitations that affect generalizability?</li>
+                        <li>What further studies would you design to address remaining questions?</li>
+                        <li>How do these results compare to current guidelines/practice?</li>
+                    </ol>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold">Clinical Context</h3>
+                    <ul class="mt-3 space-y-2 text-sm">
+                        <li><span class="font-semibold">Current practice standard:</span> <span class="text-slate-600 dark:text-gray-400">[What do we do now?]</span></li>
+                        <li><span class="font-semibold">How these studies change (or don't change) practice:</span></li>
+                        <li><span class="font-semibold">Patient counseling implications:</span> <span class="text-slate-600 dark:text-gray-400">[What to tell patients]</span></li>
+                        <li><span class="font-semibold">Cost/resource considerations:</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-800/50 border-l-4 border-blue-500 dark:border-blue-400 rounded-lg p-5">
+                    <h3 class="text-lg font-semibold">Take-Home Messages (Elevator Pitch)</h3>
+                    <p class="mt-2 text-sm text-slate-600 dark:text-gray-400">
+                        If a resident had 30 seconds to explain these studies to an attending, they should say:
+                    </p>
+                    <blockquote class="mt-3 border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic text-sm text-slate-700 dark:text-gray-300">
+                        "[2-3 sentence summary capturing the essence of all papers and their clinical implications]"
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== NOTES ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                Notes
+            </h2>
+            <p class="mt-4 text-sm text-slate-500 dark:text-gray-400 italic">
+                [Space for additional teaching points, resident questions, or topics that arose during discussion]
+            </p>
+        </section>
+
+        <!-- ===== REFERENCES ===== -->
+        <section>
+            <h2 class="text-xl font-semibold border-b border-gray-200 dark:border-gray-800 pb-3">
+                References
+            </h2>
+            <ol class="mt-4 space-y-2 text-sm list-decimal list-inside text-slate-600 dark:text-gray-400">
+                <li>[Full citation for Article 1]</li>
+                <li>[Full citation for Article 2]</li>
+                <li>[Full citation for Article 3]</li>
+                <li>[Additional relevant references/guidelines]</li>
+            </ol>
+        </section>
+
+    </div>
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-gray-400 border-t border-gray-800">
+    <div class="mx-auto max-w-6xl px-6 py-4">
+        <!-- Breadcrumb -->
+        <nav class="text-xs mb-4" aria-label="Breadcrumb">
+            <ol class="flex items-center gap-2">
+                <li>
+                    <a href="../" class="hover:text-white transition-colors">Anesthesiology Journal Club</a>
+                </li>
+                <li class="text-gray-600">&rsaquo;</li>
+                <li class="text-gray-500">Faculty Teaching Template</li>
+            </ol>
+        </nav>
+
+        <!-- Bottom row -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-3 border-t border-gray-800">
+            <div class="flex flex-wrap gap-4 text-xs">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <p class="text-xs text-gray-500">
+                Copyright &copy; 2026 UC Davis Health. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="../assets/js/theme-toggle.js"></script>
+<script src="../assets/js/mobile-menu.js"></script>
+</body>
+</html>

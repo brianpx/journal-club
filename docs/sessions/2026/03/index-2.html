@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA3 Journal Club — March 24, 2026 | Pre-Session Handout Template</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        slate: {
+                            925: '#0c1220',
+                            850: '#141c2e',
+                        },
+                        brand: {
+                            DEFAULT: '#6366f1',
+                            light: '#818cf8',
+                            dark: '#4f46e5',
+                            muted: '#eef2ff',
+                            50: '#f5f3ff',
+                        },
+                    },
+                    borderRadius: { '2xl': '1rem', '3xl': '1.25rem' },
+                },
+            },
+        }
+    </script>
+    <style>
+        @media print {
+            .no-print { display: none !important; }
+            html, html.dark { color-scheme: light; }
+            body, .dark body { background: #fff !important; color: #1e293b !important; }
+            .tab-panel { display: block !important; opacity: 1 !important; }
+            .tab-panel + .tab-panel { page-break-before: always; }
+            .glass-card, .dark .glass-card {
+                background: #fff !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                border: 1px solid #e2e8f0 !important;
+                box-shadow: none !important;
+            }
+            .pico-card, .dark .pico-card {
+                background: #fff !important;
+                box-shadow: none !important;
+                border-left: 3px solid #6366f1 !important;
+            }
+            h1, h2, h3, p, span, li, div {
+                color: inherit !important;
+            }
+            .glass-card h2, .glass-card h3 { color: #0f172a !important; }
+            .glass-card p, .glass-card span, .glass-card li { color: #334155 !important; }
+            .check-item { padding: 0.4rem 0 !important; }
+            .check-box { border: 2px solid #94a3b8 !important; background: #fff !important; }
+            .check-item.checked .check-box { background: #6366f1 !important; border-color: #6366f1 !important; }
+            .status-badge { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+            footer { border-color: #e2e8f0 !important; }
+            footer p { color: #94a3b8 !important; }
+            a { text-decoration: none !important; }
+            /* Page setup */
+            @page { margin: 0.75in; size: letter; }
+            .pt-20 { padding-top: 0.5rem !important; }
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background: #f8fafc; -webkit-font-smoothing: antialiased; transition: background 0.3s ease, color 0.3s ease; }
+
+        /* ===== Dark mode overrides ===== */
+        .dark body { background: #0c1220; color: #f1f5f9; }
+
+        /* Glass card */
+        .glass-card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.8);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.03);
+            border-radius: 1rem;
+            transition: box-shadow 0.25s ease, transform 0.25s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.05);
+        }
+        .dark .glass-card {
+            background: rgba(20,28,46,0.75);
+            border: 1px solid rgba(51,65,85,0.5);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 6px 24px rgba(0,0,0,0.15);
+        }
+        .dark .glass-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.2);
+        }
+
+        /* Tab bar */
+        .tab-bar {
+            display: flex;
+            gap: 0.25rem;
+            background: #f1f5f9;
+            border-radius: 0.75rem;
+            padding: 0.25rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            transition: background 0.3s ease;
+        }
+        .tab-bar::-webkit-scrollbar { display: none; }
+        .tab-btn {
+            flex-shrink: 0;
+            padding: 0.5rem 1rem;
+            border-radius: 0.6rem;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            border: none;
+            background: transparent;
+            position: relative;
+        }
+        .tab-btn:hover { color: #334155; background: rgba(255,255,255,0.6); }
+        .tab-btn.active {
+            color: #4f46e5;
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            font-weight: 600;
+        }
+        .tab-btn .tab-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 1.15rem;
+            height: 1.15rem;
+            font-size: 0.6rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            margin-left: 0.35rem;
+            padding: 0 0.3rem;
+            background: #e2e8f0;
+            color: #64748b;
+            vertical-align: middle;
+            transition: all 0.2s;
+        }
+        .tab-btn.active .tab-badge { background: #eef2ff; color: #4f46e5; }
+        .dark .tab-bar { background: #1e293b; }
+        .dark .tab-btn { color: #94a3b8; }
+        .dark .tab-btn:hover { color: #e2e8f0; background: rgba(255,255,255,0.08); }
+        .dark .tab-btn.active { color: #818cf8; background: #0f172a; box-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+        .dark .tab-btn .tab-badge { background: #334155; color: #94a3b8; }
+        .dark .tab-btn.active .tab-badge { background: rgba(99,102,241,0.2); color: #818cf8; }
+
+        /* Tab panels */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            animation: panelIn 0.35s ease forwards;
+        }
+        .tab-panel.active { display: block; }
+        @keyframes panelIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Editable fields */
+        [contenteditable] { outline: none; border-radius: 4px; transition: all 0.2s; }
+        body.editing [contenteditable] { background: rgba(99, 102, 241, 0.04); box-shadow: inset 0 -1.5px 0 rgba(99, 102, 241, 0.25); }
+        body.editing [contenteditable]:focus { background: rgba(99, 102, 241, 0.08); box-shadow: inset 0 -2px 0 rgba(99, 102, 241, 0.5); }
+
+        /* Interactive checklist */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.625rem;
+            cursor: pointer;
+            transition: background 0.15s;
+            user-select: none;
+        }
+        .check-item:hover { background: #f8fafc; }
+        .check-item.checked { background: #f0fdf4; }
+        .check-box {
+            flex-shrink: 0;
+            width: 1.25rem;
+            height: 1.25rem;
+            border: 2px solid #cbd5e1;
+            border-radius: 0.375rem;
+            margin-top: 0.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            background: #fff;
+        }
+        .check-item.checked .check-box {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+        .check-box svg { opacity: 0; transition: opacity 0.15s; }
+        .check-item.checked .check-box svg { opacity: 1; }
+        .check-item.checked .check-text { color: #64748b; }
+
+        /* Progress ring */
+        .progress-ring-circle { transition: stroke-dashoffset 0.4s ease; }
+
+        /* Metric card */
+        .metric-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.25rem;
+            text-align: center;
+        }
+
+        /* PICO grid card */
+        .pico-card {
+            border-left: 3px solid #6366f1;
+            background: #fff;
+            border-radius: 0 0.75rem 0.75rem 0;
+            padding: 1.25rem;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .pico-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+
+        /* Badge */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.2rem 0.55rem;
+            border-radius: 9999px;
+        }
+
+        /* Remove btn */
+        .remove-btn {
+            opacity: 0;
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            background: #fee2e2;
+            color: #ef4444;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s;
+            z-index: 5;
+        }
+        .remove-btn:hover { background: #ef4444; color: #fff; }
+        body.editing .removable:hover .remove-btn { opacity: 1; }
+
+        /* Add btn */
+        .add-btn {
+            border: 1.5px dashed #cbd5e1;
+            border-radius: 0.75rem;
+            padding: 0.875rem;
+            text-align: center;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #94a3b8;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .add-btn:hover { border-color: #6366f1; color: #6366f1; background: rgba(99,102,241,0.03); }
+
+        /* Tooltip */
+        [data-tip] { position: relative; }
+        [data-tip]::after {
+            content: attr(data-tip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(4px);
+            background: #1e293b;
+            color: #fff;
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.375rem;
+            font-size: 0.7rem;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.15s;
+            z-index: 50;
+        }
+        [data-tip]:hover::after { opacity: 1; transform: translateX(-50%) translateY(-4px); }
+
+        /* Dark mode: editable fields */
+        .dark.editing [contenteditable] { background: rgba(99,102,241,0.08); box-shadow: inset 0 -1.5px 0 rgba(99,102,241,0.4); }
+        .dark.editing [contenteditable]:focus { background: rgba(99,102,241,0.12); box-shadow: inset 0 -2px 0 rgba(99,102,241,0.6); }
+
+        /* Dark mode: check items */
+        .dark .check-item:hover { background: rgba(255,255,255,0.04); }
+        .dark .check-item.checked { background: rgba(16,185,129,0.08); }
+        .dark .check-box { background: #1e293b; border-color: #475569; }
+        .dark .check-item .check-text { color: #e2e8f0; }
+        .dark .check-item.checked .check-text { color: #64748b; }
+
+        /* Dark mode: pico card */
+        .dark .pico-card { background: #141c2e; border-left-color: #818cf8; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }
+        .dark .pico-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+
+        /* Dark mode: metric card */
+        .dark .metric-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-color: #334155; }
+
+        /* Dark mode: add/remove buttons */
+        .dark .add-btn { border-color: #475569; color: #64748b; }
+        .dark .add-btn:hover { border-color: #818cf8; color: #818cf8; background: rgba(99,102,241,0.05); }
+        .dark .remove-btn { background: rgba(239,68,68,0.15); color: #f87171; }
+        .dark .remove-btn:hover { background: #ef4444; color: #fff; }
+
+        /* Dark mode: tooltip */
+        .dark [data-tip]::after { background: #334155; }
+
+        /* Dark mode: footer */
+        .dark footer { border-color: #1e293b; }
+
+        /* Smooth scroll snap for mobile tabs */
+        @media (max-width: 640px) {
+            .tab-bar { scroll-snap-type: x mandatory; }
+            .tab-btn { scroll-snap-align: start; }
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 dark:text-slate-200 antialiased">
+
+<!-- ============================================================ -->
+<!-- TOP TOOLBAR -->
+<!-- ============================================================ -->
+<header class="no-print fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-slate-200/60 dark:border-slate-700/60 transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-lg bg-brand flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
+            </div>
+            <a href="../../../summary-2025.html" class="text-sm font-semibold text-slate-700 dark:text-slate-200 hover:text-brand dark:hover:text-brand-light transition-colors">Journal Club</a>
+        </div>
+        <div class="flex items-center gap-1.5">
+            <!-- Print -->
+            <button onclick="printHandout()" class="h-8 w-8 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-brand hover:text-brand dark:hover:border-brand-light dark:hover:text-brand-light transition-all flex items-center justify-center" aria-label="Print handout" data-tip="Print">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+            </button>
+            <!-- Theme toggle -->
+            <button id="themeToggle" onclick="toggleTheme()" class="h-8 w-8 rounded-lg border border-slate-200 dark:border-slate-600 text-slate-500 dark:text-slate-400 hover:border-brand hover:text-brand dark:hover:border-brand-light dark:hover:text-brand-light transition-all flex items-center justify-center" aria-label="Toggle dark mode" data-tip="Toggle theme">
+                <svg id="sunIcon" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                <svg id="moonIcon" class="w-4 h-4 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- HERO HEADER -->
+<!-- ============================================================ -->
+<div class="pt-20 pb-4 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="glass-card p-6 sm:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                <div class="flex-1 min-w-0">
+                    <p class="text-xs font-semibold uppercase tracking-widest text-brand dark:text-brand-light mb-2">CA3 Pre-Session Handout Template</p>
+                    <h1 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white leading-tight mb-1.5">
+                        <span contenteditable="false" data-field="title">TBA</span>
+                    </h1>
+                    <p class="text-base text-slate-500 dark:text-slate-300 leading-relaxed">
+                        <span contenteditable="false" data-field="subtitle">TBA</span>
+                    </p>
+                </div>
+                <!-- Progress ring -->
+                <div class="flex-shrink-0 flex flex-col items-center" data-tip="Checklist progress">
+                    <svg class="w-16 h-16 -rotate-90" viewBox="0 0 64 64">
+                        <circle cx="32" cy="32" r="28" fill="none" stroke="#f1f5f9" stroke-width="4"/>
+                        <circle id="progressCircle" class="progress-ring-circle" cx="32" cy="32" r="28" fill="none" stroke="#6366f1" stroke-width="4" stroke-linecap="round" stroke-dasharray="175.93" stroke-dashoffset="175.93"/>
+                    </svg>
+                    <span id="progressLabel" class="text-xs font-semibold text-slate-400 mt-1">0 / 15</span>
+                </div>
+            </div>
+
+            <!-- Meta pills -->
+            <div class="mt-5 flex flex-wrap gap-2.5 text-xs text-slate-500 dark:text-slate-300">
+        <span class="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span contenteditable="false" data-field="date">March 24, 2026</span>
+        </span>
+                <span class="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          <span contenteditable="false" data-field="residents">Drs. Zamihovsky &amp; Salman</span>
+        </span>
+                <span class="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
+          <span contenteditable="false" data-field="dept">Anesthesiology</span>
+        </span>
+                <span class="inline-flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800 rounded-full px-3 py-1.5">
+          <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <span contenteditable="false" data-field="faculty">Drs. Pitts &amp; Cantemire</span>
+        </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB BAR -->
+<!-- ============================================================ -->
+<div class="sticky top-14 z-40 bg-slate-50/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-700/50 no-print transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-2">
+        <div class="tab-bar" id="tabBar">
+            <button class="tab-btn active" data-tab="overview">Overview</button>
+            <button class="tab-btn" data-tab="articles">Articles <span class="tab-badge" id="articleCount">2</span></button>
+            <button class="tab-btn" data-tab="pico">PICO</button>
+            <button class="tab-btn" data-tab="prework">Pre-Work</button>
+            <button class="tab-btn" data-tab="checklist">Checklist <span class="tab-badge" id="checkBadge">0/15</span></button>
+            <button class="tab-btn" data-tab="reminders">Key Reminders</button>
+            <button class="tab-btn" data-tab="milestones">Milestones</button>
+            <button class="tab-btn" data-tab="references">References</button>
+        </div>
+    </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB PANELS -->
+<!-- ============================================================ -->
+<div class="max-w-4xl mx-auto px-4 sm:px-6 py-6 pb-24">
+
+    <!-- ====== OVERVIEW ====== -->
+    <div class="tab-panel active" id="panel-overview">
+        <div class="glass-card p-6 sm:p-8 mb-5">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-3">Purpose</h2>
+            <p contenteditable="false" data-field="purpose" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">
+                Describe the session's purpose — what clinical question or evidence base will be examined, and why it matters for your practice. This session emphasizes active, resident-led discussion rather than lecture, connecting critical appraisal skills directly to clinical decision-making and ACGME milestones.
+            </p>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 mb-5">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Objectives</h2>
+            <div class="space-y-3" id="obj-list">
+                <div class="flex items-start gap-3 removable relative">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-muted text-brand text-xs font-bold flex items-center justify-center mt-0.5">1</span>
+                    <p contenteditable="false" data-field="obj1" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">Practice critical appraisal skills using a structured checklist (validity, results, applicability).</p>
+                    <button class="remove-btn no-print" onclick="this.parentElement.remove();renumberList('obj-list')" title="Remove">&times;</button>
+                </div>
+                <div class="flex items-start gap-3 removable relative">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-muted text-brand text-xs font-bold flex items-center justify-center mt-0.5">2</span>
+                    <p contenteditable="false" data-field="obj2" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">Interpret effect sizes and confidence intervals, moving beyond p-values.</p>
+                    <button class="remove-btn no-print" onclick="this.parentElement.remove();renumberList('obj-list')" title="Remove">&times;</button>
+                </div>
+                <div class="flex items-start gap-3 removable relative">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-muted text-brand text-xs font-bold flex items-center justify-center mt-0.5">3</span>
+                    <p contenteditable="false" data-field="obj3" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">Apply findings to clinical vignettes relevant to daily practice.</p>
+                    <button class="remove-btn no-print" onclick="this.parentElement.remove();renumberList('obj-list')" title="Remove">&times;</button>
+                </div>
+                <div class="flex items-start gap-3 removable relative">
+                    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-muted text-brand text-xs font-bold flex items-center justify-center mt-0.5">4</span>
+                    <p contenteditable="false" data-field="obj4" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">Recognize limits of generalizing trial data across different clinical contexts and patient populations.</p>
+                    <button class="remove-btn no-print" onclick="this.parentElement.remove();renumberList('obj-list')" title="Remove">&times;</button>
+                </div>
+            </div>
+            <div class="add-btn no-print mt-3" onclick="addObjective()" style="display:none" id="addObjBtn">+ Add Objective</div>
+        </div>
+
+        <div class="glass-card p-5 sm:p-6 bg-brand-50/50 dark:bg-brand/5">
+            <div class="flex items-start gap-3">
+                <div class="flex-shrink-0 w-8 h-8 rounded-lg bg-brand-muted flex items-center justify-center mt-0.5">
+                    <svg class="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                </div>
+                <div>
+                    <p class="text-sm font-semibold text-slate-700 dark:text-slate-200 mb-0.5">Milestone Alignment</p>
+                    <p contenteditable="false" data-field="milestone-note" class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">Note which ACGME milestones this session maps to (e.g., PBLI 2–4, MK, PC). Customize to your specialty.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== ARTICLES ====== -->
+    <div class="tab-panel" id="panel-articles">
+        <div class="space-y-4" id="article-list">
+            <div class="glass-card p-5 sm:p-6 removable relative">
+                <button class="remove-btn no-print" onclick="removeArticle(this)" title="Remove">&times;</button>
+                <div class="flex items-start gap-4">
+                    <span class="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-brand to-brand-dark text-white font-bold text-sm flex items-center justify-center article-num">1</span>
+                    <div class="flex-1 min-w-0">
+                        <p contenteditable="false" data-field="art1-title" class="text-[0.95rem] font-semibold text-slate-900 dark:text-white leading-snug mb-1">TBA</p>
+                        <p contenteditable="false" data-field="art1-journal" class="text-sm text-slate-400 mb-3"><em>TBA</em></p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="status-badge bg-brand-muted text-brand">TBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-5 sm:p-6 removable relative">
+                <button class="remove-btn no-print" onclick="removeArticle(this)" title="Remove">&times;</button>
+                <div class="flex items-start gap-4">
+                    <span class="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-brand to-brand-dark text-white font-bold text-sm flex items-center justify-center article-num">2</span>
+                    <div class="flex-1 min-w-0">
+                        <p contenteditable="false" data-field="art2-title" class="text-[0.95rem] font-semibold text-slate-900 dark:text-white leading-snug mb-1">TBA</p>
+                        <p contenteditable="false" data-field="art2-journal" class="text-sm text-slate-400 mb-3"><em>TBA</em></p>
+                        <div class="flex flex-wrap gap-1.5">
+                            <span class="status-badge bg-brand-muted text-brand">TBA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="add-btn no-print mt-4" onclick="addArticle()" style="display:none" id="addArtBtn">+ Add Article</div>
+    </div>
+
+    <!-- ====== PICO ====== -->
+    <div class="tab-panel" id="panel-pico">
+        <p class="text-sm text-slate-500 dark:text-slate-300 mb-5">Summarize each article using the PICO(T) framework.</p>
+        <div class="space-y-4" id="pico-list">
+            <div class="pico-card">
+                <p contenteditable="false" data-field="pico1-label" class="text-xs font-bold uppercase tracking-widest text-brand mb-3">Article 1</p>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Population</p><p contenteditable="false" data-field="pico1-p" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Intervention</p><p contenteditable="false" data-field="pico1-i" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Comparison</p><p contenteditable="false" data-field="pico1-c" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Outcomes</p><p contenteditable="false" data-field="pico1-o" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Time</p><p contenteditable="false" data-field="pico1-t" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                </div>
+            </div>
+            <div class="pico-card">
+                <p contenteditable="false" data-field="pico2-label" class="text-xs font-bold uppercase tracking-widest text-brand mb-3">Article 2</p>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-sm">
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Population</p><p contenteditable="false" data-field="pico2-p" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Intervention</p><p contenteditable="false" data-field="pico2-i" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Comparison</p><p contenteditable="false" data-field="pico2-c" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Outcomes</p><p contenteditable="false" data-field="pico2-o" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                    <div><p class="text-[0.65rem] font-semibold uppercase tracking-wider text-slate-400 mb-1">Time</p><p contenteditable="false" data-field="pico2-t" class="text-slate-700 dark:text-slate-200 leading-snug">TBA</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== PRE-WORK ====== -->
+    <div class="tab-panel" id="panel-prework">
+        <div class="glass-card p-6 sm:p-8 mb-5">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Before the Session</h2>
+            <div class="space-y-3 text-sm text-slate-600 dark:text-slate-200">
+                <div class="flex gap-3 items-start"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-500 text-xs font-bold flex items-center justify-center">1</span><p>Read all assigned articles.</p></div>
+                <div class="flex gap-3 items-start"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-500 text-xs font-bold flex items-center justify-center">2</span><p>Complete the <strong class="text-slate-700 dark:text-slate-200">Critical Appraisal Checklist</strong> (1–2 bullet points per question).</p></div>
+                <div class="flex gap-3 items-start"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-500 text-xs font-bold flex items-center justify-center">3</span><p>Prepare a <strong class="text-slate-700 dark:text-slate-200">BLUF statement</strong> — a one-sentence summary for your assigned article.</p></div>
+                <div class="flex gap-3 items-start"><span class="flex-shrink-0 w-6 h-6 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-500 dark:text-slate-500 text-xs font-bold flex items-center justify-center">4</span><p>Bring notes to guide group discussion.</p></div>
+            </div>
+        </div>
+
+        <div class="glass-card p-6 sm:p-8 mb-5">
+            <h2 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Deliverables</h2>
+            <div class="space-y-2 text-sm text-slate-600 dark:text-slate-200">
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>Completed checklist for your primary article.</div>
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>BLUF statement (1 sentence per article).</div>
+                <div class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>Be ready to discuss findings and how you will apply them to daily practice.</div>
+            </div>
+        </div>
+
+        <div class="glass-card p-5 sm:p-6 border-l-4 border-l-brand">
+            <p class="text-sm font-bold text-slate-700 dark:text-white mb-1">What is a BLUF?</p>
+            <p class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed"><strong>Bottom Line Up Front</strong> — a one-sentence take-home message: <em>"What should I do differently (or the same) based on this evidence?"</em></p>
+        </div>
+    </div>
+
+    <!-- ====== CHECKLIST ====== -->
+    <div class="tab-panel" id="panel-checklist">
+        <!-- Section 1 -->
+        <div class="glass-card p-5 sm:p-6 mb-4">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">1. Are the Results Valid?</h3>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Internal Validity</p>
+                </div>
+                <span class="text-xs font-semibold text-slate-400" id="sec1Count">0/6</span>
+            </div>
+            <div class="space-y-1" data-section="1">
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Was randomization adequate?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Was allocation concealed?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Who was blinded (patients, clinicians, outcome assessors)?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Were baseline characteristics similar between groups?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Was intention-to-treat (ITT) analysis performed?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Were crossovers or missing data substantial enough to affect results?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="glass-card p-5 sm:p-6 mb-4">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">2. What Were the Results?</h3>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Magnitude &amp; Precision</p>
+                </div>
+                <span class="text-xs font-semibold text-slate-400" id="sec2Count">0/5</span>
+            </div>
+            <div class="space-y-1" data-section="2">
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Effect sizes: HR, OR, RR, ARR, NNT/NNH?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Confidence intervals — do they cross clinically meaningful thresholds?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Were results clinically meaningful or only statistically significant?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Were harms or adverse effects reported?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Any time-course patterns (early vs late divergence)?</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="glass-card p-5 sm:p-6">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-base font-bold text-slate-900 dark:text-white">3. Will These Results Help My Patients?</h3>
+                    <p class="text-xs text-slate-400 font-medium uppercase tracking-wider mt-0.5">Applicability</p>
+                </div>
+                <span class="text-xs font-semibold text-slate-400" id="sec3Count">0/4</span>
+            </div>
+            <div class="space-y-1" data-section="3">
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Does the study population match my patients (age, comorbidities, setting)?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Are the outcomes patient-centered (survival, function, pain, satisfaction)?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">Are there practical barriers in my setting (staffing, resources, protocols)?</span>
+                </div>
+                <div class="check-item" onclick="toggleCheck(this)">
+                    <span class="check-box"><svg class="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg></span>
+                    <span class="check-text text-sm text-slate-700 dark:text-slate-200">How might local pathways or practice patterns differ from the study?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== KEY REMINDERS ====== -->
+    <div class="tab-panel" id="panel-reminders">
+        <!-- Caveat callout -->
+        <div class="glass-card p-5 sm:p-6 mb-5 border-l-4 border-l-amber-400 bg-amber-50/30 dark:bg-amber-900/10">
+            <div class="flex items-start gap-3">
+                <span class="text-lg mt-0.5">⚠️</span>
+                <div>
+                    <p contenteditable="false" data-field="caveat-title" class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-1">Important Caveat or Context</p>
+                    <p contenteditable="false" data-field="caveat-body" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">Note any critical distinctions, populations, or generalizability limits that participants must keep in mind.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="space-y-3" id="reminder-list">
+            <div class="glass-card p-4 sm:p-5 removable relative flex items-start gap-3">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex-shrink-0 mt-0.5">
+                    <select class="status-badge bg-emerald-100 text-emerald-700 border-none cursor-pointer appearance-none pr-1 text-center" onchange="updateBadgeStyle(this)">
+                        <option value="emerald" selected>NO DIFF</option><option value="amber">CAUTION</option><option value="blue">STANDARD</option><option value="rose">NOT BEST</option><option value="slate">NOTE</option>
+                    </select>
+                </div>
+                <p contenteditable="false" data-field="rem1" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed flex-1">Describe a key finding, its clinical significance, and what it means for practice.</p>
+            </div>
+            <div class="glass-card p-4 sm:p-5 removable relative flex items-start gap-3">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex-shrink-0 mt-0.5">
+                    <select class="status-badge bg-amber-100 text-amber-700 border-none cursor-pointer appearance-none pr-1 text-center" onchange="updateBadgeStyle(this)">
+                        <option value="emerald">NO DIFF</option><option value="amber" selected>CAUTION</option><option value="blue">STANDARD</option><option value="rose">NOT BEST</option><option value="slate">NOTE</option>
+                    </select>
+                </div>
+                <p contenteditable="false" data-field="rem2" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed flex-1">Describe a second key finding or nuance worth highlighting.</p>
+            </div>
+            <div class="glass-card p-4 sm:p-5 removable relative flex items-start gap-3">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex-shrink-0 mt-0.5">
+                    <select class="status-badge bg-blue-100 text-blue-700 border-none cursor-pointer appearance-none pr-1 text-center" onchange="updateBadgeStyle(this)">
+                        <option value="emerald">NO DIFF</option><option value="amber">CAUTION</option><option value="blue" selected>STANDARD</option><option value="rose">NOT BEST</option><option value="slate">NOTE</option>
+                    </select>
+                </div>
+                <p contenteditable="false" data-field="rem3" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed flex-1">Current best-practice recommendation or standard of care for comparison.</p>
+            </div>
+        </div>
+        <div class="add-btn no-print mt-4" onclick="addReminder()" style="display:none" id="addRemBtn">+ Add Reminder</div>
+    </div>
+
+    <!-- ====== MILESTONES ====== -->
+    <div class="tab-panel" id="panel-milestones">
+        <p class="text-sm text-slate-500 dark:text-slate-300 mb-5">Adapt to your specialty's ACGME milestones.</p>
+        <div class="space-y-3" id="milestone-list">
+            <div class="glass-card p-5 removable relative">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex items-start gap-4">
+                    <span class="flex-shrink-0 px-2.5 py-1 rounded-lg bg-brand-muted text-brand text-xs font-bold" contenteditable="false" data-field="ms1-code">PBLI 2</span>
+                    <div>
+                        <p contenteditable="false" data-field="ms1-desc" class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Incorporates evidence into practice</p>
+                        <p contenteditable="false" data-field="ms1-link" class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">Residents critique validity, interpret results, and apply findings to cases.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-5 removable relative">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex items-start gap-4">
+                    <span class="flex-shrink-0 px-2.5 py-1 rounded-lg bg-brand-muted text-brand text-xs font-bold" contenteditable="false" data-field="ms2-code">PBLI 3</span>
+                    <div>
+                        <p contenteditable="false" data-field="ms2-desc" class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Analyzes practice to improve</p>
+                        <p contenteditable="false" data-field="ms2-link" class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">Residents question how trial findings fit their own patient population.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="glass-card p-5 removable relative">
+                <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+                <div class="flex items-start gap-4">
+                    <span class="flex-shrink-0 px-2.5 py-1 rounded-lg bg-brand-muted text-brand text-xs font-bold" contenteditable="false" data-field="ms3-code">PBLI 4</span>
+                    <div>
+                        <p contenteditable="false" data-field="ms3-desc" class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Scholarship &amp; teaching</p>
+                        <p contenteditable="false" data-field="ms3-link" class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">Residents practice BLUFs, facilitate discussion, and teach critical appraisal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="add-btn no-print mt-4" onclick="addMilestone()" style="display:none" id="addMsBtn">+ Add Milestone</div>
+    </div>
+
+    <!-- ====== REFERENCES ====== -->
+    <div class="tab-panel" id="panel-references">
+        <div class="glass-card p-6 sm:p-8">
+            <p class="text-sm text-slate-500 dark:text-slate-300 mb-5">Full citations using your program's preferred format (AMA, Vancouver, APA).</p>
+            <ol class="list-decimal list-outside pl-5 space-y-4 text-sm text-slate-600 dark:text-slate-200 leading-relaxed" id="ref-list">
+                <li contenteditable="false" data-field="ref1">TBA</li>
+                <li contenteditable="false" data-field="ref2">TBA</li>
+            </ol>
+            <div class="add-btn no-print mt-4" onclick="addRef()" style="display:none" id="addRefBtn">+ Add Reference</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer class="border-t border-slate-200 dark:border-slate-800 py-6 text-center">
+    <p contenteditable="false" data-field="footer" class="text-xs text-slate-400 dark:text-slate-500">Brian Pitts, MD, MS, MEHP</p>
+    <p class="text-xs text-slate-300 dark:text-slate-600 mt-1">Journal Club Pre-Session Handout Template</p>
+</footer>
+
+<!-- ============================================================ -->
+<!-- SCRIPTS -->
+<!-- ============================================================ -->
+<script>
+    // ===== Print handout =====
+    function printHandout() {
+        // Show all tab panels for printing, then restore after
+        const panels = document.querySelectorAll('.tab-panel');
+        const activePanel = document.querySelector('.tab-panel.active');
+        panels.forEach(p => p.classList.add('active'));
+        window.print();
+        // Restore after print dialog closes
+        window.addEventListener('afterprint', function restore() {
+            panels.forEach(p => p.classList.remove('active'));
+            if (activePanel) activePanel.classList.add('active');
+            window.removeEventListener('afterprint', restore);
+        }, { once: true });
+    }
+
+    // ===== Theme toggle =====
+    function toggleTheme() {
+        const html = document.documentElement;
+        const isDark = html.classList.contains('dark');
+        html.classList.toggle('dark', !isDark);
+        localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        updateThemeIcons();
+    }
+    function updateThemeIcons() {
+        const isDark = document.documentElement.classList.contains('dark');
+        document.getElementById('sunIcon').classList.toggle('hidden', !isDark);
+        document.getElementById('moonIcon').classList.toggle('hidden', isDark);
+    }
+    // Apply saved theme or default to dark
+    (function() {
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+        updateThemeIcons();
+    })();
+
+    // ===== Tab switching =====
+    const tabBar = document.getElementById('tabBar');
+    tabBar.addEventListener('click', e => {
+        const btn = e.target.closest('.tab-btn');
+        if (!btn) return;
+        tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        const panel = document.getElementById('panel-' + btn.dataset.tab);
+        if (panel) panel.classList.add('active');
+    });
+
+    // ===== Keyboard nav for tabs =====
+    tabBar.addEventListener('keydown', e => {
+        const btns = [...tabBar.querySelectorAll('.tab-btn')];
+        const idx = btns.indexOf(document.activeElement);
+        if (e.key === 'ArrowRight' && idx < btns.length - 1) { btns[idx+1].focus(); btns[idx+1].click(); }
+        if (e.key === 'ArrowLeft' && idx > 0) { btns[idx-1].focus(); btns[idx-1].click(); }
+    });
+
+    // ===== Checklist =====
+    const TOTAL = 15;
+    const circumference = 2 * Math.PI * 28; // ~175.93
+
+    function toggleCheck(el) {
+        el.classList.toggle('checked');
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const checked = document.querySelectorAll('.check-item.checked').length;
+        const pct = checked / TOTAL;
+        const offset = circumference * (1 - pct);
+        document.getElementById('progressCircle').style.strokeDashoffset = offset;
+        document.getElementById('progressLabel').textContent = `${checked} / ${TOTAL}`;
+        document.getElementById('checkBadge').textContent = `${checked}/${TOTAL}`;
+
+        // Section counts
+        ['1','2','3'].forEach(s => {
+            const sec = document.querySelector(`[data-section="${s}"]`);
+            if (!sec) return;
+            const total = sec.querySelectorAll('.check-item').length;
+            const done = sec.querySelectorAll('.check-item.checked').length;
+            const label = document.getElementById(`sec${s}Count`);
+            if (label) label.textContent = `${done}/${total}`;
+        });
+    }
+
+    // ===== Add helpers =====
+    function addArticle() {
+        const list = document.getElementById('article-list');
+        const n = list.children.length + 1;
+        const card = document.createElement('div');
+        card.className = 'glass-card p-5 sm:p-6 removable relative';
+        card.innerHTML = `
+    <button class="remove-btn no-print" onclick="removeArticle(this)" title="Remove">&times;</button>
+    <div class="flex items-start gap-4">
+      <span class="flex-shrink-0 w-10 h-10 rounded-xl bg-gradient-to-br from-brand to-brand-dark text-white font-bold text-sm flex items-center justify-center article-num">${n}</span>
+      <div class="flex-1 min-w-0">
+        <p contenteditable="true" class="text-[0.95rem] font-semibold text-slate-900 dark:text-white leading-snug mb-1">Author(s) et al. — Study Title</p>
+        <p contenteditable="true" class="text-sm text-slate-400 mb-3"><em>Journal</em> Year</p>
+        <div class="flex flex-wrap gap-1.5"><span class="status-badge bg-brand-muted text-brand">Outcome</span></div>
+      </div>
+    </div>`;
+        list.appendChild(card);
+        updateArticleCount();
+    }
+    function removeArticle(btn) {
+        btn.closest('.glass-card').remove();
+        renumberArticles();
+        updateArticleCount();
+    }
+    function renumberArticles() {
+        document.querySelectorAll('#article-list .article-num').forEach((el, i) => el.textContent = i + 1);
+    }
+    function updateArticleCount() {
+        document.getElementById('articleCount').textContent = document.querySelectorAll('#article-list > .glass-card').length;
+    }
+
+    function addObjective() {
+        const list = document.getElementById('obj-list');
+        const n = list.children.length + 1;
+        const item = document.createElement('div');
+        item.className = 'flex items-start gap-3 removable relative';
+        item.innerHTML = `
+    <span class="flex-shrink-0 w-6 h-6 rounded-full bg-brand-muted text-brand text-xs font-bold flex items-center justify-center mt-0.5">${n}</span>
+    <p contenteditable="true" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed">New objective.</p>
+    <button class="remove-btn no-print" onclick="this.parentElement.remove();renumberList('obj-list')" title="Remove">&times;</button>`;
+        list.appendChild(item);
+    }
+
+    function renumberList(id) {
+        document.querySelectorAll(`#${id} .rounded-full`).forEach((el, i) => el.textContent = i + 1);
+    }
+
+    function addReminder() {
+        const list = document.getElementById('reminder-list');
+        const item = document.createElement('div');
+        item.className = 'glass-card p-4 sm:p-5 removable relative flex items-start gap-3';
+        item.innerHTML = `
+    <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+    <div class="flex-shrink-0 mt-0.5">
+      <select class="status-badge bg-slate-100 text-slate-600 border-none cursor-pointer appearance-none pr-1 text-center" onchange="updateBadgeStyle(this)">
+        <option value="emerald">NO DIFF</option><option value="amber">CAUTION</option><option value="blue">STANDARD</option><option value="rose">NOT BEST</option><option value="slate" selected>NOTE</option>
+      </select>
+    </div>
+    <p contenteditable="true" class="text-sm text-slate-600 dark:text-slate-200 leading-relaxed flex-1">Describe a finding or recommendation.</p>`;
+        list.appendChild(item);
+    }
+
+    function addMilestone() {
+        const list = document.getElementById('milestone-list');
+        const item = document.createElement('div');
+        item.className = 'glass-card p-5 removable relative';
+        item.innerHTML = `
+    <button class="remove-btn no-print" onclick="this.parentElement.remove()" title="Remove">&times;</button>
+    <div class="flex items-start gap-4">
+      <span class="flex-shrink-0 px-2.5 py-1 rounded-lg bg-brand-muted text-brand text-xs font-bold" contenteditable="true">CODE</span>
+      <div>
+        <p contenteditable="true" class="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-1">Milestone description</p>
+        <p contenteditable="true" class="text-sm text-slate-500 dark:text-slate-300 leading-relaxed">How this session links to the milestone.</p>
+      </div>
+    </div>`;
+        list.appendChild(item);
+    }
+
+    function addRef() {
+        const list = document.getElementById('ref-list');
+        const li = document.createElement('li');
+        li.setAttribute('contenteditable', 'true');
+        li.textContent = 'Author(s). Title. Journal. Year;Volume(Issue):Pages. doi:XX';
+        list.appendChild(li);
+    }
+
+    // Badge color helper
+    const badgeMap = {
+        emerald: { bg: 'bg-emerald-100', text: 'text-emerald-700' },
+        amber:   { bg: 'bg-amber-100',   text: 'text-amber-700' },
+        blue:    { bg: 'bg-blue-100',    text: 'text-blue-700' },
+        rose:    { bg: 'bg-rose-100',    text: 'text-rose-700' },
+        slate:   { bg: 'bg-slate-100',   text: 'text-slate-600' },
+    };
+    function updateBadgeStyle(sel) {
+        const v = sel.value;
+        sel.className = `status-badge ${badgeMap[v].bg} ${badgeMap[v].text} border-none cursor-pointer appearance-none pr-1 text-center`;
+    }
+
+    // Init
+    updateProgress();
+</script>
+</body>
+</html>

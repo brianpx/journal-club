@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Schedule – Anesthesiology Journal Club</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+
+    <!-- Prevent flash of wrong theme -->
+    <script>
+        try{if(localStorage.theme==='dark'||(!localStorage.theme&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}
+    </script>
+
+    <!-- Shared base styles -->
+    <link rel="stylesheet" href="../assets/css/base.css" />
+
+    <style>
+        /* Calendar grid cell min-height */
+        .cal-day { min-height: 110px; }
+        @media (max-width: 640px) { .cal-day { min-height: 72px; } }
+    </style>
+</head>
+
+<body class="bg-white dark:bg-gray-950 text-slate-900 dark:text-gray-100 antialiased">
+<!-- Skip link -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 rounded bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow">
+    Skip to main content
+</a>
+
+<!-- ================= HEADER / NAV ================= -->
+<header class="sticky top-0 z-50 bg-black text-white">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+         aria-label="Primary navigation">
+        <div class="flex h-14 items-center justify-between">
+            <!-- Brand -->
+            <a href="../" class="flex items-center gap-2 text-white no-underline">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <span class="text-sm font-semibold tracking-tight">
+                    Anesthesiology Journal Club
+                </span>
+            </a>
+
+            <!-- Desktop nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <ul class="flex items-center gap-6 text-sm">
+                    <li><a href="../#overview" class="text-gray-300 hover:text-white transition-colors">Overview</a></li>
+                    <li><a href="../#featured" class="text-gray-300 hover:text-white transition-colors">Featured Sessions</a></li>
+                    <li><a href="./" class="text-white font-semibold transition-colors">Schedule</a></li>
+                    <li><a href="../#archive" class="text-gray-300 hover:text-white transition-colors">Archive</a></li>
+                    <li><a href="../resources/teaching_template.html" class="text-gray-300 hover:text-white transition-colors">Resources</a></li>
+                </ul>
+
+                <!-- Theme toggle (desktop) -->
+                <button data-theme-toggle
+                        class="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Toggle dark mode">
+                    <svg class="h-4 w-4 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                    <svg class="h-4 w-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile: theme toggle + menu button -->
+            <div class="flex md:hidden items-center gap-1">
+                <button data-theme-toggle
+                        class="inline-flex h-10 w-10 items-center justify-center rounded text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Toggle dark mode">
+                    <svg class="h-5 w-5 block dark:hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                    </svg>
+                    <svg class="h-5 w-5 hidden dark:block" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                    </svg>
+                </button>
+
+                <button id="menuButton"
+                        class="inline-flex h-10 w-10 items-center justify-center rounded focus:outline-none focus:ring-2 focus:ring-white"
+                        aria-label="Open menu"
+                        aria-expanded="false"
+                        aria-controls="mobile-menu">
+                    <svg width="24" height="24" fill="none" aria-hidden="true">
+                        <path d="M4 6h16M4 12h16M4 18h16"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Mobile menu dialog -->
+<div id="mobile-menu"
+     class="fixed inset-0 z-[100] hidden"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="mobile-menu-title">
+    <div class="absolute inset-0 bg-black/60" id="menuBackdrop" aria-hidden="true"></div>
+    <div class="absolute right-0 top-0 h-full w-80 bg-white dark:bg-gray-900 text-slate-900 dark:text-gray-100 shadow-xl">
+        <div class="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 px-4 py-4">
+            <h2 id="mobile-menu-title" class="text-sm font-semibold">
+                Navigation
+            </h2>
+            <button id="closeMenu"
+                    class="h-10 w-10 rounded focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white"
+                    aria-label="Close menu">
+                <svg width="24" height="24" fill="none" aria-hidden="true">
+                    <path d="M6 6l12 12M18 6L6 18"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="px-4 py-6 space-y-4 text-sm">
+            <li><a href="../#overview" class="block hover:text-blue-500 dark:hover:text-blue-400">Overview</a></li>
+            <li><a href="../#featured" class="block hover:text-blue-500 dark:hover:text-blue-400">Featured Sessions</a></li>
+            <li><a href="./" class="block font-semibold text-blue-500 dark:text-blue-400">Schedule</a></li>
+            <li><a href="../#archive" class="block hover:text-blue-500 dark:hover:text-blue-400">Archive</a></li>
+            <li><a href="../resources/teaching_template.html" class="block hover:text-blue-500 dark:hover:text-blue-400">Resources</a></li>
+        </ul>
+    </div>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main id="main-content">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+
+        <!-- Page header -->
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+            <div>
+                <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Schedule</h1>
+                <p class="mt-1 text-slate-500 dark:text-gray-400">Upcoming journal club sessions</p>
+            </div>
+
+            <!-- View toggle -->
+            <div class="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1 self-start sm:self-auto">
+                <button class="view-btn flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-700 text-slate-900 dark:text-gray-100 shadow-sm" data-view="list">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="8" y1="6" x2="21" y2="6"></line>
+                        <line x1="8" y1="12" x2="21" y2="12"></line>
+                        <line x1="8" y1="18" x2="21" y2="18"></line>
+                        <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                        <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                        <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                    </svg>
+                    List
+                </button>
+                <button class="view-btn flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all text-slate-500 dark:text-gray-400" data-view="calendar">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="16" y1="2" x2="16" y2="6"></line>
+                        <line x1="8" y1="2" x2="8" y2="6"></line>
+                        <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    Calendar
+                </button>
+            </div>
+        </div>
+
+        <!-- List View -->
+        <div id="listView"></div>
+
+        <!-- Calendar View -->
+        <div id="calendarView" class="hidden">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-3">
+                    <button id="prevMonth"
+                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Previous month">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+                    <h2 id="calendarTitle" class="text-xl font-semibold min-w-[180px] text-center">February 2026</h2>
+                    <button id="nextMonth"
+                            class="inline-flex items-center justify-center w-9 h-9 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                            aria-label="Next month">
+                        <svg class="w-5 h-5 text-slate-500 dark:text-gray-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                <button id="todayBtn"
+                        class="px-4 py-1.5 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-sm font-medium text-slate-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    Today
+                </button>
+            </div>
+
+            <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+                <div class="grid grid-cols-7 bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Sun</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Mon</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Tue</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Wed</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Thu</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Fri</div>
+                    <div class="py-3 text-center text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-gray-400">Sat</div>
+                </div>
+                <div id="calendarDays" class="grid grid-cols-7"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Event Modal -->
+<div id="modalOverlay" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/40 p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+        <div class="flex items-start justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+            <div>
+                <h3 id="modalTitle" class="text-xl font-semibold text-slate-900 dark:text-gray-100">Session Title</h3>
+                <p id="modalDate" class="mt-1 text-sm font-medium text-blue-500 dark:text-blue-400">Date & Time</p>
+            </div>
+            <button id="modalClose"
+                    class="ml-4 flex-none rounded-lg p-1.5 text-slate-400 hover:text-slate-900 dark:text-gray-500 dark:hover:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                    aria-label="Close modal">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="p-6 space-y-5">
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-gray-500 mb-1">Article</p>
+                <p id="modalArticle" class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">Article citation</p>
+            </div>
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-gray-500 mb-1">Presenter</p>
+                <p id="modalPresenter" class="text-sm text-slate-700 dark:text-gray-300">Presenter name</p>
+            </div>
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-gray-500 mb-1">Location</p>
+                <p id="modalLocation" class="text-sm text-slate-700 dark:text-gray-300">Location</p>
+            </div>
+            <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400 dark:text-gray-500 mb-1">Description</p>
+                <p id="modalDescription" class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">Session description</p>
+            </div>
+        </div>
+        <div class="flex justify-end gap-3 px-6 py-4 border-t border-gray-200 dark:border-gray-700">
+            <button id="modalCloseBtn"
+                    class="px-4 py-2 rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-700 text-slate-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
+                Close
+            </button>
+            <button class="px-4 py-2 rounded-lg text-sm font-medium bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-gray-200 transition-colors">
+                Add to Calendar
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-slate-300">
+    <div class="mx-auto max-w-7xl px-6 py-10 text-xs flex flex-col md:flex-row justify-between gap-6">
+        <div>
+            <p class="font-semibold text-white">UC Davis Health &middot; Department of Anesthesiology &amp; Pain Medicine</p>
+            <p class="mt-2">Privacy &middot; Terms &middot; Contact</p>
+        </div>
+        <p class="self-end">
+            &copy; 2026 UC Davis Health. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="../assets/js/theme-toggle.js"></script>
+<script src="../assets/js/mobile-menu.js"></script>
+<script>
+(function () {
+    // ─── Constants ───
+    var MONTHS = ['January','February','March','April','May','June',
+                  'July','August','September','October','November','December'];
+    var WEEKDAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+    var TYPE_LABELS = { rct: 'RCT', review: 'Review', meta: 'Meta-Analysis' };
+
+    // Tag color classes per type
+    var TAG_CLASSES = {
+        rct:    'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
+        review: 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300',
+        meta:   'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300'
+    };
+
+    // Calendar event accent classes per type
+    var EVENT_CLASSES = {
+        rct:    'bg-emerald-100 dark:bg-emerald-900/30 border-emerald-500 text-emerald-800 dark:text-emerald-300',
+        review: 'bg-amber-100 dark:bg-amber-900/30 border-amber-500 text-amber-800 dark:text-amber-300',
+        meta:   'bg-purple-100 dark:bg-purple-900/30 border-purple-500 text-purple-800 dark:text-purple-300'
+    };
+
+    // ─── State ───
+    var sessions = [];
+    var currentView = 'list';
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var displayedMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+
+    // ─── DOM refs ───
+    var listView = document.getElementById('listView');
+    var calendarView = document.getElementById('calendarView');
+    var calendarDays = document.getElementById('calendarDays');
+    var calendarTitle = document.getElementById('calendarTitle');
+    var modalOverlay = document.getElementById('modalOverlay');
+
+    // ─── Helpers ───
+    function parseDate(str) {
+        var parts = str.split('-');
+        return new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    }
+
+    function formatDate(d) {
+        return WEEKDAYS[d.getDay()] + ', ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+    }
+
+    function sameDay(a, b) {
+        return a.getDate() === b.getDate() && a.getMonth() === b.getMonth() && a.getFullYear() === b.getFullYear();
+    }
+
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    // ─── View toggle ───
+    document.querySelectorAll('.view-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            currentView = btn.dataset.view;
+
+            document.querySelectorAll('.view-btn').forEach(function (b) {
+                if (b.dataset.view === currentView) {
+                    b.className = 'view-btn flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all bg-white dark:bg-gray-700 text-slate-900 dark:text-gray-100 shadow-sm';
+                } else {
+                    b.className = 'view-btn flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all text-slate-500 dark:text-gray-400';
+                }
+            });
+
+            listView.classList.toggle('hidden', currentView !== 'list');
+            calendarView.classList.toggle('hidden', currentView !== 'calendar');
+        });
+    });
+
+    // ─── List view ───
+    function renderList() {
+        var grouped = {};
+        var order = [];
+
+        sessions.forEach(function (s) {
+            var key = s._date.getFullYear() + '-' + s._date.getMonth();
+            if (!grouped[key]) {
+                grouped[key] = { label: MONTHS[s._date.getMonth()] + ' ' + s._date.getFullYear(), items: [] };
+                order.push(key);
+            }
+            grouped[key].items.push(s);
+        });
+
+        var html = '';
+        order.forEach(function (key) {
+            var g = grouped[key];
+            html += '<section class="mb-10">';
+            html += '<h2 class="text-lg font-semibold text-slate-600 dark:text-gray-300 mb-4 pb-2 border-b-2 border-gray-200 dark:border-gray-700">' + escapeHtml(g.label) + '</h2>';
+
+            g.items.forEach(function (s) {
+                var tagCls = TAG_CLASSES[s.type] || TAG_CLASSES.rct;
+                html += '<button type="button" class="session-card w-full text-left flex flex-col sm:flex-row gap-4 bg-white dark:bg-gray-800 rounded-xl p-5 mb-3 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-md transition-all cursor-pointer" data-id="' + s.id + '">';
+
+                // Date block
+                html += '<div class="flex sm:flex-col items-center justify-center gap-2 sm:gap-0 sm:min-w-[70px] px-3 py-2 bg-gray-50 dark:bg-gray-900 rounded-lg">';
+                html += '<span class="text-2xl font-bold text-slate-900 dark:text-gray-100 leading-none">' + s._date.getDate() + '</span>';
+                html += '<span class="text-xs uppercase tracking-wider text-slate-500 dark:text-gray-400 sm:mt-1">' + WEEKDAYS[s._date.getDay()] + '</span>';
+                html += '</div>';
+
+                // Content
+                html += '<div class="flex-1 min-w-0">';
+                html += '<p class="text-sm font-medium text-blue-500 dark:text-blue-400">' + escapeHtml(s.time) + '</p>';
+                html += '<h3 class="mt-0.5 text-base font-semibold text-slate-900 dark:text-gray-100">' + escapeHtml(s.title) + '</h3>';
+                html += '<div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-sm text-slate-500 dark:text-gray-400">';
+                html += '<span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400 dark:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>' + escapeHtml(s.presenter) + '</span>';
+                html += '<span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-slate-400 dark:text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>' + escapeHtml(s.location) + '</span>';
+                html += '</div>';
+                html += '<span class="inline-block mt-3 px-2.5 py-0.5 text-xs font-medium rounded-full ' + tagCls + '">' + TYPE_LABELS[s.type] + '</span>';
+                html += '</div>';
+
+                html += '</button>';
+            });
+
+            html += '</section>';
+        });
+
+        listView.innerHTML = html;
+
+        // Click handlers
+        listView.querySelectorAll('.session-card').forEach(function (card) {
+            card.addEventListener('click', function () {
+                var s = sessions.find(function (x) { return x.id === +card.dataset.id; });
+                if (s) openModal(s);
+            });
+        });
+    }
+
+    // ─── Calendar view ───
+    function renderCalendar() {
+        var year = displayedMonth.getFullYear();
+        var month = displayedMonth.getMonth();
+        calendarTitle.textContent = MONTHS[month] + ' ' + year;
+
+        var first = new Date(year, month, 1);
+        var start = new Date(first);
+        start.setDate(start.getDate() - first.getDay());
+
+        var html = '';
+        var cur = new Date(start);
+
+        for (var i = 0; i < 42; i++) {
+            var isOther = cur.getMonth() !== month;
+            var isToday = sameDay(cur, today);
+            var daySessions = sessions.filter(function (s) { return sameDay(s._date, cur); });
+
+            html += '<div class="cal-day p-1.5 border-r border-b border-gray-200 dark:border-gray-700 last:border-r-0 ' + (isOther ? 'bg-gray-50 dark:bg-gray-900/50' : 'bg-white dark:bg-gray-800') + '">';
+
+            // Day number
+            html += '<span class="inline-flex items-center justify-center w-7 h-7 text-sm font-medium rounded-full mb-0.5 ';
+            if (isToday) {
+                html += 'bg-slate-900 dark:bg-white text-white dark:text-slate-900';
+            } else if (isOther) {
+                html += 'text-gray-300 dark:text-gray-600';
+            } else {
+                html += 'text-slate-700 dark:text-gray-300';
+            }
+            html += '">' + cur.getDate() + '</span>';
+
+            // Events
+            daySessions.forEach(function (s) {
+                var eCls = EVENT_CLASSES[s.type] || EVENT_CLASSES.rct;
+                html += '<button type="button" class="cal-event block w-full text-left px-1.5 py-0.5 mb-0.5 border-l-[3px] rounded-sm text-[11px] sm:text-xs leading-tight truncate cursor-pointer transition-opacity hover:opacity-80 ' + eCls + '" data-id="' + s.id + '">';
+                html += escapeHtml(s.title.length > 25 ? s.title.substring(0, 25) + '\u2026' : s.title);
+                html += '</button>';
+            });
+
+            html += '</div>';
+            cur.setDate(cur.getDate() + 1);
+        }
+
+        calendarDays.innerHTML = html;
+
+        // Click handlers
+        calendarDays.querySelectorAll('.cal-event').forEach(function (ev) {
+            ev.addEventListener('click', function (e) {
+                e.stopPropagation();
+                var s = sessions.find(function (x) { return x.id === +ev.dataset.id; });
+                if (s) openModal(s);
+            });
+        });
+    }
+
+    // Calendar navigation
+    document.getElementById('prevMonth').addEventListener('click', function () {
+        displayedMonth.setMonth(displayedMonth.getMonth() - 1);
+        renderCalendar();
+    });
+    document.getElementById('nextMonth').addEventListener('click', function () {
+        displayedMonth.setMonth(displayedMonth.getMonth() + 1);
+        renderCalendar();
+    });
+    document.getElementById('todayBtn').addEventListener('click', function () {
+        displayedMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        renderCalendar();
+    });
+
+    // ─── Modal ───
+    function openModal(s) {
+        document.getElementById('modalTitle').textContent = s.title;
+        document.getElementById('modalDate').textContent = formatDate(s._date) + ' \u2022 ' + s.time;
+        document.getElementById('modalArticle').textContent = s.article;
+        document.getElementById('modalPresenter').textContent = s.presenter;
+        document.getElementById('modalLocation').textContent = s.location;
+        document.getElementById('modalDescription').textContent = s.description;
+        modalOverlay.classList.remove('hidden');
+        modalOverlay.style.display = 'flex';
+    }
+
+    function closeModal() {
+        modalOverlay.classList.add('hidden');
+        modalOverlay.style.display = '';
+    }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+    modalOverlay.addEventListener('click', function (e) {
+        if (e.target === modalOverlay) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modalOverlay.classList.contains('hidden')) closeModal();
+    });
+
+    // ─── Load data ───
+    fetch('../assets/data/sessions.json')
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+            sessions = data.map(function (s) {
+                s._date = parseDate(s.date);
+                return s;
+            });
+            sessions.sort(function (a, b) { return a._date - b._date; });
+            renderList();
+            renderCalendar();
+        })
+        .catch(function (err) {
+            console.error('Failed to load sessions:', err);
+            listView.innerHTML = '<p class="text-sm text-slate-500 dark:text-gray-400">Unable to load schedule data.</p>';
+        });
+})();
+</script>
+</body>
+</html>
