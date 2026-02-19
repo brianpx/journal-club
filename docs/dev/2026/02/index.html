@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goal-Directed Hemodynamic Therapy – Anesthesiology Journal Club</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../assets/js/tailwind-config.js"></script>
+
+    <!-- Shared base styles -->
+    <link rel="stylesheet" href="../assets/css/base.css" />
+</head>
+
+<body class="bg-white text-slate-900 antialiased font-sans">
+
+<!-- Skip link -->
+<a href="#main-content"
+   class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 rounded bg-white px-3 py-2 text-sm font-semibold shadow">
+    Skip to main content
+</a>
+
+<!-- ================= HEADER ================= -->
+<header class="sticky top-0 z-50 bg-black/95 backdrop-blur text-white">
+    <nav class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8"
+         aria-label="Primary navigation">
+        <div class="flex h-12 items-center justify-between">
+            <div class="flex items-center gap-1.5">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                </svg>
+                <a href="../" class="text-sm font-medium tracking-tight hover:text-gray-300 transition-colors">
+                    Anesthesiology Journal Club
+                </a>
+            </div>
+
+            <!-- Desktop nav -->
+            <ul class="hidden md:flex items-center gap-7 text-xs">
+                <li><a href="../#overview" class="text-gray-300 hover:text-white transition-colors">Overview</a></li>
+                <li><a href="../#featured" class="text-gray-300 hover:text-white transition-colors">Featured Sessions</a></li>
+                <li><a href="../#schedule" class="text-gray-300 hover:text-white transition-colors">Schedule</a></li>
+                <li><a href="../#archive" class="text-gray-300 hover:text-white transition-colors">Archive</a></li>
+                <li><a href="../#learn" class="text-gray-300 hover:text-white transition-colors">Learn</a></li>
+            </ul>
+
+            <!-- Mobile menu button -->
+            <button id="menuButton"
+                    class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded focus:outline-none focus:ring-2 focus:ring-white"
+                    aria-label="Open menu"
+                    aria-expanded="false"
+                    aria-controls="mobile-menu">
+                <svg width="24" height="24" fill="none" aria-hidden="true">
+                    <path d="M4 6h16M4 12h16M4 18h16"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile menu dialog -->
+    <div id="mobile-menu"
+         class="fixed inset-0 z-50 hidden"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="mobile-menu-title">
+        <div class="absolute inset-0 bg-black/60" aria-hidden="true"></div>
+        <div class="absolute right-0 top-0 h-full w-80 bg-white text-slate-900 shadow-xl">
+            <div class="flex items-center justify-between border-b px-4 py-4">
+                <h2 id="mobile-menu-title" class="text-sm font-semibold">
+                    Navigation
+                </h2>
+                <button id="closeMenu"
+                        class="h-10 w-10 rounded focus:outline-none focus:ring-2 focus:ring-black"
+                        aria-label="Close menu">
+                    <svg width="24" height="24" fill="none" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18"
+                              stroke="currentColor"
+                              stroke-width="2"
+                              stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <ul class="px-4 py-6 space-y-4 text-sm">
+                <li><a href="../#overview" class="block">Overview</a></li>
+                <li><a href="../#featured" class="block">Featured Sessions</a></li>
+                <li><a href="../#schedule" class="block">Schedule</a></li>
+                <li><a href="../#archive" class="block">Archive</a></li>
+                <li><a href="../#learn" class="block">Learn</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<!-- ================= MAIN ================= -->
+<main id="main-content" class="mx-auto max-w-3xl px-6 py-12">
+
+    <!-- Metadata -->
+    <nav aria-label="Breadcrumb" class="mb-5 text-sm text-slate-500">
+        <ol class="flex flex-wrap items-center gap-2">
+            <li class="font-medium text-slate-700">Featured Session</li>
+            <li aria-hidden="true" class="text-slate-300">|</li>
+            <li>February 7, 2026</li>
+        </ol>
+    </nav>
+
+    <!-- Category Tags -->
+    <div class="mb-4 flex flex-wrap gap-x-2 gap-y-1 text-sm">
+        <a href="#" class="text-blue-600 hover:underline">Critical Care</a><span class="text-slate-300">,</span>
+        <a href="#" class="text-blue-600 hover:underline">Hemodynamics</a><span class="text-slate-300">,</span>
+        <a href="#" class="text-purple-600 hover:underline">Evidence-Based Practice</a>
+    </div>
+
+    <!-- Article Header -->
+    <header class="mb-8">
+        <h1 class="font-display text-3xl sm:text-4xl font-semibold leading-tight tracking-tight">
+            Perioperative Goal-Directed Hemodynamic Therapy in High-Risk Surgical Patients
+        </h1>
+
+        <div class="mt-5 flex gap-2">
+            <button aria-label="Share on LinkedIn"
+                    class="h-9 w-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </button>
+            <button aria-label="Share on X"
+                    class="h-9 w-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </button>
+            <button aria-label="Share via email"
+                    class="h-9 w-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </button>
+            <button aria-label="Copy link"
+                    class="h-9 w-9 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.303-3.558a4.5 4.5 0 00-1.242-7.244l-4.5-4.5a4.5 4.5 0 00-6.364 6.364L4.25 8.81"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= ARTICLE BODY ================= -->
+    <article class="prose prose-slate max-w-none text-[16px] leading-relaxed">
+
+        <p>
+            High-risk surgical patients experience significant morbidity and mortality, with postoperative complications contributing to prolonged hospital stays and increased healthcare costs. Goal-directed hemodynamic therapy (GDHT) has emerged as a strategy to optimize tissue perfusion and oxygen delivery during the perioperative period. This session examines the current evidence for GDHT implementation and its impact on patient outcomes.
+        </p>
+
+        <p>
+            The source article is a systematic review and meta-analysis published in <em>Anesthesiology</em> that analyzed 42 randomized controlled trials encompassing over 9,000 patients undergoing major cardiac, abdominal, and orthopedic procedures. The primary endpoints included 30-day mortality, acute kidney injury, and length of hospital stay.
+        </p>
+
+        <!-- Figure 1: Comparison images -->
+        <figure class="my-10">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <p class="text-sm font-medium text-slate-700 mb-2">Standard Care</p>
+                    <div class="aspect-[4/3] bg-slate-100 rounded-lg flex items-center justify-center">
+                        <span class="text-slate-400 text-sm">Hemodynamic monitoring image</span>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-sm font-medium text-slate-700 mb-2">Goal-Directed Therapy</p>
+                    <div class="aspect-[4/3] bg-slate-100 rounded-lg flex items-center justify-center">
+                        <span class="text-slate-400 text-sm">GDHT protocol image</span>
+                    </div>
+                </div>
+            </div>
+            <figcaption class="mt-3 text-xs text-slate-500">
+                Figure 1: Comparison of standard hemodynamic management versus goal-directed therapy protocols. GDHT utilizes real-time monitoring to guide fluid and vasopressor administration toward predefined physiologic targets.
+            </figcaption>
+        </figure>
+
+        <p>
+            In many clinical scenarios, such as major abdominal surgery, cardiac procedures, or trauma resuscitation, having fine-grained control over hemodynamic parameters is crucial. For example, a clinician might want to optimize cardiac output while maintaining adequate perfusion pressure, or ensure that fluid administration is guided by dynamic predictors of fluid responsiveness rather than static measurements.
+        </p>
+
+        <h2>Goal-Directed Therapy: A Protocol-Based Approach</h2>
+
+        <p>
+            The systematic review identified several key components that define effective GDHT protocols. These include the use of minimally invasive cardiac output monitors, dynamic assessment of fluid responsiveness (such as stroke volume variation or pulse pressure variation), and predefined algorithms that guide therapeutic interventions based on measured parameters.
+        </p>
+
+        <p>
+            Unlike traditional management based on static parameters like central venous pressure, goal-directed approaches leverage real-time physiologic feedback to titrate interventions. This allows clinicians to individualize therapy based on each patient's hemodynamic response rather than relying on population-based assumptions.
+        </p>
+
+        <p>
+            Prior approaches to perioperative optimization have used liberal fluid administration strategies, targeting arbitrary hemodynamic endpoints, or relying on clinical gestalt. However, the evidence suggests that these approaches may lead to either under-resuscitation (with resultant tissue hypoperfusion) or over-resuscitation (with associated complications such as pulmonary edema and anastomotic breakdown).
+        </p>
+
+        <!-- Video/Animation placeholder -->
+        <figure class="my-10 bg-slate-50 rounded-xl p-6">
+            <p class="text-center font-semibold text-slate-800 mb-1">GDHT Algorithm Flow</p>
+            <p class="text-center text-sm text-slate-500 mb-4">SVV → Fluid Challenge → CO Response</p>
+            <div class="aspect-video bg-white rounded-lg border border-slate-200 flex items-center justify-center relative">
+                <div class="text-center">
+                    <div class="mb-4">
+                        <span class="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">SVV &gt; 13%</span>
+                    </div>
+                    <svg class="w-6 h-6 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                    <div class="mb-4">
+                        <span class="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium">250mL Crystalloid Bolus</span>
+                    </div>
+                    <svg class="w-6 h-6 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                    </svg>
+                    <div>
+                        <span class="inline-block px-4 py-2 bg-purple-100 text-purple-800 rounded-full text-sm font-medium">Reassess CO & SVV</span>
+                    </div>
+                </div>
+                <!-- Play button overlay -->
+                <div class="absolute bottom-4 left-4 flex items-center gap-2 text-xs text-slate-500">
+                    <button class="h-8 w-8 rounded-full bg-slate-900 text-white flex items-center justify-center">
+                        <svg class="w-3 h-3 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <span>0:00 / 0:45</span>
+                </div>
+            </div>
+            <figcaption class="mt-4 text-xs text-slate-500">
+                Figure 2: Simplified GDHT algorithm demonstrating the iterative process of assessing fluid responsiveness, administering targeted interventions, and reassessing physiologic response. SVV = stroke volume variation; CO = cardiac output.
+            </figcaption>
+        </figure>
+
+        <h2>Key Findings from the Meta-Analysis</h2>
+
+        <p>
+            The pooled analysis demonstrated a statistically significant reduction in postoperative complications with GDHT implementation. Mortality was reduced by 23% (RR 0.77, 95% CI 0.63–0.94), though this finding was driven primarily by studies in high-risk populations. Acute kidney injury was reduced by 31% (RR 0.69, 95% CI 0.56–0.85), and hospital length of stay was shortened by an average of 1.2 days.
+        </p>
+
+        <!-- Data table -->
+        <div class="overflow-x-auto my-10">
+            <table class="w-full border-collapse text-sm">
+                <thead>
+                <tr class="border-b-2 border-slate-200">
+                    <th class="py-3 pr-4 text-left font-semibold">Outcome</th>
+                    <th class="py-3 px-4 text-left font-semibold">Risk Ratio</th>
+                    <th class="py-3 px-4 text-left font-semibold">95% CI</th>
+                    <th class="py-3 pl-4 text-left font-semibold">p-value</th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                <tr>
+                    <td class="py-3 pr-4">30-day mortality</td>
+                    <td class="py-3 px-4">0.77</td>
+                    <td class="py-3 px-4">0.63–0.94</td>
+                    <td class="py-3 pl-4">0.01</td>
+                </tr>
+                <tr>
+                    <td class="py-3 pr-4">Acute kidney injury</td>
+                    <td class="py-3 px-4">0.69</td>
+                    <td class="py-3 px-4">0.56–0.85</td>
+                    <td class="py-3 pl-4">&lt;0.001</td>
+                </tr>
+                <tr>
+                    <td class="py-3 pr-4">Surgical site infection</td>
+                    <td class="py-3 px-4">0.72</td>
+                    <td class="py-3 px-4">0.58–0.89</td>
+                    <td class="py-3 pl-4">0.003</td>
+                </tr>
+                <tr>
+                    <td class="py-3 pr-4">Pneumonia</td>
+                    <td class="py-3 px-4">0.81</td>
+                    <td class="py-3 px-4">0.66–0.99</td>
+                    <td class="py-3 pl-4">0.04</td>
+                </tr>
+                </tbody>
+            </table>
+            <p class="mt-3 text-xs text-slate-500">
+                Table 1: Summary of primary and secondary outcomes from the meta-analysis. All outcomes favor GDHT over standard care.
+            </p>
+        </div>
+
+        <h2>Clinical Implementation Considerations</h2>
+
+        <p>
+            Several practical considerations emerged from the discussion. First, the choice of monitoring technology varies by institution and surgical context—options include esophageal Doppler, arterial waveform analysis (FloTrac, LiDCO), and echocardiography. Second, successful implementation requires institutional buy-in, including nursing education, protocol standardization, and quality improvement initiatives.
+        </p>
+
+        <p>
+            Subgroup analyses revealed that the benefit was most pronounced in patients undergoing high-risk abdominal surgery and those with baseline cardiac dysfunction. The number needed to treat (NNT) to prevent one major complication was 12 in high-risk populations versus 45 in lower-risk cohorts, suggesting that patient selection is crucial for resource allocation.
+        </p>
+
+        <h2>Discussion Points</h2>
+
+        <p>
+            The journal club discussion raised several important questions regarding external validity and implementation barriers. Participants noted heterogeneity in the protocols studied, with variation in target parameters, monitoring devices, and intervention algorithms. This heterogeneity may limit the ability to recommend a single "best" protocol.
+        </p>
+
+        <p>
+            Cost-effectiveness analyses suggest that GDHT is economically favorable when applied to appropriate patient populations, primarily through reduction in complications and shortened hospital stays. However, the upfront investment in monitoring equipment and training represents a barrier for some institutions.
+        </p>
+
+    </article>
+
+    <!-- ================= RESOURCES ================= -->
+    <section aria-labelledby="resources-heading" class="mt-14">
+        <h2 id="resources-heading" class="text-lg font-semibold">
+            Session Materials
+        </h2>
+        <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="#" class="text-blue-600 hover:underline">Original article (PDF)</a></li>
+            <li><a href="#" class="text-blue-600 hover:underline">Critical appraisal worksheet</a></li>
+            <li><a href="#" class="text-blue-600 hover:underline">Presentation slides</a></li>
+            <li><a href="#" class="text-blue-600 hover:underline">GDHT protocol template</a></li>
+        </ul>
+    </section>
+
+    <!-- ================= RELATED ================= -->
+    <section aria-labelledby="related-heading" class="mt-16 border-t border-slate-200 pt-10">
+        <h2 id="related-heading" class="text-lg font-semibold">
+            Related sessions
+        </h2>
+
+        <div class="mt-6 grid gap-6 md:grid-cols-2">
+            <article class="bg-gray-50 rounded-xl p-5">
+                <p class="text-xs text-slate-500">January 31, 2026</p>
+                <h3 class="mt-2 font-semibold">Anesthetic Management of Stroke Patients for Mechanical Thrombectomy</h3>
+                <p class="mt-2 text-sm text-slate-600">
+                    Critical appraisal of GA vs. conscious sedation approaches and hemodynamic targets.
+                </p>
+                <a href="#" class="mt-3 inline-block text-sm font-medium text-blue-600 hover:underline">
+                    Read summary →
+                </a>
+            </article>
+
+            <article class="bg-gray-50 rounded-xl p-5">
+                <p class="text-xs text-slate-500">January 17, 2026</p>
+                <h3 class="mt-2 font-semibold">TEE-Guided Hemodynamic Optimization in Cardiac Surgery</h3>
+                <p class="mt-2 text-sm text-slate-600">
+                    Evidence-based protocols for intraoperative echocardiographic assessment.
+                </p>
+                <a href="#" class="mt-3 inline-block text-sm font-medium text-blue-600 hover:underline">
+                    Read summary →
+                </a>
+            </article>
+        </div>
+    </section>
+
+</main>
+
+<!-- ================= LEARN CTA ================= -->
+<section class="bg-slate-50 border-t border-slate-100">
+    <div class="mx-auto max-w-6xl px-6 py-14 grid md:grid-cols-2 gap-8 items-center">
+        <div>
+            <h2 class="text-xl font-semibold tracking-tight">
+                Join the Discussion
+            </h2>
+            <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                Journal club meets bi-weekly and is open to faculty, residents, fellows, and medical students. Present an article, lead a discussion, or attend to stay current with the literature.
+            </p>
+            <a href="#"
+               class="mt-5 inline-block rounded-full bg-blue-600 px-5 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-600">
+                Sign up to present
+            </a>
+        </div>
+        <div class="aspect-video bg-slate-200 rounded-xl"
+             role="img"
+             aria-label="Decorative image placeholder">
+        </div>
+    </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-black text-gray-400 border-t border-gray-800">
+    <div class="mx-auto max-w-6xl px-6 py-4">
+        <!-- Breadcrumb -->
+        <nav class="text-xs mb-4" aria-label="Breadcrumb">
+            <ol class="flex items-center gap-2">
+                <li>
+                    <a href="../" class="hover:text-white transition-colors">Anesthesiology Journal Club</a>
+                </li>
+                <li class="text-gray-600">›</li>
+                <li class="text-gray-500">Goal-Directed Hemodynamic Therapy</li>
+            </ol>
+        </nav>
+
+        <!-- Bottom row -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-3 border-t border-gray-800">
+            <div class="flex flex-wrap gap-4 text-xs">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms of Use</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <p class="text-xs text-gray-500">
+                Copyright © 2026 UC Davis Health. All rights reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<!-- ================= JS ================= -->
+<script src="../assets/js/mobile-menu.js"></script>
+<script src="../assets/js/share.js"></script>
+</body>
+</html>
